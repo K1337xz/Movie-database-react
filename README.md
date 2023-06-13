@@ -4,7 +4,9 @@ Movie database React
 
 # Todo
 
--   [ ] Pages
+-   [ ] Movie page
+-   [ ] TV Shows page
 -   [ ] Connect MovieDatabaseAPI
 -   [ ] User Login/signup
--   [ ] 
+-   [ ] Add/edit review
+-   
