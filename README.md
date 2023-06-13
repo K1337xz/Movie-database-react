@@ -9,4 +9,5 @@ Movie database React
 -   [ ] Connect MovieDatabaseAPI
 -   [ ] User Login/signup
 -   [ ] Add/edit review
--   
+-   [ ] Upload user avatar
+-   [ ] Clicked movie page
