@@ -1,6 +1,6 @@
 # Movie database React
 
-Movie database React
+Movie database React + Node
 
 # Todo
 
