@@ -1,0 +1,127 @@
+@use "../../scss/abstract/colors" as *;
+
+.header {
+	width: 100%;
+	height: 10%;
+}
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: $color800;
+	width: 100%;
+	height: 100%;
+	a {
+		text-decoration: none;
+		color: $color50;
+	}
+	&__logo {
+		margin-left: 3rem;
+	}
+	&__menu {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		width: 25%;
+		&-dropdownMovie {
+			display: none;
+			&.active {
+				position: absolute;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				width: 8%;
+				height: 15%;
+				top: 70px;
+				right: 363px;
+				border-radius: 5px;
+				padding: 1rem;
+				background-color: $color200;
+			}
+		}
+		&-dropdownSeries {
+			display: none;
+			&.active {
+				position: absolute;
+				top: 70px;
+				right: 235px;
+				display: flex;
+				flex-direction: column;
+				width: 8%;
+				height: 13%;
+				border-radius: 5px;
+				padding: 1rem;
+				background-color: $color200;
+			}
+		}
+	}
+	&__item {
+		font-weight: 600;
+		list-style: none;
+		&:last-child {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20%;
+			height: 4vh;
+			background-color: $color500;
+			border-radius: 20px;
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		&-dropdown {
+			font-weight: 600;
+			list-style: none;
+		}
+		&-dropdownMovie {
+			font-weight: 600;
+			list-style: none;
+			&:hover {
+				.nav__menu-dropdownMovie {
+					position: absolute;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					width: 8%;
+					height: 15%;
+					top: 70px;
+					right: 363px;
+					border-radius: 5px;
+					padding: 1rem;
+					background-color: $color200;
+				}
+			}
+		}
+		&-dropdownSeries {
+			font-weight: 600;
+			list-style: none;
+			&:hover {
+				.nav__menu-dropdownSeries {
+					position: absolute;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					width: 7%;
+					height: 13%;
+					top: 70px;
+					right: 235px;
+					border-radius: 5px;
+					padding: 1rem;
+					background-color: $color200;
+				}
+			}
+		}
+	}
+	&__dropdownItem {
+		display: flex;
+		a {
+			color: $color950;
+			font-weight: 600;
+		}
+	}
+}
