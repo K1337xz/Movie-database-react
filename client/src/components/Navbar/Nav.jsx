@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
+import Searchbar from "../Searchbar/Searchbar";
 import "./Nav.scss";
 
 export default function Nav() {
@@ -10,6 +11,17 @@ export default function Nav() {
 					<Link to="/">
 						<img src={logo} alt="logo image" />
 					</Link>
+				</div>
+				<div className="nav__searchBar">
+					<Searchbar />
+					<div className="nav__searchResults">
+						<h2>Movie</h2>
+						<h2>Movie </h2>
+						<h2>Movie </h2>
+						<h2>Movie </h2>
+						<h2>Movie </h2>
+						<h2>Movie </h2>
+					</div>
 				</div>
 				<ul className="nav__menu">
 					<li className="nav__item-dropdownMovie">

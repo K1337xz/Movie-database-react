@@ -18,6 +18,27 @@
 	&__logo {
 		margin-left: 3rem;
 	}
+	&__searchBar {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 40%;
+		height: 100%;
+	}
+	&__searchResults {
+		display: none;
+		position: absolute;
+		width: 40%;
+		max-height: 25vh;
+		padding: 1rem;
+		left: 50%;
+		top: 90%;
+		border-radius: 20px;
+		background-color: white;
+		overflow-y: scroll;
+	}
 	&__menu {
 		display: flex;
 		align-items: center;

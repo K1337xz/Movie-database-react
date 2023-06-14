@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Nav from "./components/Navbar/Nav";
+import Mainpage from "./pages/mainpage/Mainpage";
 import "./App.scss";
 
 function App() {
 	return (
 		<>
 			<Nav />
-			<div>
-				<h1>MOVIE DATABASE</h1>
-			</div>
+			<main className="container">
+				<Mainpage />
+			</main>
 		</>
 	);
 }

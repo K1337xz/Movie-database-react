@@ -1,0 +1,21 @@
+@use "../../scss/abstract/colors" as *;
+
+.searchWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 80%;
+	input {
+		width: 50%;
+		height: 4vh;
+		background-color: $color800;
+		border: 1px solid $color500;
+		border-radius: 20px;
+		outline: none;
+		color: $color50;
+		padding-left: 2rem;
+		&::placeholder {
+			color: $color50;
+		}
+	}
+}
