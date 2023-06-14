@@ -3,11 +3,19 @@
 .mainContent {
 	width: 100%;
 	height: 100%;
+	&__topWrapper {
+		display: flex;
+		align-items: center;
+	}
 	&__leftWrapp {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 60%;
+		height: 90vh;
+	}
+	&__rightWrapp {
+		width: 40%;
 		height: 90vh;
 	}
 	&__imageBackground {
@@ -23,5 +31,60 @@
 		top: 25%;
 		width: 50%;
 		border-radius: 58px;
+	}
+	&__switchInput {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 1rem;
+		color: $color50;
+		padding: 3rem;
+		margin-right: 2rem;
+	}
+	&__movieInfo {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 2rem;
+		margin-left: 4rem;
+		height: 55%;
+		span {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 15px;
+			color: $color400;
+		}
+		h1 {
+			font-style: normal;
+			font-weight: 700;
+			font-size: 51px;
+			line-height: 62px;
+			color: $color50;
+		}
+		p {
+			font-style: normal;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 19px;
+			color: $color50;
+			width: 370px;
+		}
+	}
+	&__loadMoreBtn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $color50;
+		text-decoration: none;
+		border: 1px solid $color400;
+		border-radius: 20px;
+		width: 18%;
+		height: 4vh;
+		&:hover {
+			background-color: $color50;
+			color: $color800;
+			font-weight: 700;
+		}
 	}
 }
