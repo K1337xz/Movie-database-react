@@ -49,20 +49,20 @@
 		gap: 2rem;
 		margin-left: 4rem;
 		height: 55%;
-		span {
+		.genere {
 			font-weight: 400;
 			font-size: 12px;
 			line-height: 15px;
 			color: $color400;
 		}
-		h1 {
+		.title {
 			font-style: normal;
 			font-weight: 700;
 			font-size: 51px;
 			line-height: 62px;
 			color: $color50;
 		}
-		p {
+		.overview {
 			font-style: normal;
 			font-weight: 400;
 			font-size: 16px;

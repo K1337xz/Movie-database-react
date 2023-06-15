@@ -1,0 +1,46 @@
+@use "../../scss/abstract/colors" as *;
+
+.sceleton {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 2rem;
+	margin-left: 4rem;
+	height: 100%;
+	&__span {
+		width: 100px;
+		height: 16px;
+		margin-bottom: -1rem;
+		background-color: $color50;
+		animation: sceleton 1s ease infinite alternate;
+	}
+	&__header {
+		width: 156px;
+		height: 25px;
+		background-color: $color50;
+		animation: sceleton 1s ease infinite alternate;
+	}
+	&__overview {
+		width: 370px;
+		height: 86px;
+		background-color: $color50;
+		animation: sceleton 1s ease infinite alternate;
+	}
+	&__button {
+		width: 116px;
+		height: 35px;
+		border-radius: 20px;
+		animation: sceleton 1s ease infinite alternate;
+		background-color: $color50;
+	}
+}
+
+@keyframes sceleton {
+	0% {
+		background-color: $color200;
+	}
+	100% {
+		background-color: $color800;
+	}
+}
