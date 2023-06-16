@@ -11,6 +11,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
 		width: 60%;
 		height: 90vh;
 	}
@@ -40,6 +41,11 @@
 		color: $color50;
 		padding: 3rem;
 		margin-right: 2rem;
+	}
+	&__slider {
+		display: flex;
+		align-items: center;
+		overflow: hidden;
 	}
 	&__movieInfo {
 		display: flex;

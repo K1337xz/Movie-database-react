@@ -1,0 +1,27 @@
+@use "../../scss/abstract/colors" as *;
+
+.sceletonImage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 90vh;
+	&__background {
+		position: relative;
+		width: 95%;
+		height: 80%;
+		border-radius: 58px;
+		filter: blur(9px);
+		background-color: $color50;
+		animation: sceleton 1s ease infinite alternate;
+	}
+}
+
+@keyframes sceleton {
+	0% {
+		background-color: $color200;
+	}
+	100% {
+		background-color: $color800;
+	}
+}

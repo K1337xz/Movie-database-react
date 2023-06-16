@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, generatePath, useOutlet } from "react-router-dom";
-import Sceleton from "./Sceleton/Sceleton";
+import Sceleton from "./Sceleton_text/Sceleton";
 
 export default function RightMovieInfo(props) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [upcomingMovies, setUpcomingMovies] = useState({});
-	const [genreData, setGenereData] = useState([]);
-	const [genereConverted, setGenereConverted] = useState();
-	const api_image = `https://image.tmdb.org/t/p/original`;
+
 	const api_url = "https://api.themoviedb.org/3/";
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
@@ -27,13 +25,14 @@ export default function RightMovieInfo(props) {
 				console.log(error);
 			}
 			/* 	setGenere(genreData.data.results); */
+
 			setIsLoading(false);
+
 			console.log(upcomingMovies);
 		};
 		fetchUpcomingMovie();
 	}, []);
 
-	console.log(upcomingMovies.title);
 	if (isLoading) {
 		return <Sceleton />;
 	}
