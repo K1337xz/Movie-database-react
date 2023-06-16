@@ -10,7 +10,6 @@ export default function Mainpage() {
 	const [clickedNavValue, setclickedNavValue] = useState(0);
 	const [upcomingMovies, setUpcomingMovies] = useState();
 	const api_url = "https://api.themoviedb.org/3/";
-	const li = document.querySelectorAll(".subnav__item");
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
 			try {
