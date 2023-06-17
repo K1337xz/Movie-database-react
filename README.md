@@ -10,4 +10,4 @@ Movie database React + Node
 -   [ ] User Login/signup
 -   [ ] Add/edit review
 -   [ ] Upload user avatar
--   [ ] Clicked movie page
+-   [x] Show on main page top rated tvseries / upcoming movies
