@@ -35,7 +35,6 @@ export default function Imageslider(props) {
 	if (isLoading) {
 		return <Sceletonimage />;
 	}
-	console.log(tvSeries);
 	return (
 		<>
 			{props.check ? (
