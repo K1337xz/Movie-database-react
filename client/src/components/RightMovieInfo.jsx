@@ -8,6 +8,7 @@ export default function RightMovieInfo(props) {
 	const [upcomingMovies, setUpcomingMovies] = useState({});
 	const [tvSeries, setTvseries] = useState({});
 	const api_url = "https://api.themoviedb.org/3/";
+	let date = new Date().toISOString().split("T")[0];
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
 			setIsLoading(true);
@@ -24,7 +25,9 @@ export default function RightMovieInfo(props) {
 					params: { api_key: import.meta.env.VITE_API_KEY },
 				});
 				setTvseries(dataS.data.results);
-				setUpcomingMovies(dataM.data.results);
+				setUpcomingMovies(
+					dataM.data.results.filter((itm) => itm.release_date >= date)
+				);
 			} catch (error) {
 				console.log(error);
 			}

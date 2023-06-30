@@ -6,7 +6,7 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	width: 100%;
-	height: 100%;
+	height: 70vh;
 	&__topContent {
 		display: flex;
 		align-items: center;
@@ -33,20 +33,92 @@
 		gap: 2rem;
 		width: 50%;
 		height: 100%;
+		&--director {
+			p {
+				&:first-child {
+					color: $color400;
+					font-size: 12px;
+				}
+				&:last-child {
+					color: $color50;
+				}
+			}
+		}
 		&--menu {
 			display: flex;
 			gap: 10px;
 			list-style: none;
 			color: $color400;
 		}
+		&--overview {
+			color: $color50;
+			font-size: 16px;
+			width: 70%;
+		}
 		h1 {
 			color: $color50;
 			font-size: 51px;
 		}
+	}
+}
+.castSlider {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	&__sliderTopContent {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 95%;
+		height: 15vh;
+	}
+	&__card_image {
+		img {
+			width: 100%;
+			border-radius: 20px;
+		}
+	}
+	&__card {
+		position: relative;
+		width: 25vh;
+	}
+	&__card_characterInfo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		height: 20%;
+		background-color: #d3ecf852;
+		color: black;
+		position: absolute;
+		bottom: 5%;
 		p {
-			color: $color50;
-			font-size: 16px;
-			width: 70%;
+			font-weight: 700;
+		}
+		span {
+			font-size: 10px;
+		}
+	}
+	&__menu {
+		display: flex;
+		gap: 3rem;
+		list-style: none;
+		margin-bottom: 1rem;
+	}
+	&__slider {
+		display: flex;
+		overflow-x: scroll;
+		width: 95%;
+		&::-webkit-scrollbar {
+			width: 20px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: $color500;
+			border-radius: 10px;
+			cursor: pointer;
 		}
 	}
 }

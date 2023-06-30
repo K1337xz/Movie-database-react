@@ -9,6 +9,7 @@ export default function Imageslider(props) {
 	const [tvSeries, setTvseries] = useState();
 	const api_image = `https://image.tmdb.org/t/p/original`;
 	const api_url = "https://api.themoviedb.org/3/";
+	let date = new Date().toISOString().split("T")[0];
 
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
@@ -21,7 +22,9 @@ export default function Imageslider(props) {
 					params: { api_key: import.meta.env.VITE_API_KEY },
 				});
 				setTvseries(dataS.data.results);
-				setUpcomingMovies(dataM.data.results);
+				setUpcomingMovies(
+					dataM.data.results.filter((itm) => itm.release_date >= date)
+				);
 			} catch (error) {
 				console.log(error);
 			}
@@ -32,6 +35,7 @@ export default function Imageslider(props) {
 		fetchUpcomingMovie();
 	}, []);
 
+	console.log(upcomingMovies);
 	if (isLoading) {
 		return <Sceletonimage />;
 	}

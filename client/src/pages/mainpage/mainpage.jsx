@@ -16,7 +16,6 @@ export default function Mainpage() {
 		third: false,
 		fourth: false,
 	});
-
 	const api_url = "https://api.themoviedb.org/3/";
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
@@ -30,6 +29,7 @@ export default function Mainpage() {
 				console.log;
 			}
 		};
+		document.title = `CoolMovieDB`;
 		fetchUpcomingMovie();
 	}, []);
 
@@ -70,7 +70,6 @@ export default function Mainpage() {
 		}
 		setclickedNavValue(clickedNav);
 	}
-
 	return (
 		<div className="mainContent">
 			<div className="mainContent__topWrapper">
