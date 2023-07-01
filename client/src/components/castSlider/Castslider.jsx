@@ -1,5 +1,6 @@
 import "./castslider.scss";
 import { useState } from "react";
+import user from "../../assets/pngwing.com.png";
 
 export default function Castslider(props) {
 	const api_image = `https://image.tmdb.org/t/p/w500`;
@@ -7,7 +8,11 @@ export default function Castslider(props) {
 		<li className="castSlider__card">
 			<div className="castSlider__card_image">
 				<img
-					src={api_image + props.dataCast.profile_path}
+					src={
+						!props.dataCast.profile_path
+							? user
+							: api_image + props.dataCast.profile_path
+					}
 					loading="lazy"
 				/>
 			</div>

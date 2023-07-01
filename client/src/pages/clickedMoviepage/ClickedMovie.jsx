@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Castslider from "../../components/castSlider/Castslider";
+import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
 import axios from "axios";
@@ -13,6 +14,7 @@ export default function ClickedMovie() {
 	const [cast, setCast] = useState([]);
 	const [fullCast, setFullCast] = useState([]);
 	const [directors, setDirectors] = useState([]);
+	const [videos, setVideos] = useState([]);
 	const directName = directors[0] ? directors[0].name : "";
 	const [checked, setChecked] = useState(false);
 	const myStyle = {
@@ -42,11 +44,23 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
+				const dataVideos = await axios.get(
+					`${api_url}/movie/${movieId}/videos`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
 				setClickedMovie(data.data);
-				setCast(creditsData.data.cast.slice(0, 10));
+				setCast(creditsData.data.cast);
 				setDirectors(
 					creditsData.data.crew.filter(
 						(item) => item.job === "Director"
+					)
+				);
+				setVideos(
+					dataVideos.data.results.filter(
+						(item) =>
+							item.type === "Trailer" || item.type === "Teaser"
 					)
 				);
 				document.title = `${data.data.title}`;
@@ -57,11 +71,15 @@ export default function ClickedMovie() {
 		fetchMovie();
 	}, []);
 
-	const cardCast = cast.map((dataCast) => {
+	const cardCast = cast.slice(0, 10).map((dataCast) => {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
 	});
 
-	console.log(cast);
+	const cardFullCast = cast.map((dataCast) => {
+		return <Castslider key={dataCast.id} dataCast={dataCast} />;
+	});
+
+	console.log(videos);
 	return (
 		<>
 			<Nav />
@@ -103,11 +121,35 @@ export default function ClickedMovie() {
 						<h2>CAST</h2>
 						<div className="castSlider__toggleBtn">
 							<Toggle label="Toggle me" onClick={logState} />
-							<p>TV Series</p>
+							<p>Full cast</p>
 						</div>
 					</div>
-					<div className="castSlider__slider">
-						<ul className="castSlider__menu">{cardCast}</ul>
+					<div
+						className={
+							checked
+								? "castSlider__slider--full"
+								: "castSlider__slider"
+						}
+					>
+						<ul
+							className={
+								checked
+									? "castSlider__menu--fullCast"
+									: "castSlider__menu"
+							}
+						>
+							{checked ? cardFullCast : cardCast}
+						</ul>
+					</div>
+				</div>
+				<div className="trailerSection">
+					<div className="trailerSection__topContent">
+						<h2>VIDEOS</h2>
+					</div>
+					<div className="trailerSection__playerContent">
+						<Player
+							movieid={videos.length > 0 ? videos[0].key : "x"}
+						/>
 					</div>
 				</div>
 			</main>
