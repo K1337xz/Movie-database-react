@@ -3,25 +3,28 @@ import Castslider from "../../components/castSlider/Castslider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
+import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
 import axios from "axios";
 import "./clickedmovie.scss";
 
 export default function ClickedMovie() {
 	const movieId = window.location.pathname.slice(3);
-	const api_image = `https://image.tmdb.org/t/p/w500`;
+	const api_imageWidth500 = `https://image.tmdb.org/t/p/w500`;
+	const api_imageWidthOrginal = `https://image.tmdb.org/t/p/original`;
 	const api_url = "https://api.themoviedb.org/3/";
 	const [clickedMovie, setClickedMovie] = useState([]);
 	const [cast, setCast] = useState([]);
-	const [fullCast, setFullCast] = useState([]);
 	const [directors, setDirectors] = useState([]);
 	const [videos, setVideos] = useState([]);
+	const [images, setImages] = useState([]);
 	const directName = directors[0] ? directors[0].name : "";
 	const [checked, setChecked] = useState(false);
+	const [clickedTrailer, setClickedTrailer] = useState(0);
 	const myStyle = {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundImage: `linear-gradient(0deg, rgba(233, 246, 251, 0.3), rgba(39, 161, 218, 0.9)), url(${api_image}/${clickedMovie.backdrop_path}) `,
+		backgroundImage: `linear-gradient(0deg, rgba(233, 246, 251, 0.3), rgba(39, 161, 218, 0.9)), url(${api_imageWidth500}/${clickedMovie.backdrop_path}) `,
 		width: "100%",
 		height: "100%",
 		backgroundSize: "cover",
@@ -29,7 +32,6 @@ export default function ClickedMovie() {
 	};
 	const logState = (state) => {
 		setChecked((state) => !state);
-		console.log(state);
 	};
 
 	useEffect(() => {
@@ -50,6 +52,12 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
+				const dataImages = await axios.get(
+					`${api_url}/movie/${movieId}/images`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
 				setClickedMovie(data.data);
 				setCast(creditsData.data.cast);
 				setDirectors(
@@ -63,6 +71,7 @@ export default function ClickedMovie() {
 							item.type === "Trailer" || item.type === "Teaser"
 					)
 				);
+				setImages(dataImages.data);
 				document.title = `${data.data.title}`;
 			} catch (error) {
 				console.log(error);
@@ -79,7 +88,23 @@ export default function ClickedMovie() {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
 	});
 
-	console.log(videos);
+	const toggleForward = () => {
+		if (clickedTrailer === videos.length - 1) {
+			setClickedTrailer((prev) => (prev = 0));
+		} else {
+			setClickedTrailer((prev) => (prev += 1));
+		}
+	};
+
+	const toggleBack = () => {
+		if (clickedTrailer === 0) {
+			setClickedTrailer((prev) => (prev = videos.length - 1));
+		} else {
+			setClickedTrailer((prev) => (prev -= 1));
+		}
+	};
+
+	console.log();
 	return (
 		<>
 			<Nav />
@@ -89,7 +114,7 @@ export default function ClickedMovie() {
 						<div className="clickedMovie__topContent">
 							<div className="clickedMovie__posterImage">
 								<img
-									src={`${api_image}${clickedMovie.poster_path}`}
+									src={`${api_imageWidth500}${clickedMovie.poster_path}`}
 									alt={`${clickedMovie.title} poster image`}
 									className="clickedMovie__posterImage--image"
 								/>
@@ -148,8 +173,32 @@ export default function ClickedMovie() {
 					</div>
 					<div className="trailerSection__playerContent">
 						<Player
-							movieid={videos.length > 0 ? videos[0].key : "x"}
+							movieid={
+								videos.length > 0
+									? videos[clickedTrailer].key
+									: "x"
+							}
+							toggleForward={toggleForward}
+							toggleBack={toggleBack}
 						/>
+					</div>
+				</div>
+				<div className="backdropsSection">
+					<div className="backdropsSection__topContent">
+						<h2>BACKDROPS</h2>
+					</div>
+					<div className="backdropsSection__galleryContent">
+						<div className="backdropsSection__mainImg">
+							<img
+								src={
+									videos.length > 0
+										? `${api_imageWidthOrginal}${images.backdrops[0].file_path}`
+										: ""
+								}
+								className="mainImg"
+							/>
+						</div>
+						<div className="backdropsSection__thumbnails"></div>
 					</div>
 				</div>
 			</main>
