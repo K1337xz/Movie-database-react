@@ -182,13 +182,37 @@
 		height: 15vh;
 		margin-top: 2rem;
 	}
+}
+.gallery {
+	width: 100%;
 	&__mainImg {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		img {
-			width: 50%;
+	}
+	&__image--active {
+		width: 55%;
+	}
+	&__thumbnails {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow-x: hidden;
+		width: 100%;
+	}
+	&__wrapperThumbnails {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		overflow-x: scroll;
+		width: 40%;
+		height: 25vh;
+		gap: 1rem;
+		&::-webkit-scrollbar {
+			display: none;
 		}
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 	}
 }

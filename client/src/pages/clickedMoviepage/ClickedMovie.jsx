@@ -5,6 +5,11 @@ import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
 import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faChevronLeft,
+	faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import "./clickedmovie.scss";
 
 export default function ClickedMovie() {
@@ -20,6 +25,7 @@ export default function ClickedMovie() {
 	const directName = directors[0] ? directors[0].name : "";
 	const [checked, setChecked] = useState(false);
 	const [clickedTrailer, setClickedTrailer] = useState(0);
+	const [mainGalleryImage, setMainGalleryImage] = useState(0);
 	const myStyle = {
 		display: "flex",
 		alignItems: "center",
@@ -58,6 +64,7 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
+				setImages(dataImages.data.backdrops);
 				setClickedMovie(data.data);
 				setCast(creditsData.data.cast);
 				setDirectors(
@@ -71,7 +78,7 @@ export default function ClickedMovie() {
 							item.type === "Trailer" || item.type === "Teaser"
 					)
 				);
-				setImages(dataImages.data);
+
 				document.title = `${data.data.title}`;
 			} catch (error) {
 				console.log(error);
@@ -79,14 +86,6 @@ export default function ClickedMovie() {
 		};
 		fetchMovie();
 	}, []);
-
-	const cardCast = cast.slice(0, 10).map((dataCast) => {
-		return <Castslider key={dataCast.id} dataCast={dataCast} />;
-	});
-
-	const cardFullCast = cast.map((dataCast) => {
-		return <Castslider key={dataCast.id} dataCast={dataCast} />;
-	});
 
 	const toggleForward = () => {
 		if (clickedTrailer === videos.length - 1) {
@@ -104,7 +103,34 @@ export default function ClickedMovie() {
 		}
 	};
 
-	console.log();
+	const cardCast = cast.slice(0, 10).map((dataCast) => {
+		return <Castslider key={dataCast.id} dataCast={dataCast} />;
+	});
+
+	const cardFullCast = cast.map((dataCast) => {
+		return <Castslider key={dataCast.id} dataCast={dataCast} />;
+	});
+
+	const cardImages = images.map((data) => {
+		return (
+			<Backdropgallery
+				key={data.file_path}
+				data={data}
+				heh={() => {
+					let pathIndex = images.findIndex(
+						(itm) => itm.file_path === data.file_path
+					);
+					setMainGalleryImage((prev) => (prev = pathIndex));
+				}}
+			/>
+		);
+	});
+	console.log(
+		images.findIndex(
+			(itm) => itm.file_path === "/tTfnd2VrlaZJSBD9HUbtSF3CqPJ.jpg"
+		)
+	);
+
 	return (
 		<>
 			<Nav />
@@ -187,18 +213,34 @@ export default function ClickedMovie() {
 					<div className="backdropsSection__topContent">
 						<h2>BACKDROPS</h2>
 					</div>
-					<div className="backdropsSection__galleryContent">
-						<div className="backdropsSection__mainImg">
+					<div className="gallery">
+						<div className="gallery__mainImg">
+							<span className="trailerSection__player--goBack">
+								<FontAwesomeIcon
+									icon={faChevronLeft}
+									size="2xl"
+								/>
+							</span>
 							<img
 								src={
-									videos.length > 0
-										? `${api_imageWidthOrginal}${images.backdrops[0].file_path}`
+									images.length > 0
+										? `${api_imageWidthOrginal}${images[mainGalleryImage].file_path}`
 										: ""
 								}
-								className="mainImg"
+								className="gallery__image--active"
 							/>
+							<span className="trailerSection__player--goForward">
+								<FontAwesomeIcon
+									icon={faChevronRight}
+									size="2xl"
+								/>
+							</span>
 						</div>
-						<div className="backdropsSection__thumbnails"></div>
+						<div className="gallery__thumbnails">
+							<div className="gallery__wrapperThumbnails">
+								{cardImages}
+							</div>
+						</div>
 					</div>
 				</div>
 			</main>
