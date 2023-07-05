@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import Sceletonimage from "./Sceleton_image/Sceletonimage";
+import Sceletonimage from "./SceletonLoading/Sceleton_image/Sceletonimage";
 
 export default function Imageslider(props) {
 	const [isLoading, setIsLoading] = useState(true);

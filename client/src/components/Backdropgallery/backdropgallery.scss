@@ -1,4 +1,11 @@
 @use "../../scss/abstract/colors" as *;
 .thumbnail {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
+	&.active {
+		border: 5px solid $color100;
+		border-radius: 5px;
+	}
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, generatePath, useOutlet } from "react-router-dom";
-import Sceleton from "./Sceleton_text/Sceleton";
+import Sceleton from "./SceletonLoading/Sceleton_text/Sceleton";
 
 export default function RightMovieInfo(props) {
 	const [isLoading, setIsLoading] = useState(true);

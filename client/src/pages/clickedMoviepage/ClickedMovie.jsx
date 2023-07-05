@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Castslider from "../../components/castSlider/Castslider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
 import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
+import SceletonClickedCard from "../../components/SceletonLoading/Sceleton_clickedCard/SceletonClickedCard";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,6 +27,8 @@ export default function ClickedMovie() {
 	const [checked, setChecked] = useState(false);
 	const [clickedTrailer, setClickedTrailer] = useState(0);
 	const [mainGalleryImage, setMainGalleryImage] = useState(0);
+	const [loading, setLoading] = useState();
+	const divScroll = useRef(null);
 	const myStyle = {
 		display: "flex",
 		alignItems: "center",
@@ -42,6 +45,7 @@ export default function ClickedMovie() {
 
 	useEffect(() => {
 		const fetchMovie = async () => {
+			setLoading(true);
 			try {
 				const data = await axios.get(`${api_url}/movie/${movieId}`, {
 					params: { api_key: import.meta.env.VITE_API_KEY },
@@ -78,7 +82,7 @@ export default function ClickedMovie() {
 							item.type === "Trailer" || item.type === "Teaser"
 					)
 				);
-
+				setLoading(false);
 				document.title = `${data.data.title}`;
 			} catch (error) {
 				console.log(error);
@@ -103,6 +107,14 @@ export default function ClickedMovie() {
 		}
 	};
 
+	const nextImage = () => {
+		if (mainGalleryImage === images.length - 1) {
+			setMainGalleryImage((prev) => (prev = 0));
+		} else {
+			setMainGalleryImage((prev) => (prev += 1));
+			console.log(bla);
+		}
+	};
 	const cardCast = cast.slice(0, 10).map((dataCast) => {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
 	});
@@ -116,20 +128,25 @@ export default function ClickedMovie() {
 			<Backdropgallery
 				key={data.file_path}
 				data={data}
-				heh={() => {
+				heh={(e) => {
 					let pathIndex = images.findIndex(
 						(itm) => itm.file_path === data.file_path
 					);
 					setMainGalleryImage((prev) => (prev = pathIndex));
+					e.target.scrollIntoView({
+						behavior: "smooth",
+						inline: "center",
+					});
 				}}
+				wrapperClass={
+					images[mainGalleryImage].file_path === data.file_path
+						? "thumbnail active"
+						: "thumbnail"
+				}
 			/>
 		);
 	});
-	console.log(
-		images.findIndex(
-			(itm) => itm.file_path === "/tTfnd2VrlaZJSBD9HUbtSF3CqPJ.jpg"
-		)
-	);
+	console.log();
 
 	return (
 		<>
@@ -137,34 +154,38 @@ export default function ClickedMovie() {
 			<main className="container">
 				<div className="clickedMovie">
 					<div className="clickedMovie__top" style={myStyle}>
-						<div className="clickedMovie__topContent">
-							<div className="clickedMovie__posterImage">
-								<img
-									src={`${api_imageWidth500}${clickedMovie.poster_path}`}
-									alt={`${clickedMovie.title} poster image`}
-									className="clickedMovie__posterImage--image"
-								/>
-							</div>
-							<div className="clickedMovie__rightMovieContent">
-								<ul className="clickedMovie__rightMovieContent--menu">
-									{clickedMovie.genres
-										? clickedMovie.genres.map((itm) => (
-												<li key={itm.id}>
-													{itm.name},
-												</li>
-										  ))
-										: "No genres"}
-								</ul>
-								<h1>{clickedMovie.title}</h1>
-								<p className="clickedMovie__rightMovieContent--overview">
-									{clickedMovie.overview}
-								</p>
-								<div className="clickedMovie__rightMovieContent--director">
-									<p>Director</p>
-									<p>{directName}</p>
+						{loading ? (
+							<SceletonClickedCard />
+						) : (
+							<div className="clickedMovie__topContent">
+								<div className="clickedMovie__posterImage">
+									<img
+										src={`${api_imageWidth500}${clickedMovie.poster_path}`}
+										alt={`${clickedMovie.title} poster image`}
+										className="clickedMovie__posterImage--image"
+									/>
+								</div>
+								<div className="clickedMovie__rightMovieContent">
+									<ul className="clickedMovie__rightMovieContent--menu">
+										{clickedMovie.genres
+											? clickedMovie.genres.map((itm) => (
+													<li key={itm.id}>
+														{itm.name},
+													</li>
+											  ))
+											: "No genres"}
+									</ul>
+									<h1>{clickedMovie.title}</h1>
+									<p className="clickedMovie__rightMovieContent--overview">
+										{clickedMovie.overview}
+									</p>
+									<div className="clickedMovie__rightMovieContent--director">
+										<p>Director</p>
+										<p>{directName}</p>
+									</div>
 								</div>
 							</div>
-						</div>
+						)}
 					</div>
 				</div>
 				<div className="castSlider">
@@ -229,7 +250,10 @@ export default function ClickedMovie() {
 								}
 								className="gallery__image--active"
 							/>
-							<span className="trailerSection__player--goForward">
+							<span
+								className="trailerSection__player--goForward"
+								onClick={nextImage}
+							>
 								<FontAwesomeIcon
 									icon={faChevronRight}
 									size="2xl"
@@ -237,7 +261,10 @@ export default function ClickedMovie() {
 							</span>
 						</div>
 						<div className="gallery__thumbnails">
-							<div className="gallery__wrapperThumbnails">
+							<div
+								className="gallery__wrapperThumbnails"
+								ref={divScroll}
+							>
 								{cardImages}
 							</div>
 						</div>
