@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, createRef } from "react";
 import Castslider from "../../components/castSlider/Castslider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
@@ -106,13 +106,11 @@ export default function ClickedMovie() {
 			setClickedTrailer((prev) => (prev -= 1));
 		}
 	};
-
 	const nextImage = () => {
 		if (mainGalleryImage === images.length - 1) {
 			setMainGalleryImage((prev) => (prev = 0));
 		} else {
 			setMainGalleryImage((prev) => (prev += 1));
-			console.log(bla);
 		}
 	};
 	const cardCast = cast.slice(0, 10).map((dataCast) => {
@@ -146,8 +144,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-	console.log();
-
 	return (
 		<>
 			<Nav />

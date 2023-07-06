@@ -16,7 +16,10 @@ export default function Player(props) {
 				<FontAwesomeIcon icon={faChevronLeft} size="2xl" />
 			</span>
 			<iframe
-				src={`https://www.youtube.com/embed/${props.movieid}?vq=hd1080`}
+				className="video"
+				title="Youtube player"
+				sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
+				src={`https://youtube.com/embed/${props.movieid}?autoplay=0`}
 				width={1280}
 				height={720}
 				allow="fullscreen"

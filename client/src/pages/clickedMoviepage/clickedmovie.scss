@@ -185,6 +185,10 @@
 }
 .gallery {
 	width: 100%;
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
 	&__mainImg {
 		display: flex;
 		align-items: center;
