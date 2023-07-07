@@ -109,15 +109,6 @@ export default function Mainpage() {
 								>
 									<span onClick={toggleClick}>2</span>
 								</li>
-								<li
-									className={
-										activeSubnav.fourth
-											? "subnav__item active"
-											: "subnav__item"
-									}
-								>
-									<span onClick={toggleClick}>3</span>
-								</li>
 							</ul>
 						</div>
 					</div>

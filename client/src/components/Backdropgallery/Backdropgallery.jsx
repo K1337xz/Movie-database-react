@@ -1,8 +1,9 @@
 import "./backdropgallery.scss";
+import { forwardRef } from "react";
 
-export default function Backdropgallery(props) {
+function Backdropgallery(props, ref) {
 	return (
-		<div className={props.wrapperClass} onClick={props.heh}>
+		<div className={props.wrapperClass} onClick={props.heh} ref={ref}>
 			<img
 				src={`https://image.tmdb.org/t/p/w200${props.data.file_path}`}
 				className="thumbnail__images"
@@ -10,3 +11,5 @@ export default function Backdropgallery(props) {
 		</div>
 	);
 }
+
+export default forwardRef(Backdropgallery);

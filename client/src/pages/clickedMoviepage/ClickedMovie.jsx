@@ -109,8 +109,27 @@ export default function ClickedMovie() {
 	const nextImage = () => {
 		if (mainGalleryImage === images.length - 1) {
 			setMainGalleryImage((prev) => (prev = 0));
+			thumbRef.current[mainGalleryImage].scrollTo({
+				behavior: "smooth",
+				inline: "start",
+			});
 		} else {
 			setMainGalleryImage((prev) => (prev += 1));
+			thumbRef.current[mainGalleryImage].current.scrollIntoView({
+				behavior: "smooth",
+				inline: "start",
+			});
+		}
+	};
+	const prevImage = () => {
+		if (mainGalleryImage === 0) {
+			setMainGalleryImage((prev) => (prev = images.length - 1));
+		} else {
+			setMainGalleryImage((prev) => (prev -= 1));
+			thumbRef.current[mainGalleryImage].current.scrollIntoView({
+				behavior: "smooth",
+				inline: "end",
+			});
 		}
 	};
 	const cardCast = cast.slice(0, 10).map((dataCast) => {
@@ -121,7 +140,13 @@ export default function ClickedMovie() {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
 	});
 
-	const cardImages = images.map((data) => {
+	const thumbRef = useRef([]);
+	useEffect(() => {
+		thumbRef.current = Array(images.length)
+			.fill()
+			.map((_, index) => thumbRef.current[index] || createRef());
+	}, [images.length]);
+	const cardImages = images.map((data, index) => {
 		return (
 			<Backdropgallery
 				key={data.file_path}
@@ -141,9 +166,11 @@ export default function ClickedMovie() {
 						? "thumbnail active"
 						: "thumbnail"
 				}
+				ref={thumbRef.current[index]}
 			/>
 		);
 	});
+
 	return (
 		<>
 			<Nav />
@@ -232,7 +259,10 @@ export default function ClickedMovie() {
 					</div>
 					<div className="gallery">
 						<div className="gallery__mainImg">
-							<span className="trailerSection__player--goBack">
+							<span
+								className="trailerSection__player--goBack"
+								onClick={prevImage}
+							>
 								<FontAwesomeIcon
 									icon={faChevronLeft}
 									size="2xl"
