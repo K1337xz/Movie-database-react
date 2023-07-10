@@ -5,6 +5,7 @@ import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
 import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
 import SceletonClickedCard from "../../components/SceletonLoading/Sceleton_clickedCard/SceletonClickedCard";
+import Review from "../../components/Reviewsection/Review";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -112,12 +113,14 @@ export default function ClickedMovie() {
 			thumbRef.current[mainGalleryImage].scrollTo({
 				behavior: "smooth",
 				inline: "start",
+				block: "nearest",
 			});
 		} else {
 			setMainGalleryImage((prev) => (prev += 1));
 			thumbRef.current[mainGalleryImage].current.scrollIntoView({
 				behavior: "smooth",
 				inline: "start",
+				block: "nearest",
 			});
 		}
 	};
@@ -129,6 +132,7 @@ export default function ClickedMovie() {
 			thumbRef.current[mainGalleryImage].current.scrollIntoView({
 				behavior: "smooth",
 				inline: "end",
+				block: "nearest",
 			});
 		}
 	};
@@ -159,6 +163,7 @@ export default function ClickedMovie() {
 					e.target.scrollIntoView({
 						behavior: "smooth",
 						inline: "center",
+						block: "nearest",
 					});
 				}}
 				wrapperClass={
@@ -171,6 +176,7 @@ export default function ClickedMovie() {
 		);
 	});
 
+	console.log(clickedMovie);
 	return (
 		<>
 			<Nav />
@@ -295,6 +301,12 @@ export default function ClickedMovie() {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className="reviewSection">
+					<div className="reviewSection__topContent">
+						<h2>REVIEWS </h2>
+					</div>
+					<Review />
 				</div>
 			</main>
 		</>

@@ -70,6 +70,7 @@ export default function Mainpage() {
 		}
 		setclickedNavValue(clickedNav);
 	}
+	console.log(upcomingMovies);
 	return (
 		<div className="mainContent">
 			<div className="mainContent__topWrapper">

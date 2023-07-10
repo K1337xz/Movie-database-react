@@ -1,0 +1,62 @@
+@use "../../scss/abstract/colors" as *;
+.review {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 95%;
+	min-height: 30vh;
+	height: auto;
+	gap: 2rem;
+	border-radius: 15px;
+	background-color: #041016a1;
+	&__card {
+		width: 85%;
+		height: 50%;
+		padding: 2rem 2rem;
+		border: 1px solid rgba(81, 179, 255, 0.1);
+	}
+	&__top {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		&--avatar {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 49px;
+			height: 49px;
+			background-color: $color50;
+			border-radius: 50%;
+			img {
+				width: 2.5em;
+			}
+		}
+		&--username {
+			color: $color100;
+			font-weight: 700;
+			text-decoration: none;
+			font-size: 16px;
+		}
+		.date {
+			font-weight: 400;
+			font-size: 10px;
+			color: $color100;
+		}
+	}
+	&__reviewcontent {
+		width: 100%;
+		color: $color50;
+	}
+	&__addReview {
+		width: 85%;
+		height: 50%;
+	}
+	&__form {
+		textarea {
+			resize: none;
+			width: 100%;
+			height: 10vh;
+		}
+	}
+}
