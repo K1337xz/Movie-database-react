@@ -1,0 +1,16 @@
+.smilar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20%;
+	gap: 1rem;
+	a {
+		width: 100%;
+	}
+	&__image {
+		width: 100%;
+		img {
+			width: 100%;
+		}
+	}
+}

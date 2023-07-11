@@ -5,6 +5,7 @@ import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
 import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
 import SceletonClickedCard from "../../components/SceletonLoading/Sceleton_clickedCard/SceletonClickedCard";
+import Smilarcard from "../../components/Smilarmovies/Smilarcard";
 import Review from "../../components/Reviewsection/Review";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,11 +25,12 @@ export default function ClickedMovie() {
 	const [directors, setDirectors] = useState([]);
 	const [videos, setVideos] = useState([]);
 	const [images, setImages] = useState([]);
-	const directName = directors[0] ? directors[0].name : "";
-	const [checked, setChecked] = useState(false);
 	const [clickedTrailer, setClickedTrailer] = useState(0);
 	const [mainGalleryImage, setMainGalleryImage] = useState(0);
+	const [smilarMovies, setSmilarMovies] = useState([]);
+	const [checked, setChecked] = useState(false);
 	const [loading, setLoading] = useState();
+	const directName = directors[0] ? directors[0].name : "";
 	const divScroll = useRef(null);
 	const myStyle = {
 		display: "flex",
@@ -69,6 +71,12 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
+				const dataSmilarMovies = await axios.get(
+					`${api_url}/movie/${movieId}/similar`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
 				setImages(dataImages.data.backdrops);
 				setClickedMovie(data.data);
 				setCast(creditsData.data.cast);
@@ -81,6 +89,11 @@ export default function ClickedMovie() {
 					dataVideos.data.results.filter(
 						(item) =>
 							item.type === "Trailer" || item.type === "Teaser"
+					)
+				);
+				setSmilarMovies(
+					dataSmilarMovies.data.results.filter(
+						(item) => item.vote_average > 7
 					)
 				);
 				setLoading(false);
@@ -144,6 +157,17 @@ export default function ClickedMovie() {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
 	});
 
+	const cardSmilarMovies = smilarMovies.slice(0, 4).map((data) => {
+		return (
+			<Smilarcard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
+	});
+	console.log(videos);
+
 	const thumbRef = useRef([]);
 	useEffect(() => {
 		thumbRef.current = Array(images.length)
@@ -175,8 +199,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-
-	console.log(clickedMovie);
 	return (
 		<>
 			<Nav />
@@ -248,15 +270,19 @@ export default function ClickedMovie() {
 						<h2>VIDEOS</h2>
 					</div>
 					<div className="trailerSection__playerContent">
-						<Player
-							movieid={
-								videos.length > 0
-									? videos[clickedTrailer].key
-									: "x"
-							}
-							toggleForward={toggleForward}
-							toggleBack={toggleBack}
-						/>
+						{videos.length === 0 ? (
+							<h2>NO AVALIBLE VIDEOS</h2>
+						) : (
+							<Player
+								movieid={
+									videos.length > 0
+										? videos[clickedTrailer].key
+										: ""
+								}
+								toggleForward={toggleForward}
+								toggleBack={toggleBack}
+							/>
+						)}
 					</div>
 				</div>
 				<div className="backdropsSection">
@@ -264,34 +290,39 @@ export default function ClickedMovie() {
 						<h2>BACKDROPS</h2>
 					</div>
 					<div className="gallery">
-						<div className="gallery__mainImg">
-							<span
-								className="trailerSection__player--goBack"
-								onClick={prevImage}
-							>
-								<FontAwesomeIcon
-									icon={faChevronLeft}
-									size="2xl"
+						{images.length === 0 ? (
+							<h2>No backdrops</h2>
+						) : (
+							<div className="gallery__mainImg">
+								<span
+									className="trailerSection__player--goBack"
+									onClick={prevImage}
+								>
+									<FontAwesomeIcon
+										icon={faChevronLeft}
+										size="2xl"
+									/>
+								</span>
+								<img
+									src={
+										images.length > 0
+											? `${api_imageWidthOrginal}${images[mainGalleryImage].file_path}`
+											: ""
+									}
+									className="gallery__image--active"
 								/>
-							</span>
-							<img
-								src={
-									images.length > 0
-										? `${api_imageWidthOrginal}${images[mainGalleryImage].file_path}`
-										: ""
-								}
-								className="gallery__image--active"
-							/>
-							<span
-								className="trailerSection__player--goForward"
-								onClick={nextImage}
-							>
-								<FontAwesomeIcon
-									icon={faChevronRight}
-									size="2xl"
-								/>
-							</span>
-						</div>
+								<span
+									className="trailerSection__player--goForward"
+									onClick={nextImage}
+								>
+									<FontAwesomeIcon
+										icon={faChevronRight}
+										size="2xl"
+									/>
+								</span>
+							</div>
+						)}
+
 						<div className="gallery__thumbnails">
 							<div
 								className="gallery__wrapperThumbnails"
@@ -307,6 +338,16 @@ export default function ClickedMovie() {
 						<h2>REVIEWS </h2>
 					</div>
 					<Review />
+				</div>
+				<div className="smilarMovies">
+					<div className="smilarMovies__topContent">
+						<h2>SMILAR MOVIES </h2>
+					</div>
+					<div className="smilarMovies__cardWrapper">
+						<ul className="smilarMovies__menu">
+							{cardSmilarMovies}
+						</ul>
+					</div>
 				</div>
 			</main>
 		</>

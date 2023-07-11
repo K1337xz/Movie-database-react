@@ -4,7 +4,7 @@ import "./review.scss";
 export default function Review() {
 	return (
 		<div className="review">
-			<div className="review__card">
+			{/* 			<div className="review__card">
 				<div className="review__top">
 					<a href="#" className="review__top--avatar">
 						<img src={user} alt="user avatar" />
@@ -27,7 +27,7 @@ export default function Review() {
 					purus posuere. Curabitur sem elit, consectetur quis viverra
 					eu, mattis vitae ipsum. Etiam id justo massa.
 				</div>
-			</div>
+			</div> */}
 			<div className="review__addReview">
 				<div className="review__top">
 					<a href="#" className="review__top--avatar">
@@ -41,6 +41,7 @@ export default function Review() {
 					<label htmlFor="review__inp">
 						<textarea id="review__inp" name="review__inp" />
 					</label>
+					<button className="review__button">Post review</button>
 				</form>
 			</div>
 		</div>

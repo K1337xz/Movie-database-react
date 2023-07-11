@@ -15,6 +15,7 @@
 		height: 50%;
 		padding: 2rem 2rem;
 		border: 1px solid rgba(81, 179, 255, 0.1);
+		margin-top: 2rem;
 	}
 	&__top {
 		display: flex;
@@ -57,6 +58,28 @@
 			resize: none;
 			width: 100%;
 			height: 10vh;
+			background-color: #041016a1;
+			border: 1px solid rgba(81, 179, 255, 0.1);
+			margin-top: 1rem;
+			padding: 1rem;
+			color: $color50;
+			border-radius: 10px;
+			&:focus {
+				border: 3px solid rgba(81, 179, 255, 0.1);
+				outline: none;
+			}
 		}
+	}
+	&__button {
+		background-color: $color400;
+		color: $color50;
+		font-weight: 700;
+		border: none;
+		outline: none;
+		width: 92px;
+		height: 35px;
+		margin-top: 1rem;
+		border-radius: 10px;
+		cursor: pointer;
 	}
 }
