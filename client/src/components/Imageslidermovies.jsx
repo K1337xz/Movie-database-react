@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Sceletonimage from "./SceletonLoading/Sceleton_image/Sceletonimage";
 
-export default function Imageslider(props) {
+export default function ImageSlider(props) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [upcomingMovies, setUpcomingMovies] = useState();
 	const [tvSeries, setTvseries] = useState();

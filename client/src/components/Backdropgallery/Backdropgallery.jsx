@@ -1,7 +1,7 @@
 import "./backdropgallery.scss";
 import { forwardRef } from "react";
 
-function Backdropgallery(props, ref) {
+function BackDropGallery(props, ref) {
 	return (
 		<div className={props.wrapperClass} onClick={props.heh} ref={ref}>
 			<img
@@ -12,4 +12,4 @@ function Backdropgallery(props, ref) {
 	);
 }
 
-export default forwardRef(Backdropgallery);
+export default forwardRef(BackDropGallery);

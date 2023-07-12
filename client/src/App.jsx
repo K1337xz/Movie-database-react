@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Nav from "./components/Navbar/Nav";
 import Mainpage from "./pages/mainpage/Mainpage";
+import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 			<main className="container">
 				<Mainpage />
 			</main>
+			<Footer />
 		</>
 	);
 }

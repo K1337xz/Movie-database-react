@@ -184,6 +184,10 @@
 	}
 }
 .gallery {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	width: 100%;
 	-webkit-user-select: none;
 	-moz-user-select: -moz-none;

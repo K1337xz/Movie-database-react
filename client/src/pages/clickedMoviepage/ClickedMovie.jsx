@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef, createRef } from "react";
-import Castslider from "../../components/castSlider/Castslider";
+import Castslider from "../../components/castSlider/CastSlider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
-import Backdropgallery from "../../components/Backdropgallery/Backdropgallery";
+import Backdropgallery from "../../components/Backdropgallery/BackDropGallery";
 import SceletonClickedCard from "../../components/SceletonLoading/Sceleton_clickedCard/SceletonClickedCard";
-import Smilarcard from "../../components/Smilarmovies/Smilarcard";
+import Smilarcard from "../../components/Smilarmovies/SmilarCard";
 import Review from "../../components/Reviewsection/Review";
+import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -166,7 +167,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-	console.log(videos);
 
 	const thumbRef = useRef([]);
 	useEffect(() => {
@@ -199,6 +199,7 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
+	console.log(smilarMovies);
 	return (
 		<>
 			<Nav />
@@ -350,6 +351,7 @@ export default function ClickedMovie() {
 					</div>
 				</div>
 			</main>
+			<Footer />
 		</>
 	);
 }

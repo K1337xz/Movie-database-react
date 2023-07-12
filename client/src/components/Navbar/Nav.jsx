@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
-import Searchbar from "../Searchbar/Searchbar";
+import Searchbar from "../Searchbar/SearchBar";
 import "./Nav.scss";
 
 export default function Nav() {

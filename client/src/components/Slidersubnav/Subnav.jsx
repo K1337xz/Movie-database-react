@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Subnav.scss";
-export default function Subnav(props, ref) {
+export default function SubNav(props, ref) {
 	return (
 		<>
 			<div className="subnav">
