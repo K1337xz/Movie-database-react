@@ -1,3 +1,5 @@
+@use "../../scss/abstract/colors" as *;
+
 .smilar {
 	display: flex;
 	align-items: center;
@@ -11,6 +13,23 @@
 	}
 	&__image {
 		width: 100%;
+		&--empty {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 256px;
+			height: 384px;
+			background-image: linear-gradient(
+				0deg,
+				rgba(233, 246, 251, 0.3),
+				rgba(39, 161, 218, 0.9)
+			);
+		}
+		&--emptyImg {
+			width: 500px;
+			height: 200px;
+			color: $color800;
+		}
 		img {
 			width: 100%;
 		}

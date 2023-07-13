@@ -14,22 +14,46 @@ export default function Footer() {
 				</Link>
 			</div>
 			<div className="footer__middle">
-				<p>&copy; Jakub Buksa 2023</p>
-				<p>
+				<p className="footer__middle--firstParagraph">
+					&copy; Jakub Buksa 2023
+				</p>
+				<p className="footer__middle--secondParagraph">
 					This product uses the TMDB API but is not endorsed or
 					certified by TMDB.
 				</p>
 			</div>
-			<div>
-				<Link to="https://github.com/K1337xz" target="_blank">
-					<FontAwesomeIcon icon={faGithub} size="2xl" />
-				</Link>
-				<Link to="">
-					<FontAwesomeIcon icon={faLinkedin} size="2xl" />
-				</Link>
-				<Link to="https://www.themoviedb.org/" target="_blank">
-					<img src={movieDbLogo} alt="moviedb logo" />
-				</Link>
+			<div className="footer__socials">
+				<div className="footer__socials_wrapper">
+					<Link
+						to="https://github.com/K1337xz"
+						target="_blank"
+						className="footer__socials--link"
+					>
+						<FontAwesomeIcon
+							icon={faGithub}
+							size="2xl"
+							className="footer__socials--image"
+						/>
+					</Link>
+					<Link
+						to="https://www.linkedin.com/in/jakub-buksa-673051257/"
+						target="_blank"
+						className="footer__socials--link"
+					>
+						<FontAwesomeIcon
+							icon={faLinkedin}
+							size="xl"
+							className="footer__socials--image"
+						/>
+					</Link>
+					<Link to="https://www.themoviedb.org/" target="_blank">
+						<img
+							src={movieDbLogo}
+							alt="moviedb logo"
+							className="footer__socials--logoMovie"
+						/>
+					</Link>
+				</div>
 			</div>
 		</footer>
 	);

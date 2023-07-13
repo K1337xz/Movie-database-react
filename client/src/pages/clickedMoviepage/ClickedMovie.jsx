@@ -8,11 +8,13 @@ import SceletonClickedCard from "../../components/SceletonLoading/Sceleton_click
 import Smilarcard from "../../components/Smilarmovies/SmilarCard";
 import Review from "../../components/Reviewsection/Review";
 import Footer from "../../components/Footer/Footer";
+import Empty from "../../components/Emptyimg/Empty";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faChevronLeft,
 	faChevronRight,
+	faImage,
 } from "@fortawesome/free-solid-svg-icons";
 import "./clickedmovie.scss";
 
@@ -94,7 +96,7 @@ export default function ClickedMovie() {
 				);
 				setSmilarMovies(
 					dataSmilarMovies.data.results.filter(
-						(item) => item.vote_average > 7
+						(item) => item.vote_average > 6.5
 					)
 				);
 				setLoading(false);
@@ -199,7 +201,9 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-	console.log(smilarMovies);
+	if (!clickedMovie.poster_path) {
+		console.log("heh");
+	}
 	return (
 		<>
 			<Nav />
@@ -211,11 +215,20 @@ export default function ClickedMovie() {
 						) : (
 							<div className="clickedMovie__topContent">
 								<div className="clickedMovie__posterImage">
-									<img
-										src={`${api_imageWidth500}${clickedMovie.poster_path}`}
-										alt={`${clickedMovie.title} poster image`}
-										className="clickedMovie__posterImage--image"
-									/>
+									{!clickedMovie.poster_path ? (
+										<div className="clickedMovie__posterImage--empty">
+											<FontAwesomeIcon
+												icon={faImage}
+												className="clickedMovie__posterImage--emptyImg"
+											/>
+										</div>
+									) : (
+										<img
+											src={`${api_imageWidth500}${clickedMovie.poster_path}`}
+											alt={`${clickedMovie.title} poster image`}
+											className="clickedMovie__posterImage--image"
+										/>
+									)}
 								</div>
 								<div className="clickedMovie__rightMovieContent">
 									<ul className="clickedMovie__rightMovieContent--menu">
@@ -272,7 +285,7 @@ export default function ClickedMovie() {
 					</div>
 					<div className="trailerSection__playerContent">
 						{videos.length === 0 ? (
-							<h2>NO AVALIBLE VIDEOS</h2>
+							<Empty msg="No avalible videos!" />
 						) : (
 							<Player
 								movieid={
@@ -292,7 +305,7 @@ export default function ClickedMovie() {
 					</div>
 					<div className="gallery">
 						{images.length === 0 ? (
-							<h2>No backdrops</h2>
+							<Empty msg="No available backdrops" />
 						) : (
 							<div className="gallery__mainImg">
 								<span

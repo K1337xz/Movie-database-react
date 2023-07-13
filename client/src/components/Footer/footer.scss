@@ -8,4 +8,54 @@
 	height: 30vh;
 	background-color: $color800;
 	margin-top: 10rem;
+	&__middle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		&--firstParagraph {
+			color: $color50;
+			font-weight: 700;
+		}
+		&--secondParagraph {
+			color: $color50;
+			font-size: 13px;
+			font-style: normal;
+			font-weight: 300;
+		}
+	}
+	&__socials {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&_wrapper {
+			display: flex;
+			gap: 1rem;
+		}
+		&--moviedb {
+			width: 35px;
+			height: 35px;
+		}
+		&--logoMovie {
+			width: 35px;
+			height: 45px;
+		}
+		&--link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-image: linear-gradient(
+				rgba(145, 207, 162, 1),
+				rgba(59, 189, 201, 1),
+				rgba(0, 180, 229, 1)
+			);
+			color: $color800;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			&:last-child {
+				background-image: $color800;
+			}
+		}
+	}
 }
