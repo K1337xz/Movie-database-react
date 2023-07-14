@@ -27,6 +27,10 @@ export default function Smilarcard(props) {
 						/>
 					)}
 				</div>
+				<div className="smilar__info">
+					<p>{props.data.title}</p>
+					<span>Relase Date: {props.data.release_date}</span>
+				</div>
 			</Link>
 		</li>
 	);

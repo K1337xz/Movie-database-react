@@ -95,9 +95,9 @@ export default function ClickedMovie() {
 					)
 				);
 				setSmilarMovies(
-					dataSmilarMovies.data.results.filter(
-						(item) => item.vote_average > 6.5
-					)
+					dataSmilarMovies.data.results
+						.filter((item) => item.vote_average > 6.5)
+						.sort((a, b) => b.vote_average - a.vote_average)
 				);
 				setLoading(false);
 				document.title = `${data.data.title}`;
@@ -201,9 +201,8 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-	if (!clickedMovie.poster_path) {
-		console.log("heh");
-	}
+
+	console.log(smilarMovies);
 	return (
 		<>
 			<Nav />
