@@ -5,13 +5,16 @@ import Imageslider from "../../components/Imageslidermovies";
 import RightMovieInfo from "../../components/RightMovieInfo";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Subnav from "../../components/Slidersubnav/Subnav";
-import MovieCard from "../../components/Moviecard/MovieCard";
+import MovieCard from "../../components/Moviecard/MoviesCard";
+import CardWrapper from "../../components/CardWrapper/cardWrapper";
 import { Link } from "react-router-dom";
 
 export default function Mainpage() {
 	const [checked, setChecked] = useState(false);
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+	const [popularMovies, setPopularMovies] = useState([]);
+	const [topRatedMovies, setTopRatedMovies] = useState([]);
 	const [clickedNavValue, setclickedNavValue] = useState(0);
 	const [activeSubnav, setActiveSubnav] = useState({
 		first: true,
@@ -20,6 +23,7 @@ export default function Mainpage() {
 		fourth: false,
 	});
 	const api_url = "https://api.themoviedb.org/3/";
+	let date = new Date().toISOString().split("T")[0];
 	useEffect(() => {
 		const fetchUpcomingMovie = async () => {
 			try {
@@ -35,9 +39,32 @@ export default function Mainpage() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
-				setUpcomingMovies(dataUpcoming.data.results);
-				setNowPlayingMovies(
-					dataNowPlaying.data.results
+				const dataPopular = await axios.get(
+					`${api_url}/movie/popular`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
+
+				const dataTopRated = await axios.get(
+					`${api_url}/movie/top_rated`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
+				setUpcomingMovies(
+					dataUpcoming.data.results.filter(
+						(itm) => itm.release_date >= "2023-06-01"
+					)
+				);
+				setNowPlayingMovies(dataNowPlaying.data.results);
+				setPopularMovies(
+					dataPopular.data.results
+						.filter((item) => item.vote_average > 6.5)
+						.sort((a, b) => b.vote_average - a.vote_average)
+				);
+				setTopRatedMovies(
+					dataTopRated.data.results
 						.filter((item) => item.vote_average > 6.5)
 						.sort((a, b) => b.vote_average - a.vote_average)
 				);
@@ -86,10 +113,42 @@ export default function Mainpage() {
 		}
 		setclickedNavValue(clickedNav);
 	}
-	const nowPlayingCard = nowPlayingMovies.slice(0, 4).map((data) => {
-		return <MovieCard />;
+	const nowPlayingCard = nowPlayingMovies.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
 	});
-	console.log(nowPlayingMovies);
+	const popularCard = popularMovies.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
+	});
+	const upcomingCard = upcomingMovies.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
+	});
+	const topRatedCard = topRatedMovies.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
+	});
 	return (
 		<>
 			<div className="mainContent">
@@ -149,15 +208,10 @@ export default function Mainpage() {
 					</div>
 				</div>
 			</div>
-			<div className="nowPlaying">
-				<div className="nowPlaying__topContent">
-					<h2>NOW PLAYING</h2>
-					<Link className="loadMoreBtn">Load More</Link>
-				</div>
-				<div className="nowPlaying__cardContent">
-					<ul className="nowPlaying__cardMenu"></ul>
-				</div>
-			</div>
+			<CardWrapper header="NOW PLAYING" card={nowPlayingCard} />
+			<CardWrapper header="POPULAR MOVIES" card={popularCard} />
+			<CardWrapper header="UPCOMING MOVIES" card={upcomingCard} />
+			<CardWrapper header="TOP RATED MOVIES" card={topRatedCard} />
 		</>
 	);
 }

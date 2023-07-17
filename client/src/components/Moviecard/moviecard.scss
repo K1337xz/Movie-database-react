@@ -43,12 +43,12 @@
 		flex-direction: column;
 		width: 256px;
 		height: 384px;
+		top: -2px;
 		background-image: linear-gradient(
 			0deg,
 			rgba(233, 246, 251, 0.534),
 			rgba(39, 161, 218, 0.993)
 		);
-		top: -2px;
 		color: $color950;
 		font-weight: 700;
 		text-align: center;

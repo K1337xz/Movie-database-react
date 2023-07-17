@@ -35,7 +35,6 @@ export default function ImageSlider(props) {
 		fetchUpcomingMovie();
 	}, []);
 
-	console.log(date);
 	if (isLoading) {
 		return <Sceletonimage />;
 	}
