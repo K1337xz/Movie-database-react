@@ -4,9 +4,9 @@ Movie database React + Node
 
 # Todo
 
--   [ ] Movie page
+-   [x] Movie page
 -   [ ] TV Shows page
--   [ ] Connect MovieDatabaseAPI
+-   [x] Connect MovieDatabaseAPI
 -   [ ] User Login/signup
 -   [ ] Add/edit review
 -   [ ] Upload user avatar
