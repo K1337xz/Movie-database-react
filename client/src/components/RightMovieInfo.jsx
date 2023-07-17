@@ -61,7 +61,7 @@ export default function RightMovieInfo(props) {
 					  ) + " ..."}
 			</p>
 			<Link
-				className="mainContent__loadMoreBtn"
+				className="loadMoreBtn"
 				to={
 					props.check
 						? `/s/${tvSeries[props.slider].id}`

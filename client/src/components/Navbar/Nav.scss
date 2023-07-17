@@ -38,6 +38,7 @@
 		border-radius: 20px;
 		background-color: white;
 		overflow-y: scroll;
+		z-index: 2;
 	}
 	&__menu {
 		display: flex;
@@ -46,6 +47,7 @@
 		width: 25%;
 		&-dropdownMovie {
 			display: none;
+			z-index: 2;
 			&.active {
 				position: absolute;
 				display: flex;
@@ -58,10 +60,12 @@
 				border-radius: 5px;
 				padding: 1rem;
 				background-color: $color200;
+				z-index: 2;
 			}
 		}
 		&-dropdownSeries {
 			display: none;
+			z-index: 2;
 			&.active {
 				position: absolute;
 				top: 70px;
@@ -73,6 +77,7 @@
 				border-radius: 5px;
 				padding: 1rem;
 				background-color: $color200;
+				z-index: 2;
 			}
 		}
 	}
@@ -87,6 +92,7 @@
 			height: 4vh;
 			background-color: $color500;
 			border-radius: 20px;
+			z-index: 2;
 			a {
 				display: flex;
 				align-items: center;
@@ -98,6 +104,7 @@
 		&-dropdown {
 			font-weight: 600;
 			list-style: none;
+			z-index: 2;
 		}
 		&-dropdownMovie {
 			font-weight: 600;
