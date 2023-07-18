@@ -13,8 +13,11 @@ export default function Mainpage() {
 	const [checked, setChecked] = useState(false);
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
-	const [popularMovies, setPopularMovies] = useState([]);
 	const [topRatedMovies, setTopRatedMovies] = useState([]);
+	const [popularMovies, setPopularMovies] = useState([]);
+	const [airingTodaySeries, setAiringTodaySeries] = useState([]);
+	const [popularS, setPopularS] = useState([]);
+	const [topRatedS, setTopRatedS] = useState([]);
 	const [clickedNavValue, setclickedNavValue] = useState(0);
 	const [activeSubnav, setActiveSubnav] = useState({
 		first: true,
@@ -24,56 +27,87 @@ export default function Mainpage() {
 	});
 	const api_url = "https://api.themoviedb.org/3/";
 	let date = new Date().toISOString().split("T")[0];
-	useEffect(() => {
-		const fetchUpcomingMovie = async () => {
-			try {
-				const dataUpcoming = await axios.get(
-					`${api_url}/movie/upcoming/`,
-					{
-						params: { api_key: import.meta.env.VITE_API_KEY },
-					}
-				);
-				const dataNowPlaying = await axios.get(
-					`${api_url}/movie/now_playing`,
-					{
-						params: { api_key: import.meta.env.VITE_API_KEY },
-					}
-				);
-				const dataPopular = await axios.get(
-					`${api_url}/movie/popular`,
-					{
-						params: { api_key: import.meta.env.VITE_API_KEY },
-					}
-				);
 
-				const dataTopRated = await axios.get(
-					`${api_url}/movie/top_rated`,
-					{
-						params: { api_key: import.meta.env.VITE_API_KEY },
-					}
-				);
-				setUpcomingMovies(
-					dataUpcoming.data.results.filter(
-						(itm) => itm.release_date >= "2023-06-01"
-					)
-				);
-				setNowPlayingMovies(dataNowPlaying.data.results);
-				setPopularMovies(
-					dataPopular.data.results
-						.filter((item) => item.vote_average > 6.5)
-						.sort((a, b) => b.vote_average - a.vote_average)
-				);
-				setTopRatedMovies(
-					dataTopRated.data.results
-						.filter((item) => item.vote_average > 6.5)
-						.sort((a, b) => b.vote_average - a.vote_average)
-				);
-			} catch (error) {
-				console.log;
-			}
-		};
+	const fetchData = () => {
+		//movies calls from moviedb api
+		const upcomingMovies = `${api_url}/movie/upcoming/`;
+		const nowPlaying = `${api_url}/movie/now_playing/`;
+		const popularMovies = `${api_url}/movie/popular/`;
+		const topRated = `${api_url}/movie/top_rated/`;
+		//tv series calls from moviedb api
+		const airingToday = `${api_url}/tv/airing_today`;
+		const popularSeries = `${api_url}/tv/popular/`;
+		const topRatedSeries = `${api_url}/tv/top_rated/`;
+
+		//movie calls
+		const getUpocmingMovies = axios.get(upcomingMovies, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+		const getNowPlaying = axios.get(nowPlaying, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+		const getPopularMovies = axios.get(popularMovies, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+		const getTopRatedMovies = axios.get(topRated, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+
+		//tv series calls
+		const getAiringToday = axios.get(airingToday, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+
+		const getPopularSeries = axios.get(popularSeries, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+		const getRopRatedSeries = axios.get(topRatedSeries, {
+			params: { api_key: import.meta.env.VITE_API_KEY },
+		});
+		axios
+			.all([
+				getUpocmingMovies,
+				getNowPlaying,
+				getPopularMovies,
+				getTopRatedMovies,
+				getAiringToday,
+				getPopularSeries,
+				getRopRatedSeries,
+			])
+			.then(
+				axios.spread((...allData) => {
+					setUpcomingMovies(
+						allData[0].data.results.filter(
+							(itm) => itm.release_date >= "2023-06-01"
+						)
+					);
+					setNowPlayingMovies(allData[1].data.results);
+					setPopularMovies(
+						allData[2].data.results
+							.filter((item) => item.vote_average > 6.5)
+							.sort((a, b) => b.vote_average - a.vote_average)
+					);
+					setTopRatedMovies(
+						allData[3].data.results
+							.filter((item) => item.vote_average > 6.5)
+							.sort((a, b) => b.vote_average - a.vote_average)
+					);
+					setAiringTodaySeries(allData[4].data.results);
+
+					setPopularS(
+						allData[5].data.results
+							.filter((item) => item.vote_average > 6.5)
+							.sort((a, b) => b.vote_average - a.vote_average)
+					);
+					setTopRatedS(allData[6].data.results);
+					console.log(popularS);
+				})
+			);
+	};
+
+	useEffect(() => {
+		fetchData();
 		document.title = `CoolMovieDB`;
-		fetchUpcomingMovie();
 	}, []);
 
 	const logState = (state) => {
@@ -149,6 +183,35 @@ export default function Mainpage() {
 			/>
 		);
 	});
+	const airingTodaySeriesCard = airingTodaySeries.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/s/${data.id}`}
+			/>
+		);
+	});
+	const popularSeriesCard = popularS.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/s/${data.id}`}
+			/>
+		);
+	});
+	const topRatedSeries = topRatedS.slice(0, 6).map((data) => {
+		return (
+			<MovieCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/s/${data.id}`}
+			/>
+		);
+	});
+
+	console.log(popularS);
 	return (
 		<>
 			<div className="mainContent">
@@ -208,10 +271,21 @@ export default function Mainpage() {
 					</div>
 				</div>
 			</div>
-			<CardWrapper header="NOW PLAYING" card={nowPlayingCard} />
-			<CardWrapper header="POPULAR MOVIES" card={popularCard} />
-			<CardWrapper header="UPCOMING MOVIES" card={upcomingCard} />
-			<CardWrapper header="TOP RATED MOVIES" card={topRatedCard} />
+			<CardWrapper
+				header={checked ? "AIRING TODAY" : "NOW PLAYING"}
+				card={checked ? airingTodaySeriesCard : nowPlayingCard}
+			/>
+			<CardWrapper
+				header={checked ? "POPULAR SERIES" : "POPULAR MOVIES"}
+				card={checked ? popularSeriesCard : popularCard}
+			/>
+			{!checked && (
+				<CardWrapper header={"UPCOMING MOVIES"} card={upcomingCard} />
+			)}
+			<CardWrapper
+				header={checked ? "TOP RATED SERIES" : "TOP RATED MOVIES"}
+				card={checked ? topRatedSeries : topRatedCard}
+			/>
 		</>
 	);
 }

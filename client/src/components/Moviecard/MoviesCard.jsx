@@ -28,7 +28,9 @@ export default function MoviesCard(props) {
 					)}
 				</div>
 				<div className="movieCard__info">
-					<p>{props.data.title}</p>
+					<p>
+						{!props.data.title ? props.data.name : props.data.title}
+					</p>
 					<span>Relase Date: {props.data.release_date}</span>
 				</div>
 			</Link>
