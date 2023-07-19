@@ -1,0 +1,32 @@
+@use "../../../scss/abstract/colors" as *;
+
+.sceleton {
+	&__cardWrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 35vh;
+		border-radius: 30px;
+		z-index: 1;
+		position: relative;
+	}
+	&__card {
+		display: block;
+		width: 25vh;
+		height: 100%;
+		border-radius: 20px;
+		margin-left: 2rem;
+		background-color: $color50;
+		animation: sceleton 1s ease infinite alternate;
+		border-radius: 20px;
+	}
+}
+@keyframes sceleton {
+	0% {
+		background-color: $color200;
+	}
+	100% {
+		background-color: $color800;
+	}
+}

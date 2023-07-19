@@ -17,9 +17,9 @@ import {
 	faChevronRight,
 	faImage,
 } from "@fortawesome/free-solid-svg-icons";
-import "./clickedmovie.scss";
+import "./clickedseries.scss";
 
-export default function ClickedMovie() {
+export default function ClickedSeries() {
 	const movieId = window.location.pathname.slice(3);
 	const api_imageWidth500 = `https://image.tmdb.org/t/p/w500`;
 	const api_imageWidthOrginal = `https://image.tmdb.org/t/p/original`;
@@ -54,29 +54,29 @@ export default function ClickedMovie() {
 		const fetchMovie = async () => {
 			setLoading(true);
 			try {
-				const data = await axios.get(`${api_url}/movie/${movieId}`, {
+				const data = await axios.get(`${api_url}/tv/${movieId}`, {
 					params: { api_key: import.meta.env.VITE_API_KEY },
 				});
 				const creditsData = await axios.get(
-					`${api_url}/movie/${movieId}/credits`,
+					`${api_url}/tv/${movieId}/credits`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataVideos = await axios.get(
-					`${api_url}/movie/${movieId}/videos`,
+					`${api_url}/tv/${movieId}/videos`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataImages = await axios.get(
-					`${api_url}/movie/${movieId}/images`,
+					`${api_url}/tv/${movieId}/images`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataSmilarMovies = await axios.get(
-					`${api_url}/movie/${movieId}/similar`,
+					`${api_url}/tv/${movieId}/similar`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
@@ -101,7 +101,7 @@ export default function ClickedMovie() {
 						.sort((a, b) => b.vote_average - a.vote_average)
 				);
 				setLoading(false);
-				document.title = `${data.data.title}`;
+				document.title = `${data.data.name}`;
 			} catch (error) {
 				console.log(error);
 			}
@@ -166,7 +166,7 @@ export default function ClickedMovie() {
 			<Smilarcard
 				key={data.id}
 				data={data}
-				linkToMovie={`/m/${data.id}`}
+				linkToMovie={`/s/${data.id}`}
 			/>
 		);
 	});
@@ -202,8 +202,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-
-	console.log(smilarMovies);
 	return (
 		<>
 			<Nav />
@@ -240,7 +238,7 @@ export default function ClickedMovie() {
 											  ))
 											: "No genres"}
 									</ul>
-									<h1>{clickedMovie.title}</h1>
+									<h1>{clickedMovie.name}</h1>
 									<p className="clickedMovie__rightMovieContent--overview">
 										{clickedMovie.overview}
 									</p>
@@ -359,7 +357,7 @@ export default function ClickedMovie() {
 				</div>
 				<div className="smilarMovies">
 					<div className="smilarMovies__topContent">
-						<h2>SMILAR MOVIES </h2>
+						<h2>SMILAR SERIES </h2>
 					</div>
 					<div className="smilarMovies__cardWrapper">
 						<ul className="smilarMovies__menu">
