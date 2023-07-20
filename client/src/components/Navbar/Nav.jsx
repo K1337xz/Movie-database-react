@@ -2,32 +2,22 @@ import { Outlet, Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
 import Searchbar from "../Searchbar/SearchBar";
 import { useState, useEffect } from "react";
+import scrollNav from "../../hooks/scrollNav/scrollNav";
 import "./Nav.scss";
 
 export default function Nav() {
 	const [show, setShow] = useState(true);
-	const [lastScrollY, setLastScrollY] = useState(0);
-	const controlNavbar = () => {
-		if (typeof window !== "undefined") {
-			if (window.scrollY > lastScrollY) {
-				setShow(false);
-			} else {
-				setShow(true);
-			}
-			setLastScrollY(window.scrollY);
-		}
-	};
+	const scroll = scrollNav();
+	const [prevScrollPos, setPrevScrollPos] = useState(0);
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-			window.addEventListener("scroll", controlNavbar);
-			return () => {
-				window.removeEventListener("scroll", controlNavbar);
-			};
-		}
-	}, [lastScrollY]);
+		if (scroll.y > 159 && scroll.y - scroll.lastY > 0) {
+			setShow(false);
+		} else setShow(true);
+	}, [scroll.y, scroll.lastY]);
+
 	return (
-		<header className={`header ${show && "active"}`}>
+		<header className={show ? "header active" : "header hidden"}>
 			<nav className="nav">
 				<div className="nav__logo">
 					<Link to="/">

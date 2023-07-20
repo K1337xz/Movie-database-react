@@ -97,7 +97,10 @@ export default function ClickedMovie() {
 				);
 				setSmilarMovies(
 					dataSmilarMovies.data.results
-						.filter((item) => item.vote_average > 6.5)
+						.filter(
+							(item) =>
+								item.vote_average > 6.5 && item.vote_count > 100
+						)
 						.sort((a, b) => b.vote_average - a.vote_average)
 				);
 				setLoading(false);
@@ -171,6 +174,7 @@ export default function ClickedMovie() {
 		);
 	});
 
+	console.log(smilarMovies);
 	const thumbRef = useRef([]);
 	useEffect(() => {
 		thumbRef.current = Array(images.length)
@@ -202,8 +206,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-
-	console.log(smilarMovies);
 	return (
 		<>
 			<Nav />

@@ -100,7 +100,6 @@ export default function Mainpage() {
 							.sort((a, b) => b.vote_average - a.vote_average)
 					);
 					setTopRatedS(allData[6].data.results);
-					console.log(popularS);
 				})
 			);
 	};

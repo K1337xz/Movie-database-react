@@ -26,7 +26,9 @@ export default function RightMovieInfo(props) {
 				});
 				setTvseries(dataS.data.results);
 				setUpcomingMovies(
-					dataM.data.results.filter((itm) => itm.release_date >= date)
+					dataM.data.results
+						.filter((item) => item.vote_average > 6.5)
+						.sort((a, b) => b.vote_average - a.vote_average)
 				);
 			} catch (error) {
 				console.log(error);
