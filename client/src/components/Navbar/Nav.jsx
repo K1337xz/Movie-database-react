@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Outlet, Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
 import Searchbar from "../Searchbar/SearchBar";
@@ -71,6 +73,59 @@ export default function Nav() {
 						<Link to="/signup">Sign Up</Link>
 					</li>
 				</ul>
+				<FontAwesomeIcon icon={faBars} size="xl" color="#A8D9F0" />
+				<div className="navMobile">
+					<div className="navMobile__top">
+						<Link to="/">
+							<img src={logo} alt="logo image" />
+						</Link>
+						<FontAwesomeIcon
+							icon={faXmark}
+							size="2xl"
+							color="#E9F6FB"
+						/>
+					</div>
+					<ul className="navMobile__menu">
+						<li className="navMobile__item-dropdownMovie">
+							<Link className="navMobile__item-dropDownFirst">
+								Movies
+							</Link>
+							<ul className="navMobile__menu-dropdownMovie">
+								<li className="navMobile__dropdownItem">
+									<Link to="/m/popular">Popular</Link>
+								</li>
+								<li className="navMobile__dropdownItem">
+									<Link to="/m/top-rated">Top Rated</Link>
+								</li>
+								<li className="navMobile__dropdownItem">
+									<Link to="/m/now-playing">Now Playing</Link>
+								</li>
+								<li className="navMobile__dropdownItem">
+									<Link to="/m/upcoming">Upcoming</Link>
+								</li>
+							</ul>
+						</li>
+						<li className="navMobile__item-dropdownSeries">
+							<Link className="navMobile__item-dropDownFirst">
+								TV Shows
+							</Link>
+							<ul className="navMobile__menu-dropdownSeries">
+								<li className="navMobile__dropdownItem">
+									<Link to="/s/popular">Popular</Link>
+								</li>
+								<li className="navMobile__dropdownItem">
+									<Link to="/s/top-rated">Top Rated</Link>
+								</li>
+								<li className="navMobile__dropdownItem">
+									<Link to="/s/now-playing">Now Playing</Link>
+								</li>
+							</ul>
+						</li>
+						<li className="navMobile__itemSign">
+							<Link to="/signup">Sign Up</Link>
+						</li>
+					</ul>
+				</div>
 			</nav>
 		</header>
 	);

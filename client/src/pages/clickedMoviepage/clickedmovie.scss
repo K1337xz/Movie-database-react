@@ -1,4 +1,37 @@
 @use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
+
+//phone
+@include media("<=phone") {
+	.clickedMovie {
+		height: 40vh;
+		&__topContent {
+			width: 95%;
+			height: 70%;
+		}
+		&__posterImage {
+			width: 30%;
+			margin-left: 1rem;
+		}
+		&__rightMovieContent {
+			width: 60%;
+			gap: 4px;
+			margin-left: 1rem;
+			&--overwiew {
+				font-size: 10px;
+			}
+			&--menu {
+				font-size: 10px;
+			}
+			&--director {
+				font-size: 10px;
+			}
+			h1 {
+				font-size: 30px;
+			}
+		}
+	}
+}
 
 .clickedMovie {
 	display: flex;
