@@ -20,8 +20,6 @@ export default function Player(props) {
 				title="Youtube player"
 				sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
 				src={`https://youtube.com/embed/${props.movieid}?autoplay=0`}
-				width={1280}
-				height={720}
 				allow="fullscreen"
 			></iframe>
 			<span

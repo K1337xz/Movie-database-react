@@ -13,7 +13,7 @@ export default function Nav() {
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 
 	useEffect(() => {
-		if (scroll.y > 159 && scroll.y - scroll.lastY > 0) {
+		if (scroll.y > 0 && scroll.y - scroll.lastY > 0) {
 			setShow(false);
 		} else setShow(true);
 	}, [scroll.y, scroll.lastY]);
@@ -73,7 +73,12 @@ export default function Nav() {
 						<Link to="/signup">Sign Up</Link>
 					</li>
 				</ul>
-				<FontAwesomeIcon icon={faBars} size="xl" color="#A8D9F0" />
+				<FontAwesomeIcon
+					icon={faBars}
+					size="xl"
+					color="#A8D9F0"
+					className="openMenuMobile"
+				/>
 				<div className="navMobile">
 					<div className="navMobile__top">
 						<Link to="/">

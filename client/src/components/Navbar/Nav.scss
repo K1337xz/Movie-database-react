@@ -20,6 +20,9 @@
 		transform: translateY(-100%);
 	}
 }
+.openMenuMobile {
+	display: none;
+}
 .nav {
 	display: flex;
 	align-items: center;
@@ -55,9 +58,6 @@
 		background-color: white;
 		overflow-y: scroll;
 		z-index: 2;
-	}
-	&__navMobile {
-		display: none;
 	}
 	&__menu {
 		display: flex;
@@ -172,6 +172,9 @@
 		}
 	}
 }
+.navMobile {
+	display: none;
+}
 @include media("<=phone") {
 	.nav {
 		justify-content: space-around;
@@ -264,5 +267,8 @@
 			background-color: $color500;
 			border-radius: 20px;
 		}
+	}
+	.openMenuMobile {
+		display: block;
 	}
 }
