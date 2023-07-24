@@ -1,4 +1,5 @@
 @use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
 .footer {
 	display: flex;
 	align-items: center;
@@ -55,6 +56,41 @@
 			height: 40px;
 			&:last-child {
 				background-image: $color800;
+			}
+		}
+	}
+}
+@include media("<=phone") {
+	.footer {
+		gap: 1rem;
+		&__nav {
+			width: 85%;
+		}
+		&__middle {
+			text-align: center;
+			&--firstParagraph {
+				font-size: 10px;
+			}
+			&--secondParagraph {
+				font-size: 8px;
+			}
+		}
+		&__socials {
+			flex-direction: column;
+			&--image {
+				width: 20px;
+			}
+			&--link {
+				width: 35px;
+				height: 35px;
+			}
+			&--logoMovie {
+				width: 30px;
+			}
+			&--linkMovie {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 	}

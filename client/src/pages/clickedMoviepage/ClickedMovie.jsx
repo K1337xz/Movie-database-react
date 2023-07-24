@@ -99,7 +99,7 @@ export default function ClickedMovie() {
 					dataSmilarMovies.data.results
 						.filter(
 							(item) =>
-								item.vote_average > 6 && item.vote_count > 100
+								item.vote_average > 6 && item.vote_count >= 50
 						)
 						.sort((a, b) => b.vote_average - a.vote_average)
 				);

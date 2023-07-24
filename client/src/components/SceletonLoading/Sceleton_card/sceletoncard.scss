@@ -1,6 +1,13 @@
 @use "../../../scss/abstract/colors" as *;
 
 .sceleton {
+	&__menu {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 30vh;
+		gap: 10px;
+	}
 	&__cardWrapper {
 		display: flex;
 		align-items: center;
@@ -13,10 +20,9 @@
 	}
 	&__card {
 		display: block;
-		width: 25vh;
+		width: 20vh;
 		height: 100%;
 		border-radius: 20px;
-		margin-left: 2rem;
 		background-color: $color50;
 		animation: sceleton 1s ease infinite alternate;
 		border-radius: 20px;

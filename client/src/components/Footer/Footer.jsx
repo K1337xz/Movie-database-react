@@ -46,7 +46,11 @@ export default function Footer() {
 							className="footer__socials--image"
 						/>
 					</Link>
-					<Link to="https://www.themoviedb.org/" target="_blank">
+					<Link
+						to="https://www.themoviedb.org/"
+						target="_blank"
+						className="footer_socials--linkMovie"
+					>
 						<img
 							src={movieDbLogo}
 							alt="moviedb logo"
