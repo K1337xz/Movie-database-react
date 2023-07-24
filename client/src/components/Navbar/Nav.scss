@@ -272,3 +272,100 @@
 		display: block;
 	}
 }
+@include media(">=phone", "<=desktop") {
+	.nav {
+		justify-content: space-around;
+		padding: 1rem;
+		&__searchBar {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
+		&__menu {
+			display: none;
+		}
+		&__logo {
+			margin-left: 0;
+			img {
+				width: 100%;
+			}
+		}
+	}
+	.navMobile {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		background-color: rgb(4 25 36 / 94%);
+		width: 100%;
+		height: 100vh;
+		z-index: 9999;
+		&__top {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			background-color: rgb(4 25 36 / 100%);
+			width: 100%;
+			height: 15%;
+		}
+		&__menu {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-direction: column;
+			gap: 2rem;
+			width: 100%;
+			height: 55%;
+			margin-top: 5rem;
+			list-style: none;
+			&-dropdownSeries {
+				list-style: none;
+			}
+			&-dropdownMovie {
+				list-style: none;
+			}
+		}
+		&__item {
+			&-dropdownMovie {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				width: 50%;
+			}
+			&-dropdownSeries {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				width: 50%;
+			}
+			&-dropDownFirst {
+				color: red !important;
+				font-size: 20px;
+			}
+		}
+		&__dropdownItem {
+			font-size: 14px;
+			font-weight: 300;
+			margin-left: 0.3rem;
+		}
+		&__itemSign {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 50%;
+			height: 5vh;
+			background-color: $color500;
+			border-radius: 20px;
+		}
+	}
+	.openMenuMobile {
+		display: block;
+	}
+}

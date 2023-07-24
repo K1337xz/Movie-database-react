@@ -44,3 +44,10 @@ iframe {
 		aspect-ratio: 16/9;
 	}
 }
+@include media(">=phone", "<=desktop") {
+	iframe {
+		width: 50vh;
+		height: fit-content;
+		aspect-ratio: 16/9;
+	}
+}
