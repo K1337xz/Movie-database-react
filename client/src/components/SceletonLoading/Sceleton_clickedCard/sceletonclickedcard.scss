@@ -14,7 +14,7 @@
 		position: relative;
 	}
 	&__posterImage {
-		width: 25%;
+		width: 250px;
 		height: 85%;
 		margin-left: 5rem;
 		background-color: $color50;
@@ -85,7 +85,44 @@
 		}
 	}
 }
-
+@include media(">=phone", "<=tablet") {
+	.sceleton {
+		&__topContent {
+			width: 95%;
+		}
+		&__posterImage {
+			width: 160px;
+			margin-left: 2rem;
+		}
+		&__rightMovieContent {
+			width: 75%;
+			gap: 1rem;
+			margin-left: -4rem;
+		}
+		&__overviewClicked {
+			width: 60%;
+		}
+	}
+}
+@include media(">=tablet", "<=desktop") {
+	.sceleton {
+		&__topContent {
+			width: 95%;
+		}
+		&__posterImage {
+			width: 200px;
+			margin-left: 2rem;
+		}
+		&__rightMovieContent {
+			width: 75%;
+			gap: 1rem;
+			margin-left: -4rem;
+		}
+		&__overviewClicked {
+			width: 60%;
+		}
+	}
+}
 @keyframes sceleton {
 	0% {
 		background-color: $color200;

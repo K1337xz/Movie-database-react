@@ -100,10 +100,11 @@ export default function ClickedSeries() {
 						.filter((item) => item.vote_average > 6.5)
 						.sort((a, b) => b.vote_average - a.vote_average)
 				);
-				setLoading(false);
 				document.title = `${data.data.name}`;
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		};
 		fetchMovie();

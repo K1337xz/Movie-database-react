@@ -107,6 +107,8 @@ export default function ClickedMovie() {
 				document.title = `${data.data.title}`;
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		};
 		fetchMovie();

@@ -20,10 +20,13 @@
 		position: relative;
 	}
 	&__posterImage {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 30%;
 		margin-left: 5rem;
 		&--image {
-			width: 70%;
+			width: 255px;
 			border-radius: 20px;
 		}
 		&--empty {
@@ -99,7 +102,18 @@
 			width: 100%;
 			border-radius: 20px;
 		}
+		&--empty {
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+			width: 108px;
+			height: 260px;
+			img {
+				width: 170px;
+			}
+		}
 	}
+
 	&__toggleBtn {
 		display: flex;
 		gap: 1rem;
@@ -116,8 +130,8 @@
 		justify-content: center;
 		flex-direction: column;
 		width: 100%;
-		height: 20%;
-		background-color: #d3ecf852;
+		height: 30%;
+		background-color: #a5daf3dc;
 		color: black;
 		position: absolute;
 		bottom: 5%;
@@ -329,18 +343,36 @@
 			}
 		}
 		&__card {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 15vh;
 			box-shadow: 2px 2px 11px -1px rgba(39, 161, 218, 0.32);
+			&_image--empty {
+				display: flex;
+				align-items: flex-start;
+				justify-content: center;
+				width: 108px;
+				height: 133px;
+				img {
+					width: 90px;
+				}
+			}
 			&_characterInfo {
 				p {
-					font-size: 10px;
+					font-size: 9px;
+				}
+				span {
+					text-align: center;
+					font-size: 9px;
 				}
 			}
 		}
 		&__slider {
 			&--full {
-				justify-content: flex-start;
-				width: 85%;
+				justify-content: center;
+				width: 100%;
+				margin-left: -2rem;
 			}
 		}
 	}
@@ -348,9 +380,13 @@
 		&__player {
 			gap: 0rem;
 			&--goBack {
+				width: 20px;
+				height: 20px;
 				background-color: rgba(39, 161, 218, 0);
 			}
 			&--goForward {
+				width: 20px;
+				height: 20px;
 				background-color: rgba(39, 161, 218, 0);
 			}
 		}
@@ -374,18 +410,24 @@
 		flex-wrap: wrap;
 	}
 }
-@include media(">=481px", "<=tablet") {
+@include media(">=phone", "<=tablet") {
+	.fa-2xl {
+		font-size: 1em;
+	}
 	.clickedMovie {
 		height: 40vh;
 		&__topContent {
 			width: 95%;
-			height: 80%;
+			height: 85%;
 		}
 		&__posterImage {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 30%;
 			margin-left: 1rem;
 			&--image {
-				width: 155px;
+				width: 138px;
 			}
 		}
 		&__rightMovieContent {
@@ -394,7 +436,7 @@
 			margin-left: 1rem;
 			&--overview {
 				width: 100%;
-				font-size: 10px;
+				font-size: 11px;
 			}
 			&--menu {
 				font-size: 10px;
@@ -411,35 +453,51 @@
 		&__menu {
 			gap: 1rem;
 			&--fullCast {
+				width: 100%;
 				grid-template-columns: repeat(3, 1fr);
 				gap: 1rem;
 			}
 		}
 		&__card {
-			width: 15vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 18vh;
 			box-shadow: 2px 2px 11px -1px rgba(39, 161, 218, 0.32);
+			&_image--empty {
+				width: 108px;
+				height: 166px;
+				img {
+					width: 110px;
+				}
+			}
 			&_characterInfo {
 				p {
 					font-size: 10px;
+				}
+				span {
+					text-align: center;
+					font-size: 6px;
 				}
 			}
 		}
 		&__slider {
 			&--full {
-				justify-content: flex-start;
-				width: 85%;
+				justify-content: center;
+				width: 100%;
 			}
 		}
 	}
 	.trailerSection {
 		&__player {
 			gap: 0rem;
-			&--goBack {
-				background-color: none;
-			}
 			&--goForward {
-				background-color: none;
 				width: 25px;
+				height: 25px;
+			}
+			&--goBack {
+				width: 25px;
+				height: 25px;
 			}
 		}
 	}
@@ -448,6 +506,10 @@
 			width: 100%;
 			height: 15vh;
 			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+		&__mainImg {
+			margin-bottom: 1rem;
 		}
 		&__image {
 			&--active {
@@ -462,11 +524,11 @@
 		flex-wrap: wrap;
 	}
 }
-@include media(">=769px", "<=desktop") {
+@include media(">=tablet", "<=desktop") {
 	.clickedMovie {
 		height: 55vh;
 		&__topContent {
-			width: 95%;
+			width: 80%;
 			height: 90%;
 		}
 		&__posterImage {
@@ -485,7 +547,7 @@
 			margin-left: 2rem;
 			&--overview {
 				width: 100%;
-				font-size: 10px;
+				font-size: 15px;
 			}
 			&--menu {
 				font-size: 10px;
@@ -502,23 +564,38 @@
 		&__menu {
 			gap: 1rem;
 			&--fullCast {
-				grid-template-columns: repeat(3, 1fr);
+				width: 100%;
+				grid-template-columns: repeat(4, 1fr);
 				gap: 1rem;
 			}
 		}
 		&__card {
-			width: 15vh;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			width: 24vh;
 			box-shadow: 2px 2px 11px -1px rgba(39, 161, 218, 0.32);
+			&_image--empty {
+				width: 108px;
+				height: 260px;
+				img {
+					width: 175px;
+				}
+			}
 			&_characterInfo {
 				p {
+					font-size: 10px;
+				}
+				span {
+					text-align: center;
 					font-size: 10px;
 				}
 			}
 		}
 		&__slider {
 			&--full {
-				justify-content: flex-start;
-				width: 85%;
+				justify-content: center;
+				width: 100%;
 			}
 		}
 	}
@@ -526,11 +603,12 @@
 		&__player {
 			gap: 0rem;
 			&--goBack {
-				background-color: none;
+				width: 25px;
+				height: 25px;
 			}
 			&--goForward {
-				background-color: none;
 				width: 25px;
+				height: 25px;
 			}
 		}
 	}
