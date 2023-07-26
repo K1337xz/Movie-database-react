@@ -102,6 +102,7 @@
 		}
 		&__rightWrapp {
 			width: 100%;
+			height: 45vh;
 		}
 		&__switchInput {
 			justify-content: center;
@@ -114,9 +115,113 @@
 			gap: 1rem;
 			margin-left: 0rem;
 			text-align: center;
-			height: 20%;
+			height: 56%;
 			.title {
 				font-size: 20px;
+			}
+			.overview {
+				width: 320px;
+			}
+		}
+	}
+}
+@include media(">=phone", "<=tablet") {
+	.mainContent {
+		&__topWrapper {
+			flex-direction: column;
+		}
+		&__leftWrapp {
+			position: relative;
+			width: 100%;
+			height: 55vh;
+			justify-content: flex-start;
+		}
+		&__imageMain {
+			width: 90%;
+			border-radius: 20px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		&__imageBackground {
+			width: 95%;
+			height: 100%;
+			border-radius: 0px;
+			filter: blur(9px);
+		}
+		&__rightWrapp {
+			width: 100%;
+			height: 40vh;
+		}
+		&__switchInput {
+			justify-content: center;
+			padding: 1rem;
+			margin-right: 0;
+		}
+		&__movieInfo {
+			justify-content: flex-start;
+			align-items: center;
+			gap: 1rem;
+			margin-left: 0rem;
+			text-align: center;
+			height: 56%;
+			.title {
+				font-size: 35px;
+			}
+			.overview {
+				width: 320px;
+			}
+		}
+	}
+}
+@include media(">=tablet", "<=desktop") {
+	.mainContent {
+		&__topWrapper {
+			flex-direction: row;
+		}
+		&__leftWrapp {
+			position: relative;
+			width: 100%;
+			height: 70vh;
+			justify-content: center;
+		}
+		&__imageMain {
+			width: 85%;
+			border-radius: 20px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		&__imageBackground {
+			position: relative;
+			width: 95%;
+			height: 70%;
+			border-radius: 58px;
+			filter: blur(9px);
+		}
+		&__rightWrapp {
+			width: 100%;
+			height: 40vh;
+		}
+		&__switchInput {
+			justify-content: center;
+			padding: 1rem;
+			margin-right: 0;
+		}
+		&__movieInfo {
+			justify-content: flex-start;
+			align-items: center;
+			gap: 1rem;
+			margin-left: 0rem;
+			text-align: center;
+			height: 56%;
+			.title {
+				font-size: 35px;
+			}
+			.overview {
+				width: 320px;
 			}
 		}
 	}

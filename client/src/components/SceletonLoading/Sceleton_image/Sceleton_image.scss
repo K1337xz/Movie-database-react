@@ -1,5 +1,5 @@
 @use "../../../scss/abstract/colors" as *;
-
+@use "../../../scss/base/brakepoints" as *;
 .sceletonImage {
 	display: flex;
 	align-items: center;
@@ -14,6 +14,11 @@
 		filter: blur(9px);
 		background-color: $color50;
 		animation: sceleton 1s ease infinite alternate;
+	}
+}
+@include media("<=phone") {
+	.sceletonImage {
+		height: 45vh;
 	}
 }
 

@@ -1,5 +1,5 @@
 @use "../../scss/abstract/colors" as *;
-
+@use "../../scss/base/brakepoints" as *;
 .movieCard {
 	position: relative;
 	display: flex;
@@ -59,6 +59,49 @@
 	&:hover {
 		.movieCard__info {
 			display: flex;
+		}
+	}
+}
+@include media("<=phone") {
+	.movieCard {
+		width: 100px;
+		height: 150px;
+		box-shadow: 13px 7px 15px 6px rgba(7, 66, 109, 0.26);
+		gap: 1rem;
+		&__info {
+			width: 100px;
+			height: 155px;
+			top: -15px;
+			font-size: 12px;
+			line-height: 35px;
+		}
+	}
+}
+.cardsMain {
+	&__cardMenu {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	h2 {
+		font-size: 16px;
+	}
+}
+.cardsMain {
+	&__cardMenu {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	h2 {
+		font-size: 16px;
+	}
+}
+@include media(">=phone", "<=tablet") {
+	.movieCard {
+		width: 145px;
+		height: 218px;
+		&__info {
+			width: 145px;
+			height: 218px;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 @use "../../scss/abstract/colors" as *;
-
+@use "../../scss/base/brakepoints" as *;
 .subnav {
 	&__menu {
 		position: relative;
@@ -61,6 +61,16 @@
 					-webkit-transition: height 0.3s ease;
 					transition: height 0.3s ease;
 				}
+			}
+		}
+	}
+}
+@include media("<=phone") {
+	.subnav {
+		&__menu {
+			li {
+				width: 16px;
+				height: 16px;
 			}
 		}
 	}
