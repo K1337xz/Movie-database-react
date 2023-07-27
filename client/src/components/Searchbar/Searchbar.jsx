@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./Searchbar.scss";
 
-export default function Searchbar() {
+export default function Searchbar({ onChange }) {
 	const [value, setValue] = useState("");
+	const callBack = (e) => {
+		setValue(e.target.value);
+		onChange(value);
+	};
 
 	return (
 		<div className="searchWrapper">
@@ -10,7 +14,7 @@ export default function Searchbar() {
 				type="text"
 				placeholder="Search for a movie etc..."
 				value={value}
-				onChange={(e) => setValue(e.target.value)}
+				onChange={callBack}
 			/>
 		</div>
 	);

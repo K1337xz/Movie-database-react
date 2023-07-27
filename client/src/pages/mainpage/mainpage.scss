@@ -9,6 +9,7 @@
 		align-items: center;
 	}
 	&__leftWrapp {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -29,9 +30,10 @@
 	}
 	&__imageMain {
 		position: absolute;
-		left: 5%;
-		top: 25%;
-		width: 50%;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
 		border-radius: 58px;
 	}
 	&__switchInput {
@@ -85,13 +87,16 @@
 			flex-direction: column;
 		}
 		&__leftWrapp {
+			position: relative;
 			width: 100%;
 			height: 40vh;
 			justify-content: flex-start;
 		}
 		&__imageMain {
 			width: 90%;
-			top: 14%;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
 			border-radius: 20px;
 		}
 		&__imageBackground {
@@ -102,7 +107,7 @@
 		}
 		&__rightWrapp {
 			width: 100%;
-			height: 45vh;
+			height: 36vh;
 		}
 		&__switchInput {
 			justify-content: center;
@@ -175,19 +180,19 @@
 		}
 	}
 }
-@include media(">=tablet", "<=desktop") {
+@include media(">=tablet", "<=1023px") {
 	.mainContent {
 		&__topWrapper {
-			flex-direction: row;
+			flex-direction: column;
 		}
 		&__leftWrapp {
 			position: relative;
+			justify-content: flex-start;
 			width: 100%;
-			height: 70vh;
-			justify-content: center;
+			height: 65vh;
 		}
 		&__imageMain {
-			width: 85%;
+			width: 75%;
 			border-radius: 20px;
 			position: absolute;
 			left: 50%;
@@ -197,7 +202,7 @@
 		&__imageBackground {
 			position: relative;
 			width: 95%;
-			height: 70%;
+			height: 95%;
 			border-radius: 58px;
 			filter: blur(9px);
 		}

@@ -209,8 +209,6 @@ export default function Mainpage() {
 			/>
 		);
 	});
-
-	console.log(popularS);
 	return (
 		<>
 			<div className="mainContent">

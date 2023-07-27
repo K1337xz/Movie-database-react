@@ -1,5 +1,4 @@
 import "./castslider.scss";
-import { useState } from "react";
 import user from "../../assets/pngwing.com.png";
 
 export default function CastSlider(props) {
