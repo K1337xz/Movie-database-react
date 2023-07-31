@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
-import Searchbar from "../Searchbar/SearchBar";
+
 import scrollNav from "../../hooks/scrollNav/scrollNav";
 import SearchItems from "../searchItems/SearchItems";
 import "./Nav.scss";
 import axios from "axios";
 export default function Nav() {
 	const [show, setShow] = useState(true);
+	const [showSearch, setShowSearch] = useState(true);
 	const scroll = scrollNav();
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [searchValue, setSearchValue] = useState("");
@@ -19,7 +20,10 @@ export default function Nav() {
 	useEffect(() => {
 		if (scroll.y > 0 && scroll.y - scroll.lastY > 0) {
 			setShow(false);
-		} else setShow(true);
+			setShowSearch(false);
+		} else {
+			setShow(true);
+		}
 	}, [scroll.y, scroll.lastY]);
 
 	useEffect(() => {
@@ -44,15 +48,21 @@ export default function Nav() {
 			}
 		};
 		fetchData();
+		if (searchValue.length > 0) {
+			setShowSearch(true);
+		} else {
+			setShowSearch(false);
+		}
 	}, [searchValue]);
 
-	const logState = (state) => {
-		setSearchValue(state);
+	console.log(searchData);
+
+	const logState = (e) => {
+		setSearchValue(e.target.value);
 	};
 	const searchCard = searchData.map((data) => {
 		return <SearchItems key={data.id} data={data} />;
 	});
-	console.log(searchData);
 	return (
 		<header className={show ? "header active" : "header hidden"}>
 			<nav className="nav">
@@ -62,10 +72,19 @@ export default function Nav() {
 					</Link>
 				</div>
 				<div className="nav__searchBar">
-					<Searchbar onChange={logState} />
-					<div className="nav__searchResults">
-						<ul className="nav__searchMenu">{searchCard}</ul>
+					<div className="nav__searchWrapper">
+						<input
+							type="text"
+							placeholder="Search for a movie etc..."
+							value={searchValue}
+							onChange={logState}
+						/>
 					</div>
+					{showSearch && (
+						<div className="nav__searchResults">
+							<ul className="nav__searchMenu">{searchCard}</ul>
+						</div>
+					)}
 				</div>
 				<ul className="nav__menu">
 					<li className="nav__item-dropdownMovie">
