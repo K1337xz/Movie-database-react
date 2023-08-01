@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/errorpage/errorpage.jsx";
 import ClickedMovie from "./pages/clickedMoviepage/ClickedMovie.jsx";
 import ClickedSeries from "./pages/clickedSeries/ClickedSeries.jsx";
+import NowPlaying from "./pages/nowPlaying/nowPlaying.jsx";
 import "./index.scss";
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
 	{
 		path: "/m/:id",
 		element: <ClickedMovie />,
+	},
+	{
+		path: "m/now_playing",
+		element: <NowPlaying />,
 	},
 	{
 		path: "/s/:id",

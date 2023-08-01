@@ -271,6 +271,7 @@ export default function Mainpage() {
 			<CardWrapper
 				header={checked ? "AIRING TODAY" : "NOW PLAYING"}
 				card={checked ? airingTodaySeriesCard : nowPlayingCard}
+				link="/m/now_playing"
 			/>
 			<CardWrapper
 				header={checked ? "POPULAR SERIES" : "POPULAR MOVIES"}

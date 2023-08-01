@@ -113,8 +113,6 @@ export default function ClickedMovie() {
 		};
 		fetchMovie();
 	}, []);
-
-	console.log(smilarMovies);
 	const toggleForward = () => {
 		if (clickedTrailer === videos.length - 1) {
 			setClickedTrailer((prev) => (prev = 0));
@@ -176,8 +174,6 @@ export default function ClickedMovie() {
 			/>
 		);
 	});
-
-	console.log(smilarMovies);
 	const thumbRef = useRef([]);
 	useEffect(() => {
 		thumbRef.current = Array(images.length)

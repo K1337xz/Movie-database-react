@@ -6,7 +6,7 @@ export default function CardWrapper(props) {
 		<div className="cardsMain">
 			<div className="cardsMain__topContent">
 				<h2>{props.header}</h2>
-				<Link className="loadMoreBtn">Load More</Link>
+				<Link to={props.link} className="loadMoreBtn">Load More</Link>
 			</div>
 			<div className="cardsMain__cardContent">
 				<ul className="cardsMain__cardMenu">{props.card}</ul>
