@@ -1,0 +1,65 @@
+.dropDownSort {
+	position: absolute;
+	display: none;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	top: 3vh;
+	background-color: rgba(4, 16, 22, 0.43);
+	opacity: 0%;
+	animation-name: menuDrop;
+	animation-duration: 0.2s;
+	&--open {
+		position: absolute;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		top: 6vh;
+		background-color: rgba(4, 16, 22, 0.43);
+		opacity: 100%;
+		animation-name: menuShow;
+		animation-duration: 0.3s;
+	}
+	&__option {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		width: 100%;
+		height: 4vh;
+		padding-left: 1rem;
+		cursor: pointer;
+		&:hover {
+			background-color: rgba(17, 54, 73, 0.658);
+		}
+	}
+}
+input[type="radio"] {
+	display: none;
+}
+input[type="radio"]:checked + label {
+	background-color: rgba(17, 54, 73, 0.658);
+}
+
+@keyframes menuDrop {
+	0% {
+		top: 5vh;
+		opacity: 85%;
+	}
+	100% {
+		top: 3vh;
+		opacity: 0%;
+	}
+}
+@keyframes menuShow {
+	0% {
+		top: 3vh;
+		opacity: 0%;
+	}
+	100% {
+		top: 6vh;
+		opacity: 100%;
+	}
+}
