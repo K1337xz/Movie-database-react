@@ -54,9 +54,6 @@ export default function Nav() {
 			setShowSearch(false);
 		}
 	}, [searchValue]);
-
-	console.log(searchData);
-
 	const logState = (e) => {
 		setSearchValue(e.target.value);
 	};

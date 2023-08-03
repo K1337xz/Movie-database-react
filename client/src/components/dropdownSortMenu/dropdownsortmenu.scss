@@ -9,7 +9,8 @@
 	background-color: rgba(4, 16, 22, 0.43);
 	opacity: 0%;
 	animation-name: menuDrop;
-	animation-duration: 0.2s;
+	animation-duration: 2s;
+
 	&--open {
 		position: absolute;
 		display: flex;

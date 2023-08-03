@@ -5,16 +5,66 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./nowplaying.scss";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
+import CardWrapper from "../../components/CardWrapper/cardWrapper";
+import MoviesCard from "../../components/Moviecard/MoviesCard";
 import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
 
 export default function NowPlaying() {
 	const [toggleDropDown, setToggleDropDown] = useState(false);
 	const [sortType, setSortType] = useState("");
+	const [page, setPage] = useState(1);
+	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const api_url = "https://api.themoviedb.org/3/";
 	const toggleChange = (e) => {
 		setSortType(e.target.value);
 		setToggleDropDown(false);
 	};
-	console.log(sortType);
+
+	const handleScroll = (e) => {
+		if (
+			window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+				e.target.documentElement.scrollHeight &&
+			page <= 3
+		) {
+			setPage((prev) => prev + 1);
+			console.log(page);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		const fetchData = async () => {
+			let newPage = [];
+			try {
+				const nowPlayingData = await axios.get(
+					`${api_url}/movie/now_playing/`,
+					{
+						params: {
+							api_key: import.meta.env.VITE_API_KEY,
+							page: page,
+						},
+					}
+				);
+				newPage = nowPlayingData.data.results;
+				setNowPlayingMovies((prev) => [...prev, ...newPage]);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		console.log("i fire once");
+		fetchData();
+	}, [page]);
+	const nowPlayingCard = nowPlayingMovies.map((data) => {
+		return (
+			<MoviesCard
+				key={data.id}
+				data={data}
+				linkToMovie={`/m/${data.id}`}
+			/>
+		);
+	});
+	console.log(nowPlayingMovies);
 	return (
 		<>
 			<Nav />
@@ -46,10 +96,20 @@ export default function NowPlaying() {
 								) : (
 									<DropdownSortMenu
 										classDrop={"dropDownSort"}
+										onChange={toggleChange}
 									/>
 								)}
 							</div>
 						</div>
+					</div>
+					<div className="nowPlaying__cards">
+						<CardWrapper
+							card={nowPlayingCard}
+							style={{
+								display: "none",
+							}}
+						/>
+						{loading && <span>Load More!</span>}
 					</div>
 				</div>
 			</main>

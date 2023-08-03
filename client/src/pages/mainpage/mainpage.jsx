@@ -76,11 +76,7 @@ export default function Mainpage() {
 			])
 			.then(
 				axios.spread((...allData) => {
-					setUpcomingMovies(
-						allData[0].data.results.filter(
-							(itm) => itm.release_date >= "2023-06-01"
-						)
-					);
+					setUpcomingMovies(allData[0].data.results);
 					setNowPlayingMovies(allData[1].data.results);
 					setPopularMovies(
 						allData[2].data.results
