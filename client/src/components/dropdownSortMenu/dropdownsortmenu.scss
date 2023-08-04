@@ -19,10 +19,11 @@
 		flex-direction: column;
 		width: 100%;
 		top: 6vh;
-		background-color: rgba(4, 16, 22, 0.43);
+		background-color: rgba(4, 16, 22, 0.788);
 		opacity: 100%;
 		animation-name: menuShow;
 		animation-duration: 0.3s;
+		z-index: 4;
 	}
 	&__option {
 		display: flex;

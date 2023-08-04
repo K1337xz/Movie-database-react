@@ -19,17 +19,16 @@ export default function RightMovieInfo(props) {
 					}`
 				);
 				const dataM = await axios.get(`${api_url}/movie/upcoming/`, {
-					params: { api_key: import.meta.env.VITE_API_KEY },
+					params: {
+						api_key: import.meta.env.VITE_API_KEY,
+						"primary_release_date.gte": date,
+					},
 				});
 				const dataS = await axios.get(`${api_url}/tv/top_rated`, {
 					params: { api_key: import.meta.env.VITE_API_KEY },
 				});
 				setTvseries(dataS.data.results);
-				setUpcomingMovies(
-					dataM.data.results
-						.filter((item) => item.vote_average > 6.5)
-						.sort((a, b) => b.vote_average - a.vote_average)
-				);
+				setUpcomingMovies(dataM.data.results);
 			} catch (error) {
 				console.log(error);
 			}

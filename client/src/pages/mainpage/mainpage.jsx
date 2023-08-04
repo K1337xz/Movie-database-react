@@ -6,7 +6,7 @@ import RightMovieInfo from "../../components/RightMovieInfo";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Subnav from "../../components/Slidersubnav/Subnav";
 import MovieCard from "../../components/Moviecard/MoviesCard";
-import CardWrapper from "../../components/CardWrapper/cardWrapper";
+import CardWrapper from "../../components/CardWrapper/CardWrapper";
 import { Link } from "react-router-dom";
 
 export default function Mainpage() {
@@ -41,10 +41,13 @@ export default function Mainpage() {
 
 		//movie calls
 		const getUpocmingMovies = axios.get(upcomingMovies, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
+			params: {
+				api_key: import.meta.env.VITE_API_KEY,
+				"primary_release_date.gte": date,
+			},
 		});
 		const getNowPlaying = axios.get(nowPlaying, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
+			params: { api_key: import.meta.env.VITE_API_KEY, year: 2023 },
 		});
 		const getPopularMovies = axios.get(popularMovies, {
 			params: { api_key: import.meta.env.VITE_API_KEY },
@@ -264,6 +267,9 @@ export default function Mainpage() {
 					</div>
 				</div>
 			</div>
+			{!checked && (
+				<CardWrapper header={"UPCOMING MOVIES"} card={upcomingCard} />
+			)}
 			<CardWrapper
 				header={checked ? "AIRING TODAY" : "NOW PLAYING"}
 				card={checked ? airingTodaySeriesCard : nowPlayingCard}
@@ -273,9 +279,6 @@ export default function Mainpage() {
 				header={checked ? "POPULAR SERIES" : "POPULAR MOVIES"}
 				card={checked ? popularSeriesCard : popularCard}
 			/>
-			{!checked && (
-				<CardWrapper header={"UPCOMING MOVIES"} card={upcomingCard} />
-			)}
 			<CardWrapper
 				header={checked ? "TOP RATED SERIES" : "TOP RATED MOVIES"}
 				card={checked ? topRatedSeries : topRatedCard}

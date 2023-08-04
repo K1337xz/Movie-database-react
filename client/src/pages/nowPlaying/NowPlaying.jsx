@@ -5,7 +5,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./nowplaying.scss";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
-import CardWrapper from "../../components/CardWrapper/cardWrapper";
+import CardWrapper from "../../components/CardWrapper/CardWrapper";
 import MoviesCard from "../../components/Moviecard/MoviesCard";
 import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
 
@@ -21,19 +21,7 @@ export default function NowPlaying() {
 		setToggleDropDown(false);
 	};
 
-	const handleScroll = (e) => {
-		if (
-			window.innerHeight + e.target.documentElement.scrollTop + 1 >=
-				e.target.documentElement.scrollHeight &&
-			page <= 3
-		) {
-			setPage((prev) => prev + 1);
-			console.log(page);
-		}
-	};
-
 	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
 		const fetchData = async () => {
 			let newPage = [];
 			try {
@@ -64,6 +52,9 @@ export default function NowPlaying() {
 			/>
 		);
 	});
+	const loadMore = () => {
+		setPage((prev) => prev + 1);
+	};
 	console.log(nowPlayingMovies);
 	return (
 		<>
@@ -109,7 +100,16 @@ export default function NowPlaying() {
 								display: "none",
 							}}
 						/>
-						{loading && <span>Load More!</span>}
+						<div className="nowPlaying__buttonWrapper">
+							{loading && (
+								<span
+									className="nowPlaying__buttonWrapper--button"
+									onClick={loadMore}
+								>
+									Load More!
+								</span>
+							)}
+						</div>
 					</div>
 				</div>
 			</main>
