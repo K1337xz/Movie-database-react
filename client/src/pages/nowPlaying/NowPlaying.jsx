@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
 import MoviesCard from "../../components/Moviecard/MoviesCard";
 import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
+import SceletonCards from "../../components/SceletonLoading/Sceleton_cards/SceletonCards";
 
 export default function NowPlaying() {
 	const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -55,7 +56,6 @@ export default function NowPlaying() {
 	const loadMore = () => {
 		setPage((prev) => prev + 1);
 	};
-	console.log(nowPlayingMovies);
 	return (
 		<>
 			<Nav />
@@ -94,12 +94,17 @@ export default function NowPlaying() {
 						</div>
 					</div>
 					<div className="nowPlaying__cards">
-						<CardWrapper
-							card={nowPlayingCard}
-							style={{
-								display: "none",
-							}}
-						/>
+						{loading ? (
+							<SceletonCards />
+						) : (
+							<CardWrapper
+								card={nowPlayingCard}
+								style={{
+									display: "none",
+								}}
+							/>
+						)}
+
 						<div className="nowPlaying__buttonWrapper">
 							{loading && (
 								<span
