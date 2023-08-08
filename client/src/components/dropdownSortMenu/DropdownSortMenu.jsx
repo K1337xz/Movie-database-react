@@ -30,20 +30,20 @@ export default function DropdownSortMenu(props) {
 			<input
 				type="radio"
 				name="option"
-				id="ratingAscending"
-				value="Rrating Ascending"
-			/>
-			<label htmlFor="ratingAscending" className="dropDownSort__option">
-				Rating Ascending
-			</label>
-			<input
-				type="radio"
-				name="option"
 				id="ratingDescending"
 				value="Rating Descending"
 			/>
 			<label htmlFor="ratingDescending" className="dropDownSort__option">
 				Rating Descending
+			</label>
+			<input
+				type="radio"
+				name="option"
+				id="ratingAscending"
+				value="Rating Ascending"
+			/>
+			<label htmlFor="ratingAscending" className="dropDownSort__option">
+				Rating Ascending
 			</label>
 			<input
 				type="radio"

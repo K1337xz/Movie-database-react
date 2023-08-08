@@ -17,9 +17,51 @@ export default function NowPlaying() {
 	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const api_url = "https://api.themoviedb.org/3/";
+
 	const toggleChange = (e) => {
-		setSortType(e.target.value);
+		let sortValue = e.target.value;
+		setSortType(sortValue);
 		setToggleDropDown(false);
+		console.log(sortValue);
+		switch (sortValue) {
+			case "Popularity Descending":
+				setNowPlayingMovies((prev) =>
+					prev.sort((a, b) => b.popularity - a.popularity)
+				);
+				break;
+			case "Popularity Ascending":
+				setNowPlayingMovies((prev) =>
+					prev.sort((a, b) => a.popularity - b.popularity)
+				);
+				break;
+			case "Rating Ascending":
+				setNowPlayingMovies((prev) =>
+					prev.sort((a, b) => a.vote_average - b.vote_average)
+				);
+
+				break;
+			case "Rating Descending":
+				setNowPlayingMovies((prev) =>
+					prev.sort((a, b) => b.vote_average - a.vote_average)
+				);
+				break;
+			case "Relase Date Descending":
+				setNowPlayingMovies((prev) =>
+					prev.sort(
+						(a, b) =>
+							new Date(b.release_date) - new Date(a.release_date)
+					)
+				);
+				break;
+			case "Relase Date Aescending":
+				setNowPlayingMovies((prev) =>
+					prev.sort(
+						(a, b) =>
+							new Date(a.release_date) - new Date(b.release_date)
+					)
+				);
+				break;
+		}
 	};
 
 	useEffect(() => {
@@ -94,26 +136,19 @@ export default function NowPlaying() {
 						</div>
 					</div>
 					<div className="nowPlaying__cards">
-						{loading ? (
-							<SceletonCards />
-						) : (
-							<CardWrapper
-								card={nowPlayingCard}
-								style={{
-									display: "none",
-								}}
-							/>
-						)}
-
+						<CardWrapper
+							card={nowPlayingCard}
+							style={{
+								display: "none",
+							}}
+						/>
 						<div className="nowPlaying__buttonWrapper">
-							{loading && (
-								<span
-									className="nowPlaying__buttonWrapper--button"
-									onClick={loadMore}
-								>
-									Load More!
-								</span>
-							)}
+							<span
+								className="nowPlaying__buttonWrapper--button"
+								onClick={loadMore}
+							>
+								Load More!
+							</span>
 						</div>
 					</div>
 				</div>

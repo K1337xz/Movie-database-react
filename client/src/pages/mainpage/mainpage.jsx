@@ -4,10 +4,11 @@ import "./mainpage.scss";
 import Imageslider from "../../components/Imageslidermovies";
 import RightMovieInfo from "../../components/RightMovieInfo";
 import { Toggle } from "../../components/Toggle/Togglebtn";
-import Subnav from "../../components/Slidersubnav/Subnav";
 import MovieCard from "../../components/Moviecard/MoviesCard";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
+import SubNav from "../../components/Slidersubnav/SubNav";
 import { Link } from "react-router-dom";
+import SceletonCard from "../../components/SceletonLoading/Sceleton_card/SceletonCard";
 
 export default function Mainpage() {
 	const [checked, setChecked] = useState(false);
@@ -19,6 +20,7 @@ export default function Mainpage() {
 	const [popularS, setPopularS] = useState([]);
 	const [topRatedS, setTopRatedS] = useState([]);
 	const [clickedNavValue, setclickedNavValue] = useState(0);
+	const [loading, setLoading] = useState(true);
 	const [activeSubnav, setActiveSubnav] = useState({
 		first: true,
 		second: false,
@@ -110,7 +112,6 @@ export default function Mainpage() {
 
 	const logState = (state) => {
 		setChecked((state) => !state);
-		console.log(state);
 	};
 	function toggleClick(e) {
 		let clickedNav = e.target.innerText;
@@ -271,7 +272,7 @@ export default function Mainpage() {
 				<CardWrapper header={"UPCOMING MOVIES"} card={upcomingCard} />
 			)}
 			<CardWrapper
-				header={checked ? "AIRING TODAY" : "NOW PLAYING"}
+				header={checked && load ? "AIRING TODAY" : "NOW PLAYING"}
 				card={checked ? airingTodaySeriesCard : nowPlayingCard}
 				link="/m/now_playing"
 			/>

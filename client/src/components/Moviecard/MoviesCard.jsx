@@ -3,6 +3,7 @@ import user from "../../assets/pngwing.com.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
 export default function MoviesCard(props) {
 	const api_image = `https://image.tmdb.org/t/p/w500`;
 	return (
