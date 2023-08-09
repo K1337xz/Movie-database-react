@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import "./nowplaying.scss";
+import "./upcomingpage.scss";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
@@ -10,13 +10,14 @@ import MoviesCard from "../../components/Moviecard/MoviesCard";
 import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
 import SceletonCards from "../../components/SceletonLoading/Sceleton_cards/SceletonCards";
 
-export default function NowPlaying() {
+export default function UpcomingPage() {
 	const [toggleDropDown, setToggleDropDown] = useState(false);
 	const [sortType, setSortType] = useState("");
 	const [page, setPage] = useState(1);
-	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const api_url = "https://api.themoviedb.org/3/";
+	let date = new Date().toISOString().split("T")[0];
 
 	const toggleChange = (e) => {
 		let sortValue = e.target.value;
@@ -24,28 +25,28 @@ export default function NowPlaying() {
 		setToggleDropDown(false);
 		switch (sortValue) {
 			case "Popularity Descending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort((a, b) => b.popularity - a.popularity)
 				);
 				break;
 			case "Popularity Ascending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort((a, b) => a.popularity - b.popularity)
 				);
 				break;
 			case "Rating Ascending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort((a, b) => a.vote_average - b.vote_average)
 				);
 
 				break;
 			case "Rating Descending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort((a, b) => b.vote_average - a.vote_average)
 				);
 				break;
 			case "Relase Date Descending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort(
 						(a, b) =>
 							new Date(b.release_date) - new Date(a.release_date)
@@ -53,7 +54,7 @@ export default function NowPlaying() {
 				);
 				break;
 			case "Relase Date Aescending":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort(
 						(a, b) =>
 							new Date(a.release_date) - new Date(b.release_date)
@@ -61,10 +62,10 @@ export default function NowPlaying() {
 				);
 				break;
 			case "Title A-Z":
-				setNowPlayingMovies((prev) =>
+				setUpcomingMovies((prev) =>
 					prev.sort((a, b) => a.title.localeCompare(b.title))
 				);
-				console.log(nowPlayingMovies);
+				console.log(upcomingMovies);
 
 				break;
 		}
@@ -75,29 +76,29 @@ export default function NowPlaying() {
 			let newPage = [];
 			try {
 				const nowPlayingData = await axios.get(
-					`${api_url}/movie/now_playing/`,
+					`${api_url}/movie/upcoming/`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,
 							page: page,
+							"primary_release_date.gte": date,
 						},
 					}
 				);
 				newPage = nowPlayingData.data.results;
 				if (page === 1) {
-					setNowPlayingMovies(newPage);
+					setUpcomingMovies(newPage);
 				} else {
-					setNowPlayingMovies((prev) => [...prev, ...newPage]);
+					setUpcomingMovies((prev) => [...prev, ...newPage]);
 				}
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		console.log("i fire once");
 		fetchData();
 	}, [page]);
 
-	const nowPlayingCard = nowPlayingMovies.map((data) => {
+	const upcomingMoviesCard = upcomingMovies.map((data) => {
 		return (
 			<MoviesCard
 				key={data.id}
@@ -108,21 +109,22 @@ export default function NowPlaying() {
 	});
 	const loadMore = () => {
 		setPage((prev) => prev + 1);
+		setSortType("");
 	};
 	return (
 		<>
 			<Nav />
 			<main className="container">
-				<div className="nowPlaying">
-					<div className="nowPlaying__topContent">
-						<h1>Now Playing</h1>
-						<div className="nowPlaying__buttonsWrapper nowPlaying__buttonsWrapper--open">
-							<div className="nowPlaying__sortOptions">
+				<div className="upcoming">
+					<div className="upcoming__topContent">
+						<h1>Upcoming Movies</h1>
+						<div className="upcoming__buttonsWrapper upcoming__buttonsWrapper--open">
+							<div className="upcoming__sortOptions">
 								<span
 									className={
 										toggleDropDown
-											? "nowPlaying__sortToggle--open"
-											: "nowPlaying__sortToggle"
+											? "upcoming__sortToggle--open"
+											: "upcoming__sortToggle"
 									}
 									onClick={() => {
 										setToggleDropDown(
@@ -146,16 +148,16 @@ export default function NowPlaying() {
 							</div>
 						</div>
 					</div>
-					<div className="nowPlaying__cards">
+					<div className="upcoming__cards">
 						<CardWrapper
-							card={nowPlayingCard}
+							card={upcomingMoviesCard}
 							style={{
 								display: "none",
 							}}
 						/>
-						<div className="nowPlaying__buttonWrapper">
+						<div className="upcoming__buttonWrapper">
 							<span
-								className="nowPlaying__buttonWrapper--button"
+								className="upcoming__buttonWrapper--button"
 								onClick={loadMore}
 							>
 								Load More!

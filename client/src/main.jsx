@@ -6,6 +6,9 @@ import ErrorPage from "./pages/errorpage/errorpage.jsx";
 import ClickedMovie from "./pages/clickedMoviepage/ClickedMovie.jsx";
 import ClickedSeries from "./pages/clickedSeries/ClickedSeries.jsx";
 import NowPlaying from "./pages/nowPlaying/nowPlaying.jsx";
+import UpcomingPage from "./pages/upcomingPage/UpcomingPage.jsx";
+import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
+import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import "./index.scss";
 
 const router = createBrowserRouter([
@@ -23,11 +26,25 @@ const router = createBrowserRouter([
 		element: <NowPlaying />,
 	},
 	{
+		path: "m/upcoming",
+		element: <UpcomingPage />,
+	},
+	{
+		path: "m/top_rated",
+		element: <TopRatedPage />,
+	},
+	{
+		path: "m/popular",
+		element: <PopularPage />,
+	},
+	{
 		path: "/s/:id",
 		element: <ClickedSeries />,
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<RouterProvider router={router} />
+	<React.StrictMode>
+		<RouterProvider router={router} />
+	</React.StrictMode>
 );

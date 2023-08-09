@@ -52,10 +52,18 @@ export default function Mainpage() {
 			params: { api_key: import.meta.env.VITE_API_KEY, year: 2023 },
 		});
 		const getPopularMovies = axios.get(popularMovies, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
+			params: {
+				api_key: import.meta.env.VITE_API_KEY,
+				sort_by: "popularity.desc",
+				"vote_count.gte": 500,
+				"vote_average.gte": 7,
+			},
 		});
 		const getTopRatedMovies = axios.get(topRated, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
+			params: {
+				api_key: import.meta.env.VITE_API_KEY,
+				sort_by: "vote_average.desc",
+			},
 		});
 
 		//tv series calls
@@ -83,16 +91,9 @@ export default function Mainpage() {
 				axios.spread((...allData) => {
 					setUpcomingMovies(allData[0].data.results);
 					setNowPlayingMovies(allData[1].data.results);
-					setPopularMovies(
-						allData[2].data.results
-							.filter((item) => item.vote_average > 6.5)
-							.sort((a, b) => b.vote_average - a.vote_average)
-					);
-					setTopRatedMovies(
-						allData[3].data.results
-							.filter((item) => item.vote_average > 6.5)
-							.sort((a, b) => b.vote_average - a.vote_average)
-					);
+					setPopularMovies(allData[2].data.results);
+					console.log(allData[2]);
+					setTopRatedMovies(allData[3].data.results);
 					setAiringTodaySeries(allData[4].data.results);
 
 					setPopularS(
@@ -269,7 +270,11 @@ export default function Mainpage() {
 				</div>
 			</div>
 			{!checked && (
-				<CardWrapper header={"UPCOMING MOVIES"} card={upcomingCard} />
+				<CardWrapper
+					header={"UPCOMING MOVIES"}
+					card={upcomingCard}
+					link="/m/upcoming"
+				/>
 			)}
 			<CardWrapper
 				header={checked && load ? "AIRING TODAY" : "NOW PLAYING"}
@@ -279,10 +284,12 @@ export default function Mainpage() {
 			<CardWrapper
 				header={checked ? "POPULAR SERIES" : "POPULAR MOVIES"}
 				card={checked ? popularSeriesCard : popularCard}
+				link="/m/popular"
 			/>
 			<CardWrapper
 				header={checked ? "TOP RATED SERIES" : "TOP RATED MOVIES"}
 				card={checked ? topRatedSeries : topRatedCard}
+				link="/m/top_rated"
 			/>
 		</>
 	);
