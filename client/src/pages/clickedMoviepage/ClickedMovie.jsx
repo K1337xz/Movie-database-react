@@ -10,6 +10,7 @@ import Smilarcard from "../../components/Smilarmovies/SmilarCard";
 import Review from "../../components/Reviewsection/Review";
 import Footer from "../../components/Footer/Footer";
 import Empty from "../../components/Emptyimg/Empty";
+import FullScreenGallery from "../../components/fullScreenGallery/FullScreenGallery";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,6 +34,7 @@ export default function ClickedMovie() {
 	const [mainGalleryImage, setMainGalleryImage] = useState(0);
 	const [smilarMovies, setSmilarMovies] = useState([]);
 	const [checked, setChecked] = useState(false);
+	const [fullScreen, setFullScreen] = useState(false);
 	const [loading, setLoading] = useState();
 	const directName = directors[0] ? directors[0].name : "";
 	const divScroll = useRef(null);
@@ -48,6 +50,9 @@ export default function ClickedMovie() {
 	};
 	const logState = (state) => {
 		setChecked((state) => !state);
+	};
+	const fullScreenToggle = () => {
+		setFullScreen(false);
 	};
 
 	useEffect(() => {
@@ -83,7 +88,8 @@ export default function ClickedMovie() {
 				);
 				setImages(dataImages.data.backdrops);
 				setClickedMovie(data.data);
-				setCast(creditsData.data.cast);
+				setCast([...creditsData.data.cast, ...creditsData.data.crew]);
+				console.log(creditsData.data);
 				setDirectors(
 					creditsData.data.crew.filter(
 						(item) => item.job === "Director"
@@ -369,6 +375,20 @@ export default function ClickedMovie() {
 					</div>
 				</div>
 			</main>
+			{fullScreen && (
+				<FullScreenGallery
+					imageUrl={
+						images.length > 0
+							? `${api_imageWidthOrginal}${images[mainGalleryImage].file_path}`
+							: ""
+					}
+					thumbnails={cardImages}
+					nextImage={nextImage}
+					prevImage={prevImage}
+					closeFull={fullScreenToggle}
+					ref={divScroll}
+				/>
+			)}
 			<Footer />
 		</>
 	);

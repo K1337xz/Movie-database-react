@@ -106,12 +106,13 @@
 		}
 		&--empty {
 			display: flex;
-			justify-content: flex-start;
+			justify-content: center;
 			align-items: flex-start;
-			width: 108px;
-			height: 260px;
+			width: 233px;
+			height: 355px;
+
 			img {
-				width: 170px;
+				width: 222px;
 			}
 		}
 	}
