@@ -10,6 +10,7 @@ import UpcomingPage from "./pages/upcomingPage/UpcomingPage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import "./index.scss";
+import Loginpage from "./pages/loginPage/Loginpage.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
 	{
 		path: "/s/:id",
 		element: <ClickedSeries />,
+	},
+	{
+		path: "/signup",
+		element: <Loginpage />,
 	},
 ]);
 

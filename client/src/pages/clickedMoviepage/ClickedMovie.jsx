@@ -17,6 +17,7 @@ import {
 	faChevronLeft,
 	faChevronRight,
 	faImage,
+	faExpand,
 } from "@fortawesome/free-solid-svg-icons";
 import "./clickedmovie.scss";
 
@@ -162,6 +163,9 @@ export default function ClickedMovie() {
 				block: "nearest",
 			});
 		}
+	};
+	const enableFullScreen = () => {
+		setFullScreen(true);
 	};
 	const cardCast = cast.slice(0, 10).map((dataCast) => {
 		return <Castslider key={dataCast.id} dataCast={dataCast} />;
@@ -335,6 +339,11 @@ export default function ClickedMovie() {
 											: ""
 									}
 									className="gallery__image--active"
+								/>
+								<FontAwesomeIcon
+									icon={faExpand}
+									className="gallery__image--fullScreen"
+									onClick={enableFullScreen}
 								/>
 								<span
 									className="trailerSection__player--goForward"

@@ -6,7 +6,7 @@ import logo from "../../assets/coolmovielogo.svg";
 
 import scrollNav from "../../hooks/scrollNav/scrollNav";
 import SearchItems from "../searchItems/SearchItems";
-import "./Nav.scss";
+import "./nav.scss";
 import axios from "axios";
 export default function Nav() {
 	const [show, setShow] = useState(true);
@@ -60,6 +60,7 @@ export default function Nav() {
 	const searchCard = searchData.map((data) => {
 		return <SearchItems key={data.id} data={data} />;
 	});
+	console.log(searchData);
 	return (
 		<header className={show ? "header active" : "header hidden"}>
 			<nav className="nav">
@@ -79,7 +80,11 @@ export default function Nav() {
 					</div>
 					{showSearch && (
 						<div className="nav__searchResults">
-							<ul className="nav__searchMenu">{searchCard}</ul>
+							<ul className="nav__searchMenu">
+								{searchData.length === 0
+									? "No value found"
+									: searchCard}
+							</ul>
 						</div>
 					)}
 				</div>

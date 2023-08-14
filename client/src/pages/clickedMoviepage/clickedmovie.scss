@@ -232,6 +232,7 @@
 	-ms-user-select: none;
 	user-select: none;
 	&__mainImg {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -239,6 +240,19 @@
 	}
 	&__image--active {
 		width: 55%;
+	}
+	&__image--fullScreen {
+		display: block;
+		position: absolute;
+		color: $color500;
+		z-index: 3;
+		right: 25%;
+		top: 5%;
+		cursor: pointer;
+		font-size: 25px;
+		&:hover {
+			font-size: 30px;
+		}
 	}
 	&__thumbnails {
 		display: flex;
