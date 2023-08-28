@@ -75,6 +75,17 @@
 			font-size: 12px;
 			line-height: 35px;
 		}
+		&__image {
+			&--empty {
+				width: 103px;
+				height: 155px;
+			}
+			&--emptyImg {
+				width: 100px;
+				height: 200px;
+				color: $color800;
+			}
+		}
 	}
 }
 .cardsMain {
@@ -102,6 +113,17 @@
 		&__info {
 			width: 145px;
 			height: 218px;
+		}
+		&__image {
+			&--empty {
+				width: 103px;
+				height: 155px;
+			}
+			&--emptyImg {
+				width: 100px;
+				height: 200px;
+				color: $color800;
+			}
 		}
 	}
 }

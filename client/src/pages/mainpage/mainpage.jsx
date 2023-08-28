@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import "./mainpage.scss";
 import Imageslider from "../../components/Imageslidermovies";
@@ -28,6 +29,9 @@ export default function Mainpage() {
 		fourth: false,
 	});
 	const api_url = "https://api.themoviedb.org/3/";
+
+	const { ref: scrollRef, inView: visibleElement } = useInView();
+	const { ref: scrollCard, inView: visibleCardElement } = useInView();
 	let date = new Date().toISOString().split("T")[0];
 
 	const fetchData = () => {
@@ -116,6 +120,7 @@ export default function Mainpage() {
 	};
 	function toggleClick(e) {
 		let clickedNav = e.target.innerText;
+
 		if (clickedNav === "0") {
 			setActiveSubnav((prev) => ({
 				first: true,
@@ -212,8 +217,12 @@ export default function Mainpage() {
 	});
 	return (
 		<>
-			<div className="mainContent">
-				<div className="mainContent__topWrapper">
+			<div
+				className={
+					visibleElement ? "mainContent active" : "mainContent hidden"
+				}
+			>
+				<div className="mainContent__topWrapper" ref={scrollRef}>
 					<div className="mainContent__leftWrapp">
 						<Imageslider
 							slider={clickedNavValue}
@@ -274,6 +283,7 @@ export default function Mainpage() {
 					header={"UPCOMING MOVIES"}
 					card={upcomingCard}
 					link="/m/upcoming"
+					ref={scrollCard}
 				/>
 			)}
 			<CardWrapper
