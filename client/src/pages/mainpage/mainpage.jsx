@@ -1,25 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
-import "./mainpage.scss";
 import Imageslider from "../../components/Imageslidermovies";
 import RightMovieInfo from "../../components/RightMovieInfo";
-import { Toggle } from "../../components/Toggle/Togglebtn";
 import MovieCard from "../../components/Moviecard/MoviesCard";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
 import SubNav from "../../components/Slidersubnav/SubNav";
 import { Link } from "react-router-dom";
 import SceletonCard from "../../components/SceletonLoading/Sceleton_card/SceletonCard";
+import { getUpcoming, nowPlaying, popular, topRated } from "../../api/api";
+import "./mainpage.scss";
 
 export default function Mainpage() {
-	const [checked, setChecked] = useState(false);
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 	const [topRatedMovies, setTopRatedMovies] = useState([]);
 	const [popularMovies, setPopularMovies] = useState([]);
-	const [airingTodaySeries, setAiringTodaySeries] = useState([]);
-	const [popularS, setPopularS] = useState([]);
-	const [topRatedS, setTopRatedS] = useState([]);
 	const [clickedNavValue, setclickedNavValue] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [activeSubnav, setActiveSubnav] = useState({
@@ -28,91 +24,23 @@ export default function Mainpage() {
 		third: false,
 		fourth: false,
 	});
-	const api_url = "https://api.themoviedb.org/3/";
-
 	const { ref: scrollRef, inView: visibleElement } = useInView();
 	const { ref: scrollCard, inView: visibleCardElement } = useInView();
-	let date = new Date().toISOString().split("T")[0];
-
-	const fetchData = () => {
-		//movies calls from moviedb api
-		const upcomingMovies = `${api_url}/movie/upcoming/`;
-		const nowPlaying = `${api_url}/movie/now_playing/`;
-		const popularMovies = `${api_url}/movie/popular/`;
-		const topRated = `${api_url}/movie/top_rated/`;
-		//tv series calls from moviedb api
-		const airingToday = `${api_url}/tv/airing_today`;
-		const popularSeries = `${api_url}/tv/popular/`;
-		const topRatedSeries = `${api_url}/tv/top_rated/`;
-
-		//movie calls
-		const getUpocmingMovies = axios.get(upcomingMovies, {
-			params: {
-				api_key: import.meta.env.VITE_API_KEY,
-				"primary_release_date.gte": date,
-			},
-		});
-		const getNowPlaying = axios.get(nowPlaying, {
-			params: { api_key: import.meta.env.VITE_API_KEY, year: 2023 },
-		});
-		const getPopularMovies = axios.get(popularMovies, {
-			params: {
-				api_key: import.meta.env.VITE_API_KEY,
-				sort_by: "popularity.desc",
-				"vote_count.gte": 500,
-				"vote_average.gte": 7,
-			},
-		});
-		const getTopRatedMovies = axios.get(topRated, {
-			params: {
-				api_key: import.meta.env.VITE_API_KEY,
-				sort_by: "vote_average.desc",
-			},
-		});
-
-		//tv series calls
-		const getAiringToday = axios.get(airingToday, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
-		});
-
-		const getPopularSeries = axios.get(popularSeries, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
-		});
-		const getRopRatedSeries = axios.get(topRatedSeries, {
-			params: { api_key: import.meta.env.VITE_API_KEY },
-		});
-		axios
-			.all([
-				getUpocmingMovies,
-				getNowPlaying,
-				getPopularMovies,
-				getTopRatedMovies,
-				getAiringToday,
-				getPopularSeries,
-				getRopRatedSeries,
-			])
-			.then(
-				axios.spread((...allData) => {
-					setUpcomingMovies(allData[0].data.results);
-					setNowPlayingMovies(allData[1].data.results);
-					setPopularMovies(allData[2].data.results);
-					console.log(allData[2]);
-					setTopRatedMovies(allData[3].data.results);
-					setAiringTodaySeries(allData[4].data.results);
-
-					setPopularS(
-						allData[5].data.results
-							.filter((item) => item.vote_average > 6.5)
-							.sort((a, b) => b.vote_average - a.vote_average)
-					);
-					setTopRatedS(allData[6].data.results);
-				})
-			);
-	};
 
 	useEffect(() => {
-		fetchData();
-		document.title = `CoolMovieDB`;
+		getUpcoming()
+			.then((response) => setUpcomingMovies(response))
+			.catch((e) => e);
+
+		nowPlaying()
+			.then((response) => setNowPlayingMovies(response))
+			.catch((response) => response);
+		popular()
+			.then((response) => setPopularMovies(response))
+			.catch((response) => response);
+		topRated()
+			.then((response) => setTopRatedMovies(response))
+			.catch((response) => response);
 	}, []);
 
 	const logState = (state) => {
@@ -188,33 +116,7 @@ export default function Mainpage() {
 			/>
 		);
 	});
-	const airingTodaySeriesCard = airingTodaySeries.slice(0, 6).map((data) => {
-		return (
-			<MovieCard
-				key={data.id}
-				data={data}
-				linkToMovie={`/s/${data.id}`}
-			/>
-		);
-	});
-	const popularSeriesCard = popularS.slice(0, 6).map((data) => {
-		return (
-			<MovieCard
-				key={data.id}
-				data={data}
-				linkToMovie={`/s/${data.id}`}
-			/>
-		);
-	});
-	const topRatedSeries = topRatedS.slice(0, 6).map((data) => {
-		return (
-			<MovieCard
-				key={data.id}
-				data={data}
-				linkToMovie={`/s/${data.id}`}
-			/>
-		);
-	});
+
 	return (
 		<>
 			<div
@@ -224,11 +126,7 @@ export default function Mainpage() {
 			>
 				<div className="mainContent__topWrapper" ref={scrollRef}>
 					<div className="mainContent__leftWrapp">
-						<Imageslider
-							slider={clickedNavValue}
-							state="true"
-							check={checked}
-						/>
+						<Imageslider slider={clickedNavValue} state="true" />
 						<div className="mainContent__subnav">
 							<div className="subnav">
 								<ul className="subnav__menu">
@@ -264,41 +162,32 @@ export default function Mainpage() {
 						</div>
 					</div>
 					<div className="mainContent__rightWrapp">
-						<div className="mainContent__switchInput">
-							<p>Movies</p>
-							<Toggle label="Toggle me" onClick={logState} />
-							<p>TV Series</p>
-						</div>
 						<div className="mainContent__movieInfo">
-							<RightMovieInfo
-								slider={clickedNavValue}
-								check={checked}
-							/>
+							<RightMovieInfo slider={clickedNavValue} />
 						</div>
 					</div>
 				</div>
 			</div>
-			{!checked && (
-				<CardWrapper
-					header={"UPCOMING MOVIES"}
-					card={upcomingCard}
-					link="/m/upcoming"
-					ref={scrollCard}
-				/>
-			)}
+
 			<CardWrapper
-				header={checked && load ? "AIRING TODAY" : "NOW PLAYING"}
-				card={checked ? airingTodaySeriesCard : nowPlayingCard}
+				header={"UPCOMING MOVIES"}
+				card={upcomingCard}
+				link="/m/upcoming"
+			/>
+
+			<CardWrapper
+				header="NOW PLAYING"
+				card={nowPlayingCard}
 				link="/m/now_playing"
 			/>
 			<CardWrapper
-				header={checked ? "POPULAR SERIES" : "POPULAR MOVIES"}
-				card={checked ? popularSeriesCard : popularCard}
+				header="POPULAR MOVIES"
+				card={popularCard}
 				link="/m/popular"
 			/>
 			<CardWrapper
-				header={checked ? "TOP RATED SERIES" : "TOP RATED MOVIES"}
-				card={checked ? topRatedSeries : topRatedCard}
+				header="TOP RATED MOVIES"
+				card={topRatedCard}
 				link="/m/top_rated"
 			/>
 		</>

@@ -23,6 +23,9 @@
 .openMenuMobile {
 	display: none;
 }
+.showInput {
+	display: none;
+}
 .nav {
 	display: flex;
 	align-items: center;
@@ -293,6 +296,12 @@
 	}
 	.openMenuMobile {
 		display: block;
+		cursor: pointer;
+		margin-left: 1rem;
+	}
+	.showInput {
+		display: block;
+		cursor: pointer;
 	}
 }
 @include media(">=phone", "<=desktop") {
@@ -315,6 +324,39 @@
 			margin-left: 0;
 			img {
 				width: 100%;
+			}
+		}
+		&__searchWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			width: 80%;
+			&.hiddenInp {
+				input {
+					width: 0%;
+					opacity: 0%;
+					transition: all 0.2s ease-in;
+				}
+			}
+			&.activeInp {
+				input {
+					width: 85%;
+					opacity: 1;
+					transition: all 0.2s ease-in;
+				}
+			}
+			input {
+				width: 70%;
+				height: 4vh;
+				background-color: $color800;
+				border: 1px solid $color500;
+				border-radius: 20px;
+				outline: none;
+				color: $color50;
+				padding-left: 2rem;
+				&::placeholder {
+					color: $color50;
+				}
 			}
 		}
 	}
@@ -390,5 +432,11 @@
 	}
 	.openMenuMobile {
 		display: block;
+		cursor: pointer;
+		margin-left: 1rem;
+	}
+	.showInput {
+		display: block;
+		cursor: pointer;
 	}
 }

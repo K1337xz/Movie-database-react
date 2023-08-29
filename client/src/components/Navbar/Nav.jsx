@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+	faBars,
+	faXmark,
+	faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
 
@@ -11,6 +15,7 @@ import axios from "axios";
 export default function Nav() {
 	const [show, setShow] = useState(true);
 	const [showSearch, setShowSearch] = useState(true);
+	const [showSearchMobile, setShowSearchMobile] = useState(false);
 	const scroll = scrollNav();
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [searchValue, setSearchValue] = useState("");
@@ -60,7 +65,6 @@ export default function Nav() {
 	const searchCard = searchData.map((data) => {
 		return <SearchItems key={data.id} data={data} />;
 	});
-	console.log(searchData);
 	return (
 		<header className={show ? "header active" : "header hidden"}>
 			<nav className="nav">
@@ -70,7 +74,13 @@ export default function Nav() {
 					</Link>
 				</div>
 				<div className="nav__searchBar">
-					<div className="nav__searchWrapper">
+					<div
+						className={
+							showSearchMobile
+								? "nav__searchWrapper active"
+								: "nav__searchWrapper hidden"
+						}
+					>
 						<input
 							type="text"
 							placeholder="Search for a movie etc..."
@@ -124,6 +134,12 @@ export default function Nav() {
 						<Link to="/signup">Sign Up</Link>
 					</li>
 				</ul>
+				<FontAwesomeIcon
+					icon={faMagnifyingGlass}
+					size="xl"
+					color="#A8D9F0"
+					className="showInput"
+				/>
 				<FontAwesomeIcon
 					icon={faBars}
 					size="xl"
