@@ -1,3 +1,6 @@
+@use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
+
 .dropDownSort {
 	position: absolute;
 	display: none;
@@ -43,6 +46,15 @@ input[type="radio"] {
 }
 input[type="radio"]:checked + label {
 	background-color: rgba(17, 54, 73, 0.658);
+}
+
+@include media("<=phone") {
+	.dropDownSort {
+		&__option {
+			padding-left: 5px;
+			font-size: 10px;
+		}
+	}
 }
 
 @keyframes menuDrop {

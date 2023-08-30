@@ -29,3 +29,11 @@
 		cursor: pointer;
 	}
 }
+
+@include media("<=phone") {
+	.galleryFullScreen {
+		&__image--active {
+			width: 333px;
+		}
+	}
+}

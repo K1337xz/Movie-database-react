@@ -124,3 +124,45 @@
 		}
 	}
 }
+
+@include media("<=phone") {
+	.upcoming {
+		&__topContent {
+			h1 {
+				font-size: 14px;
+			}
+		}
+		&__buttonsWrapper {
+			align-items: flex-end;
+			width: 65%;
+		}
+		&__sortToggle {
+			font-size: 11px;
+			padding-left: 5px;
+			&::after {
+				right: 6px;
+			}
+			&--open {
+				font-size: 11px;
+				padding-left: 5px;
+				&::after {
+					right: 6px;
+				}
+			}
+		}
+	}
+}
+
+@include media(">=phone", "<=tablet") {
+	.upcoming {
+		&__topContent {
+			h1 {
+				font-size: 16px;
+			}
+		}
+		&__buttonsWrapper {
+			align-items: flex-end;
+			width: 65%;
+		}
+	}
+}
