@@ -117,6 +117,7 @@ export default function Nav() {
 								: "nav__item-dropdownMovie"
 						}
 						onClick={() => setToggleDropDown(true)}
+						onMouseEnter={() => setToggleDropDown(true)}
 					>
 						<Link>Movies</Link>
 						<ul
@@ -127,10 +128,10 @@ export default function Nav() {
 								<Link to="/m/popular">Popular</Link>
 							</li>
 							<li className="nav__dropdownItem">
-								<Link to="/m/top-rated">Top Rated</Link>
+								<Link to="/m/top_rated">Top Rated</Link>
 							</li>
 							<li className="nav__dropdownItem">
-								<Link to="/m/now-playing">Now Playing</Link>
+								<Link to="/m/now_playing">Now Playing</Link>
 							</li>
 							<li className="nav__dropdownItem">
 								<Link to="/m/upcoming">Upcoming</Link>

@@ -40,8 +40,10 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
+
+Press "o" to open in browser
 
 The server will start at: http://localhost:3000/
 
