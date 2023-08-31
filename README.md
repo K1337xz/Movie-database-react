@@ -11,4 +11,4 @@ Movie database React + Node
 -   [ ] Add/edit review
 -   [ ] Upload user avatar
 -   [x] Show on main page top rated tvseries / upcoming movies
--   [ ] Fix nav
+-   [x] Fix nav
