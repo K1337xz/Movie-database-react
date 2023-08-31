@@ -44,3 +44,9 @@ Start the server
 ```
 
 The server will start at: http://localhost:3000/
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file. To get API_KEY vistit https://www.themoviedb.org/settings/api
+
+`VITE_API_KEY`
