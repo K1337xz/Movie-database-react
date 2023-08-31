@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
-
 import scrollNav from "../../hooks/scrollNav/scrollNav";
 import SearchItems from "../searchItems/SearchItems";
 import "./nav.scss";
@@ -16,6 +15,8 @@ export default function Nav() {
 	const [show, setShow] = useState(true);
 	const [showSearch, setShowSearch] = useState(true);
 	const [showSearchMobile, setShowSearchMobile] = useState(false);
+	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const [toggleDropDown, setToggleDropDown] = useState(false);
 	const scroll = scrollNav();
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [searchValue, setSearchValue] = useState("");
@@ -77,7 +78,7 @@ export default function Nav() {
 					<div
 						className={
 							showSearchMobile
-								? "nav__searchWrapper active"
+								? "nav__searchWrapper show"
 								: "nav__searchWrapper hidden"
 						}
 					>
@@ -86,6 +87,16 @@ export default function Nav() {
 							placeholder="Search for a movie etc..."
 							value={searchValue}
 							onChange={logState}
+						/>
+						<FontAwesomeIcon
+							icon={faXmark}
+							size="sm"
+							color="#E9F6FB"
+							onClick={() => {
+								setShowSearchMobile(false);
+								setShowSearch(false);
+							}}
+							className="nav__searchBar--close"
 						/>
 					</div>
 					{showSearch && (
@@ -99,9 +110,19 @@ export default function Nav() {
 					)}
 				</div>
 				<ul className="nav__menu">
-					<li className="nav__item-dropdownMovie">
+					<li
+						className={
+							toggleDropDown
+								? "nav__item-dropdownMovie activeMenu"
+								: "nav__item-dropdownMovie"
+						}
+						onClick={() => setToggleDropDown(true)}
+					>
 						<Link>Movies</Link>
-						<ul className="nav__menu-dropdownMovie">
+						<ul
+							className="nav__menu-dropdownMovie"
+							onMouseLeave={() => setToggleDropDown(false)}
+						>
 							<li className="nav__dropdownItem">
 								<Link to="/m/popular">Popular</Link>
 							</li>
@@ -116,37 +137,31 @@ export default function Nav() {
 							</li>
 						</ul>
 					</li>
-					<li className="nav__item-dropdownSeries">
-						<Link>TV Shows</Link>
-						<ul className="nav__menu-dropdownSeries">
-							<li className="nav__dropdownItem">
-								<Link to="/s/popular">Popular</Link>
-							</li>
-							<li className="nav__dropdownItem">
-								<Link to="/s/top-rated">Top Rated</Link>
-							</li>
-							<li className="nav__dropdownItem">
-								<Link to="/s/now-playing">Now Playing</Link>
-							</li>
-						</ul>
-					</li>
 					<li className="nav__item">
 						<Link to="/signup">Sign Up</Link>
 					</li>
 				</ul>
-				<FontAwesomeIcon
-					icon={faMagnifyingGlass}
-					size="xl"
-					color="#A8D9F0"
-					className="showInput"
-				/>
+				{showSearchMobile ? null : (
+					<FontAwesomeIcon
+						icon={faMagnifyingGlass}
+						size="xl"
+						color="#A8D9F0"
+						className="showInput"
+						onClick={() => setShowSearchMobile((prev) => !prev)}
+					/>
+				)}
 				<FontAwesomeIcon
 					icon={faBars}
 					size="xl"
 					color="#A8D9F0"
 					className="openMenuMobile"
+					onClick={() => setShowMobileMenu(true)}
 				/>
-				<div className="navMobile">
+				<div
+					className={
+						showMobileMenu ? "navMobile active" : "navMobile hidden"
+					}
+				>
 					<div className="navMobile__top">
 						<Link to="/">
 							<img src={logo} alt="logo image" />
@@ -155,6 +170,7 @@ export default function Nav() {
 							icon={faXmark}
 							size="2xl"
 							color="#E9F6FB"
+							onClick={() => setShowMobileMenu(false)}
 						/>
 					</div>
 					<ul className="navMobile__menu">
@@ -167,29 +183,13 @@ export default function Nav() {
 									<Link to="/m/popular">Popular</Link>
 								</li>
 								<li className="navMobile__dropdownItem">
-									<Link to="/m/top-rated">Top Rated</Link>
+									<Link to="/m/top_rated">Top Rated</Link>
 								</li>
 								<li className="navMobile__dropdownItem">
-									<Link to="/m/now-playing">Now Playing</Link>
+									<Link to="/m/now_playing">Now Playing</Link>
 								</li>
 								<li className="navMobile__dropdownItem">
 									<Link to="/m/upcoming">Upcoming</Link>
-								</li>
-							</ul>
-						</li>
-						<li className="navMobile__item-dropdownSeries">
-							<Link className="navMobile__item-dropDownFirst">
-								TV Shows
-							</Link>
-							<ul className="navMobile__menu-dropdownSeries">
-								<li className="navMobile__dropdownItem">
-									<Link to="/s/popular">Popular</Link>
-								</li>
-								<li className="navMobile__dropdownItem">
-									<Link to="/s/top-rated">Top Rated</Link>
-								</li>
-								<li className="navMobile__dropdownItem">
-									<Link to="/s/now-playing">Now Playing</Link>
 								</li>
 							</ul>
 						</li>

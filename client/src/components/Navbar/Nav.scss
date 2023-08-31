@@ -48,6 +48,10 @@
 		flex-direction: column;
 		width: 40%;
 		height: 100%;
+		&--close {
+			position: absolute;
+			right: 10px;
+		}
 	}
 	&__searchResults {
 		display: block;
@@ -63,19 +67,30 @@
 		z-index: 2;
 	}
 	&__searchWrapper {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
 		width: 80%;
+		&.hidden {
+			width: 0%;
+			opacity: 0;
+			transition: all 0.2s ease;
+		}
+		&.show {
+			width: 90%;
+			opacity: 1;
+			transition: all 0.2s ease;
+		}
 		input {
-			width: 70%;
+			width: 100%;
 			height: 4vh;
 			background-color: $color800;
 			border: 1px solid $color500;
 			border-radius: 20px;
 			outline: none;
 			color: $color50;
-			padding-left: 2rem;
+			padding-left: 15px;
 			&::placeholder {
 				color: $color50;
 			}
@@ -150,6 +165,21 @@
 		&-dropdownMovie {
 			font-weight: 600;
 			list-style: none;
+			&.activeMenu {
+				.nav__menu-dropdownMovie {
+					position: absolute;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					width: 7%;
+					height: 15vh;
+					top: 70px;
+					right: 380px;
+					border-radius: 5px;
+					padding: 1rem;
+					background-color: $color200;
+				}
+			}
 			&:hover {
 				.nav__menu-dropdownMovie {
 					position: absolute;
@@ -169,6 +199,7 @@
 		&-dropdownSeries {
 			font-weight: 600;
 			list-style: none;
+
 			&:hover {
 				.nav__menu-dropdownSeries {
 					position: absolute;
@@ -214,6 +245,13 @@
 			width: 100%;
 			height: 100%;
 		}
+		&__searchResults {
+			width: 90%;
+			max-height: 30vh;
+			padding: 1rem;
+			left: 5%;
+			top: 100%;
+		}
 		&__menu {
 			display: none;
 		}
@@ -225,10 +263,7 @@
 		}
 	}
 	.navMobile {
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: none;
+		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 		flex-direction: column;
@@ -236,6 +271,19 @@
 		width: 100%;
 		height: 100vh;
 		z-index: 9999;
+		transition: top 0.2s ease-out;
+		&.active {
+			position: absolute;
+			top: 0;
+			transition: top 0.2s ease-out;
+		}
+		&.hidden {
+			position: absolute;
+			top: -1000%;
+			left: 0;
+			transition: top 0.2s ease-out;
+		}
+
 		&__top {
 			display: flex;
 			align-items: center;
@@ -258,6 +306,11 @@
 				list-style: none;
 			}
 			&-dropdownMovie {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
 				list-style: none;
 			}
 		}
@@ -265,8 +318,10 @@
 			&-dropdownMovie {
 				display: flex;
 				flex-direction: column;
-				align-items: flex-start;
+				align-items: center;
+				text-align: center;
 				width: 50%;
+				gap: 1rem;
 			}
 			&-dropdownSeries {
 				display: flex;
@@ -275,7 +330,7 @@
 				width: 50%;
 			}
 			&-dropDownFirst {
-				color: red !important;
+				color: $color500 !important;
 				font-size: 20px;
 			}
 		}

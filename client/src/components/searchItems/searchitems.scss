@@ -1,4 +1,5 @@
 @use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
 
 .searchMovie {
 	display: flex;
@@ -10,7 +11,7 @@
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1rem;
-		width: 90%;
+		width: 100%;
 		background-color: hsla(200, 69%, 5%, 0.9);
 	}
 	&__image {
@@ -21,6 +22,29 @@
 		&--emptyImg {
 			width: 60px;
 			height: 90px;
+		}
+	}
+}
+
+@include media("<=phone") {
+	.searchMovie {
+		&__image {
+			&--posterImage {
+				width: 40px;
+				height: 60px;
+			}
+			&--emptyImg {
+				width: 40px;
+				height: 60px;
+			}
+		}
+		&__description {
+			&--reliseDate {
+				font-size: 16px;
+			}
+			&--title {
+				font-size: 14px;
+			}
 		}
 	}
 }
