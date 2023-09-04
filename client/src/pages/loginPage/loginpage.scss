@@ -36,12 +36,19 @@
 				transition: transform 0.3s ease-in;
 			}
 			&:focus {
-				width: 95%;
-				border-bottom: 1px solid hsla(197, 69%, 95%, 0.685);
-				transition: width 0.3s ease-in;
+				border-bottom: 1px solid $color500;
+				transition: all 0.3s ease-in;
+				&::placeholder {
+					position: absolute;
+					top: 20%;
+					font-size: 11px;
+					transform: all 0.2s ease-in;
+				}
 			}
 			&::placeholder {
+				top: 0%;
 				color: $color50;
+				transform: all 0.2s ease-in;
 			}
 		}
 		label {
@@ -57,6 +64,12 @@
 			font-weight: 700;
 			cursor: pointer;
 			border-radius: 5px;
+			transition: all 0.2s ease-in;
+			&:hover {
+				background-color: $color800;
+				border: 1px solid $color900;
+				transition: all 0.1s ease-in;
+			}
 		}
 		&--eye {
 			position: absolute;
@@ -80,7 +93,59 @@
 		justify-content: center;
 		flex-direction: column;
 		background-color: hsla(200, 69%, 5%, 0.9);
-		width: 30%;
+		width: 25%;
 		height: 40vh;
+		border-radius: 10px;
+		p {
+			color: $color50;
+			font-weight: 400;
+		}
+		a {
+			color: $color500;
+			margin-left: 1rem;
+			font-weight: 700;
+		}
+	}
+}
+@include media("<=phone") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 75%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
+	}
+}
+@include media(">=phone", "<=tablet") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 70%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
+	}
+}
+@include media(">=tablet", "<=1023px") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 45%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
 	}
 }

@@ -43,8 +43,8 @@ export default function Loginpage() {
 						</form>
 
 						<p>
-							Already have an account?{" "}
-							<Link to="/login">Log In</Link>
+							Already have an account?
+							<Link to="/login"> Log In</Link>
 						</p>
 					</div>
 				</div>

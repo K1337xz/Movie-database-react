@@ -117,7 +117,6 @@ export default function Nav() {
 								: "nav__item-dropdownMovie"
 						}
 						onClick={() => setToggleDropDown(true)}
-						onMouseEnter={() => setToggleDropDown(true)}
 					>
 						<Link>Movies</Link>
 						<ul
