@@ -70,4 +70,6 @@ Start the server
 
 To run this project, you will need to add the following environment variables to your .env file. To get API_KEY vistit https://www.themoviedb.org/settings/api
 
-`VITE_API_KEY`
+```bash
+  'VITE_API_KEY'
+```
