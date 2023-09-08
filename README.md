@@ -79,5 +79,5 @@ To run this project, you will need to add the following environment variables to
 Where DB is your [connect with moongodb](https://www.mongodb.com/docs/atlas/driver-connection/) for example :
 
 ```bash
-  mongodb+srv://<user>:<password>@<clusterName>.uwlx0yh.mongodb.net/?retryWrites=true&w=majority
+  mongodb+srv://<username>:<password>@<clusterName>.mongodb.net/?retryWrites=true&w=majority
 ```
