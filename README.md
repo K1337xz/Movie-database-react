@@ -70,6 +70,14 @@ Start the server
 
 To run this project, you will need to add the following environment variables to your .env file. To get API_KEY vistit https://www.themoviedb.org/settings/api
 
+`VITE_API_KEY`
+
+`DB`
+
+`JWT_KEY`
+
+Where DB is your [connect with moongodb](https://www.mongodb.com/docs/atlas/driver-connection/) for example :
+
 ```bash
-  'VITE_API_KEY'
+  mongodb+srv://<user>:<password>@<clusterName>.uwlx0yh.mongodb.net/?retryWrites=true&w=majority
 ```
