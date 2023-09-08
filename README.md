@@ -48,7 +48,7 @@ Press "o" to open in browser
 
 The server will start at: http://localhost:3000/
 
-Run Server side
+## Run Server
 
 ```bash
   cd server
