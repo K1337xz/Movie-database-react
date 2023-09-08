@@ -6,7 +6,6 @@ import error from "../utils/error.js";
 export const signup = async (req, res, next) => {
 	try {
 		const hashPassword = bcrypt.hashSync(req.body.password, 5);
-
 		const newUser = new User({
 			...req.body,
 			password: hashPassword,

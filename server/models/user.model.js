@@ -15,10 +15,16 @@ const userSchema = new Schema(
 		img: {
 			type: String,
 			required: false,
+			default: "",
 		},
 		desc: {
 			type: String,
+			default: "",
 			required: false,
+		},
+		reviews: {
+			type: Array,
+			default: [],
 		},
 	},
 	{ timestamps: true }

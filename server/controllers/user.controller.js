@@ -11,6 +11,12 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
+	const user = await User.findById(req.params.id).select("-password");
+
+	res.status(200).send(user);
+};
+
+export const getUserByNickname = async (req, res, next) => {
 	const user = await User.findOne({ username: req.params.username }).select(
 		"-password"
 	);
