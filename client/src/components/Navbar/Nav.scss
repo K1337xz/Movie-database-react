@@ -25,6 +25,10 @@
 }
 .showInput {
 	display: none;
+	cursor: pointer;
+}
+.showInputD {
+	cursor: pointer;
 }
 .nav {
 	display: flex;
@@ -50,16 +54,17 @@
 		height: 100%;
 		&--close {
 			position: absolute;
+			cursor: pointer;
 			right: 10px;
 		}
 	}
 	&__searchResults {
 		display: block;
 		position: absolute;
-		width: 55%;
+		width: 70%;
 		max-height: 30vh;
 		padding: 1rem;
-		left: 35%;
+		left: 114px;
 		top: 90%;
 		border-radius: 5px;
 		background-color: hsla(200, 69%, 5%, 0.9);
@@ -71,14 +76,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		width: 80%;
+		width: 70%;
 		&.hidden {
 			width: 0%;
 			opacity: 0;
 			transition: all 0.2s ease;
 		}
 		&.show {
-			width: 90%;
+			width: 70%;
 			opacity: 1;
 			transition: all 0.2s ease;
 		}
@@ -112,7 +117,7 @@
 				width: 8%;
 				height: 15%;
 				top: 70px;
-				right: 363px;
+				right: 290px;
 				border-radius: 5px;
 				padding: 1rem;
 				background-color: $color200;
@@ -125,7 +130,7 @@
 			&.active {
 				position: absolute;
 				top: 70px;
-				right: 235px;
+				right: 290px;
 				display: flex;
 				flex-direction: column;
 				width: 8%;
@@ -174,7 +179,7 @@
 					width: 7%;
 					height: 15vh;
 					top: 70px;
-					right: 380px;
+					right: 290px;
 					border-radius: 5px;
 					padding: 1rem;
 					background-color: $color200;
@@ -189,7 +194,7 @@
 					width: 8%;
 					height: 15vh;
 					top: 70px;
-					right: 363px;
+					right: 290px;
 					border-radius: 5px;
 					padding: 1rem;
 					background-color: $color200;
@@ -280,7 +285,6 @@
 		&.hidden {
 			position: absolute;
 			top: -1000%;
-			left: 0;
 			transition: top 0.2s ease-out;
 		}
 
@@ -359,10 +363,15 @@
 		cursor: pointer;
 	}
 }
-@include media(">=phone", "<=desktop") {
+@include media(">=phone", "<=tablet") {
 	.nav {
 		justify-content: space-around;
 		padding: 1rem;
+		&__searchResults {
+			width: 80%;
+			left: 17%;
+			top: 6vh;
+		}
 		&__searchBar {
 			position: relative;
 			display: flex;
@@ -385,7 +394,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: flex-end;
-			width: 80%;
+			width: 90%;
 			&.hiddenInp {
 				input {
 					width: 0%;
@@ -401,7 +410,7 @@
 				}
 			}
 			input {
-				width: 70%;
+				width: 85%;
 				height: 4vh;
 				background-color: $color800;
 				border: 1px solid $color500;
@@ -419,7 +428,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		display: none;
+		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 		flex-direction: column;
@@ -456,7 +465,9 @@
 			&-dropdownMovie {
 				display: flex;
 				flex-direction: column;
-				align-items: flex-start;
+				align-items: center;
+				text-align: center;
+				gap: 1rem;
 				width: 50%;
 			}
 			&-dropdownSeries {

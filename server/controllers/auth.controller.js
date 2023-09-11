@@ -5,6 +5,11 @@ import error from "../utils/error.js";
 
 export const signup = async (req, res, next) => {
 	try {
+		const user = await User.findOne({ username: req.body.username });
+		if (user) {
+			return next(error(409, "User already exists!"));
+		}
+
 		const hashPassword = bcrypt.hashSync(req.body.password, 5);
 		const newUser = new User({
 			...req.body,

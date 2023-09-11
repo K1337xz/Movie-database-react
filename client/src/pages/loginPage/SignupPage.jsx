@@ -2,18 +2,21 @@ import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signupValidation from "../../hooks/scrollNav/signupValidation";
-import "./loginpage.scss";
+import "./signuppage.scss";
 import { useState } from "react";
+import axios from "axios";
 
-export default function Loginpage() {
+export default function SignupPage() {
+	const navigate = useNavigate();
 	const [formValues, setFormValues] = useState({
 		username: "",
 		password: "",
 		confirmPassword: "",
 	});
 	const [formErrors, setFormErrors] = useState({});
+	const [err, setErr] = useState();
 
 	const handleChange = (e) => {
 		setFormValues({
@@ -22,10 +25,20 @@ export default function Loginpage() {
 		});
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setFormErrors(signupValidation(formValues));
-		console.log(formErrors);
+		const { username, password } = formValues;
+		try {
+			await axios.post("http://localhost:4000/api/v1/auth/signup", {
+				username,
+				password,
+			});
+			navigate("/");
+		} catch (error) {
+			console.log(error.response.data);
+			setErr(error.response.data);
+		}
 	};
 	return (
 		<>
@@ -88,7 +101,7 @@ export default function Loginpage() {
 								Create Account
 							</button>
 						</form>
-
+						{err === "User already exists!" ? <p>{err}</p> : null}
 						<p>
 							Already have an account?
 							<Link to="/login"> Log In</Link>

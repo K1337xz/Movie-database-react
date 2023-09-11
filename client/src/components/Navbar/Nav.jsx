@@ -110,6 +110,19 @@ export default function Nav() {
 					)}
 				</div>
 				<ul className="nav__menu">
+					<li className="nav__item">
+						{showSearchMobile ? null : (
+							<FontAwesomeIcon
+								icon={faMagnifyingGlass}
+								size="xl"
+								color="#A8D9F0"
+								className="showInputD"
+								onClick={() =>
+									setShowSearchMobile((prev) => !prev)
+								}
+							/>
+						)}
+					</li>
 					<li
 						className={
 							toggleDropDown

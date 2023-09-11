@@ -103,6 +103,7 @@
 @include media(">=phone", "<=tablet") {
 	.footer {
 		gap: 1rem;
+		margin-top: 4rem;
 		&__nav {
 			width: 85%;
 		}
