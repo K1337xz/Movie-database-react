@@ -1,0 +1,166 @@
+@use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
+
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	&__form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 35vh;
+		gap: 2rem;
+		&--error {
+			position: absolute;
+			right: 10%;
+			top: 45%;
+			color: hsla(0, 82%, 59%, 0.33);
+			font-size: 10px;
+		}
+		input {
+			position: relative;
+			width: 90%;
+			height: 5vh;
+			border: none;
+			border-bottom: 1px solid hsl(197deg 69% 95% / 33%);
+			outline: none;
+			color: $color50;
+			background-color: hsla(200, 69%, 5%, 0.9);
+			transition: width 0.3s ease-in;
+			&.err {
+				border-bottom: 1px solid hsla(0, 82%, 59%, 0.33);
+				transition: all 0.2s ease-in;
+				&::placeholder {
+					color: hsla(0, 82%, 59%, 0.33);
+					transition: all 0.2s ease-in;
+				}
+			}
+			&::after {
+				position: absolute;
+				right: 25px;
+				font-family: "Font Awesome 6 Free";
+				font-weight: 900;
+				content: "\f078";
+				z-index: 1;
+				transform: rotate(0);
+				transition: transform 0.3s ease-in;
+			}
+			&:focus {
+				border-bottom: 1px solid $color500;
+				transition: all 0.3s ease-in;
+				&::placeholder {
+					position: absolute;
+					top: 20%;
+					font-size: 11px;
+					transform: all 0.2s ease-in;
+				}
+			}
+			&::placeholder {
+				top: 0%;
+				color: $color50;
+				transform: all 0.2s ease-in;
+			}
+		}
+		label {
+			position: relative;
+			width: 85%;
+		}
+		&--button {
+			background-color: $color500;
+			width: 60%;
+			height: 5vh;
+			border: 1px solid $color400;
+			color: $color50;
+			font-weight: 700;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: all 0.2s ease-in;
+			&:hover {
+				background-color: $color800;
+				border: 1px solid $color900;
+				transition: all 0.1s ease-in;
+			}
+		}
+		&--eye {
+			position: absolute;
+			top: 50%;
+			right: 10%;
+			color: $color50;
+			cursor: pointer;
+		}
+	}
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: $color50;
+		width: 95%;
+		height: 15vh;
+	}
+	&__formWrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		background-color: hsla(200, 69%, 5%, 0.9);
+		width: 25%;
+		height: 40vh;
+		border-radius: 10px;
+		p {
+			color: $color50;
+			font-weight: 400;
+		}
+		a {
+			color: $color500;
+			margin-left: 1rem;
+			font-weight: 700;
+		}
+	}
+}
+@include media("<=phone") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 75%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
+	}
+}
+@include media(">=phone", "<=tablet") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 70%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
+	}
+}
+@include media(">=tablet", "<=1023px") {
+	.signUp {
+		&__form {
+			height: 42vh;
+		}
+		&__formWrapper {
+			width: 45%;
+			height: 46vh;
+			p {
+				font-size: 10px;
+			}
+		}
+	}
+}

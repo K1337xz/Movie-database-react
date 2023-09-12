@@ -9,8 +9,10 @@ import NowPlaying from "./pages/nowPlaying/nowPlaying.jsx";
 import UpcomingPage from "./pages/upcomingPage/UpcomingPage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
+import LoginPage from "./pages/loginPage/LoginPage.jsx";
+import { AuthContextProvider } from "./context/authContext";
 import "./index.scss";
-import SignupPage from "./pages/loginPage/SignupPage.jsx";
+import SignupPage from "./pages/signupPage/SignupPage.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -45,10 +47,16 @@ const router = createBrowserRouter([
 		path: "/signup",
 		element: <SignupPage />,
 	},
+	{
+		path: "/login",
+		element: <LoginPage />,
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AuthContextProvider>
+			<RouterProvider router={router} />
+		</AuthContextProvider>
 	</React.StrictMode>
 );

@@ -4,19 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import signupValidation from "../../hooks/scrollNav/signupValidation";
-import "./signuppage.scss";
-import { useState } from "react";
+import { AuthContext } from "../../context/authContext";
+import "./loginPage.scss";
+import { useContext, useState } from "react";
 import axios from "axios";
 
-export default function SignupPage() {
+export default function LoginPage() {
 	const navigate = useNavigate();
 	const [formValues, setFormValues] = useState({
 		username: "",
 		password: "",
-		confirmPassword: "",
 	});
 	const [formErrors, setFormErrors] = useState({});
 	const [err, setErr] = useState();
+	const { login } = useContext(AuthContext);
 
 	const handleChange = (e) => {
 		setFormValues({
@@ -28,28 +29,24 @@ export default function SignupPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setFormErrors(signupValidation(formValues));
-		const { username, password } = formValues;
 		try {
-			await axios.post("http://localhost:4000/api/v1/auth/signup", {
-				username,
-				password,
-			});
+			await login(formValues);
 			navigate("/");
 		} catch (error) {
-			console.log(error.response.data);
-			setErr(error.response.data);
+			console.log(error.response);
+			setErr(error.response);
 		}
 	};
 	return (
 		<>
 			<Nav />
 			<main className="container">
-				<div className="signUp">
-					<div className="signUp__top">
-						<h1>Create Account</h1>
+				<div className="login">
+					<div className="login__top">
+						<h1>Login </h1>
 					</div>
-					<div className="signUp__formWrapper">
-						<form className="signUp__form" onSubmit={handleSubmit}>
+					<div className="login__formWrapper">
+						<form className="login__form" onSubmit={handleSubmit}>
 							<label htmlFor="username">
 								<input
 									type="text"
@@ -59,7 +56,7 @@ export default function SignupPage() {
 									onChange={handleChange}
 									className={formErrors.username ? "err" : ""}
 								/>
-								<span className="signUp__form--error">
+								<span className="login__form--error">
 									{formErrors.username
 										? formErrors.username
 										: ""}
@@ -74,37 +71,19 @@ export default function SignupPage() {
 									onChange={handleChange}
 									className={formErrors.password ? "err" : ""}
 								/>
-								<span className="signUp__form--error">
+								<span className="login__form--error">
 									{formErrors.password
 										? formErrors.password
 										: ""}
 								</span>
 							</label>
-							<label htmlFor="comfirmPassword">
-								<input
-									type="password"
-									id="comfirmPassword"
-									name="confirmPassword"
-									placeholder="Confirm Password"
-									onChange={handleChange}
-									className={
-										formErrors.passwordConfirm ? "err" : ""
-									}
-								/>
-								<span className="signUp__form--error">
-									{formErrors.passwordConfirm
-										? formErrors.passwordConfirm
-										: ""}
-								</span>
-							</label>
-							<button className="signUp__form--button">
-								Create Account
+							<button className="login__form--button">
+								Log In
 							</button>
 						</form>
-						{err === "User already exists!" ? <p>{err}</p> : null}
 						<p>
-							Already have an account?
-							<Link to="/login"> Log In</Link>
+							Don't have an account?
+							<Link to="/signup">Sign up</Link>
 						</p>
 					</div>
 				</div>

@@ -58,6 +58,9 @@
 			right: 10px;
 		}
 	}
+	&__profileImage {
+		width: 30px;
+	}
 	&__searchResults {
 		display: block;
 		position: absolute;
@@ -145,6 +148,16 @@
 	&__item {
 		font-weight: 600;
 		list-style: none;
+		&--user {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			list-style: none;
+			background-color: $color500;
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+		}
 		&:last-child {
 			display: flex;
 			align-items: center;
@@ -191,7 +204,7 @@
 					display: flex;
 					flex-direction: column;
 					gap: 10px;
-					width: 8%;
+					width: 7%;
 					height: 15vh;
 					top: 70px;
 					right: 290px;

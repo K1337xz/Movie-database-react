@@ -1,16 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBars,
 	faXmark,
 	faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
 import scrollNav from "../../hooks/scrollNav/scrollNav";
 import SearchItems from "../searchItems/SearchItems";
+import noavatar from "../../assets/pngwing.com.png";
 import "./nav.scss";
-import axios from "axios";
+
 export default function Nav() {
 	const [show, setShow] = useState(true);
 	const [showSearch, setShowSearch] = useState(true);
@@ -22,6 +25,7 @@ export default function Nav() {
 	const [searchValue, setSearchValue] = useState("");
 	const [searchData, setSearchData] = useState([]);
 	const api_url = "https://api.themoviedb.org/3/";
+	const { currentUser } = useContext(AuthContext);
 
 	useEffect(() => {
 		if (scroll.y > 0 && scroll.y - scroll.lastY > 0) {
@@ -66,6 +70,7 @@ export default function Nav() {
 	const searchCard = searchData.map((data) => {
 		return <SearchItems key={data.id} data={data} />;
 	});
+
 	return (
 		<header className={show ? "header active" : "header hidden"}>
 			<nav className="nav">
@@ -150,9 +155,20 @@ export default function Nav() {
 							</li>
 						</ul>
 					</li>
-					<li className="nav__item">
-						<Link to="/signup">Sign Up</Link>
-					</li>
+					{currentUser ? (
+						<li className="nav__item--user">
+							<Link>
+								<img
+									src={currentUser.img || noavatar}
+									className="nav__profileImage"
+								/>
+							</Link>
+						</li>
+					) : (
+						<li className="nav__item">
+							<Link to="/signup">Sign Up</Link>
+						</li>
+					)}
 				</ul>
 				{showSearchMobile ? null : (
 					<FontAwesomeIcon

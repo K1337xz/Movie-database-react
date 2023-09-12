@@ -18,7 +18,15 @@ const connect = async () => {
 };
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Credentials", true);
+	next();
+});
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+	})
+);
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
