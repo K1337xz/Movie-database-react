@@ -5,9 +5,9 @@ Page not finished!
 # Todo
 
 -   [x] Movie page
--   [ ] TV Shows page
+-   [ ] User profile page
 -   [x] Connect MovieDatabaseAPI
--   [ ] User Login/signup
+-   [x] User Login/signup
 -   [ ] Add/edit review
 -   [ ] Upload user avatar
 -   [x] Show on main page top rated tvseries / upcoming movies
