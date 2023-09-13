@@ -34,7 +34,7 @@ export default function SignupPage() {
 				username,
 				password,
 			});
-			navigate("/");
+			navigate("/login");
 		} catch (error) {
 			console.log(error.response.data);
 			setErr(error.response.data);

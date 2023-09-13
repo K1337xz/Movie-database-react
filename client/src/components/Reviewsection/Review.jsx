@@ -1,7 +1,10 @@
-import axios from "axios";
+import { useContext } from "react";
 import user from "../../assets/pngwing.com.png";
+import { AuthContext } from "../../context/authContext";
 import "./review.scss";
+import { Link } from "react-router-dom";
 export default function Review() {
+	const { currentUser } = useContext(AuthContext);
 	return (
 		<div className="review">
 			{/* 			<div className="review__card">
@@ -28,22 +31,30 @@ export default function Review() {
 					eu, mattis vitae ipsum. Etiam id justo massa.
 				</div>
 			</div> */}
-			<div className="review__addReview">
-				<div className="review__top">
-					<a href="#" className="review__top--avatar">
-						<img src={user} alt="user avatar" />
-					</a>
-					<a href="#" className="review__top--username">
-						k1337xz
-					</a>
+			{currentUser ? (
+				<div className="review__addReview">
+					<div className="review__top">
+						<a href="#" className="review__top--avatar">
+							<img src={currentUser.img || user} />
+						</a>
+						<a href="#" className="review__top--username">
+							{currentUser.username}
+						</a>
+					</div>
+					<form className="review__form">
+						<label htmlFor="review__inp">
+							<textarea id="review__inp" name="review__inp" />
+						</label>
+						<button className="review__button">Post review</button>
+					</form>
 				</div>
-				<form className="review__form">
-					<label htmlFor="review__inp">
-						<textarea id="review__inp" name="review__inp" />
-					</label>
-					<button className="review__button">Post review</button>
-				</form>
-			</div>
+			) : (
+				<div className="review__loginToAdd">
+					<p>
+						You need to <Link to="/login">Login</Link> to add review
+					</p>
+				</div>
+			)}
 		</div>
 	);
 }
