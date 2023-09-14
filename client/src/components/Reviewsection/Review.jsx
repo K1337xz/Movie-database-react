@@ -1,10 +1,41 @@
-import { useContext } from "react";
-import user from "../../assets/pngwing.com.png";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
+import { Link, useParams } from "react-router-dom";
+import user from "../../assets/pngwing.com.png";
+import axios from "axios";
 import "./review.scss";
-import { Link } from "react-router-dom";
 export default function Review() {
 	const { currentUser } = useContext(AuthContext);
+	const [formValue, setFormValues] = useState({
+		postId: "",
+		desc: "",
+	});
+	const postId = useParams();
+
+	const sendReview = async (e) => {
+		e.preventDefault();
+		setFormValues((prev) => {
+			return {
+				postId: postId.id,
+				desc: e.target[0].value,
+			};
+		});
+
+		try {
+			if (formValue) {
+				await axios.post(
+					"http://localhost:4000/api/v1/reviews",
+					formValue,
+					{
+						withCredentials: true,
+					}
+				);
+				e.target[0].value = "";
+			}
+		} catch (error) {
+			console.log(error.response.data);
+		}
+	};
 	return (
 		<div className="review">
 			{/* 			<div className="review__card">
@@ -41,7 +72,7 @@ export default function Review() {
 							{currentUser.username}
 						</a>
 					</div>
-					<form className="review__form">
+					<form className="review__form" onSubmit={sendReview}>
 						<label htmlFor="review__inp">
 							<textarea id="review__inp" name="review__inp" />
 						</label>

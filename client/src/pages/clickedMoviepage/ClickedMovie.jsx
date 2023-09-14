@@ -90,7 +90,6 @@ export default function ClickedMovie() {
 				setImages(dataImages.data.backdrops);
 				setClickedMovie(data.data);
 				setCast([...creditsData.data.cast, ...creditsData.data.crew]);
-				console.log(creditsData.data);
 				setDirectors(
 					creditsData.data.crew.filter(
 						(item) => item.job === "Director"
