@@ -6,7 +6,7 @@ import ErrorPage from "./pages/errorpage/errorpage.jsx";
 import ClickedMovie from "./pages/clickedMoviepage/ClickedMovie.jsx";
 import ClickedSeries from "./pages/clickedSeries/ClickedSeries.jsx";
 import NowPlaying from "./pages/nowPlaying/NowPlaying.jsx";
-import UpcomingPage from "./pages/upcomingPage/UpcomingPage.jsx";
+import Upcomingpage from "./pages/upcomingPage/Upcomingpage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "m/upcoming",
-		element: <UpcomingPage />,
+		element: <Upcomingpage />,
 	},
 	{
 		path: "m/top_rated",
