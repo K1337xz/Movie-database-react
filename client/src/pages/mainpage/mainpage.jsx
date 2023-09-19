@@ -11,7 +11,7 @@ import SceletonCard from "../../components/SceletonLoading/Sceleton_card/Sceleto
 import { getUpcoming, nowPlaying, popular, topRated } from "../../api/api";
 import "./mainpage.scss";
 
-export default function Mainpage() {
+export default function MainPage() {
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 	const [topRatedMovies, setTopRatedMovies] = useState([]);

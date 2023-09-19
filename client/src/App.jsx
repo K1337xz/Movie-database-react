@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Nav from "./components/Navbar/Nav";
-import Mainpage from "./pages/mainpage/MainPage";
+import MainPage from "./pages/mainpage/MainPage";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
@@ -9,7 +9,7 @@ function App() {
 		<>
 			<Nav />
 			<main className="container">
-				<Mainpage />
+				<MainPage />
 			</main>
 			<Footer />
 		</>
