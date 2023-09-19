@@ -1,0 +1,168 @@
+@use "../../scss/abstract/colors" as *;
+@use "../../scss/base/brakepoints" as *;
+
+.upcoming {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	&__topContent {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: $color50;
+		width: 95%;
+		height: 15vh;
+	}
+	&__buttonsWrapper {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-direction: column;
+		cursor: pointer;
+		width: 25%;
+		&--closed {
+			.nowPlaying__sortOptions {
+				display: none;
+			}
+		}
+		&--open {
+			.nowPlaying__sortOptions {
+				display: flex;
+			}
+		}
+	}
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		width: 25%;
+		height: 3vh;
+		border-radius: 5px;
+		background: rgba(4, 16, 22, 0.43);
+		p {
+			font-size: 16px;
+		}
+	}
+	&__sortOptions {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 55%;
+	}
+	&__sortToggle {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		width: 100%;
+		height: 5vh;
+		padding: 1rem;
+		background-color: rgb(4 16 22 / 95%);
+		z-index: 2;
+		&::after {
+			position: absolute;
+			right: 25px;
+			font-family: "Font Awesome 6 Free";
+			font-weight: 900;
+			content: "\f078";
+			z-index: 1;
+			transform: rotate(0);
+			transition: transform 0.3s ease-in;
+		}
+		&--open {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			width: 100%;
+			height: 5vh;
+			padding: 1rem;
+			background-color: rgba(4, 16, 22, 0.43);
+			z-index: 1;
+			&::after {
+				position: absolute;
+				right: 25px;
+				font-family: "Font Awesome 6 Free";
+				font-weight: 900;
+				content: "\f078";
+				z-index: 1;
+				transform: rotate(180deg);
+				transition: transform 0.3s ease-in;
+			}
+		}
+	}
+	&__cards {
+		width: 100%;
+	}
+	&__buttonWrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 5vh;
+		margin-top: 4rem;
+		&--button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: $color50;
+			text-decoration: none;
+			border: 1px solid $color500;
+			border-radius: 20px;
+			width: 110px;
+			height: 4vh;
+			cursor: pointer;
+			&:hover {
+				background-color: $color50;
+				color: $color800;
+				font-weight: 700;
+			}
+		}
+	}
+}
+
+@include media("<=phone") {
+	.upcoming {
+		&__topContent {
+			h1 {
+				font-size: 14px;
+			}
+		}
+		&__buttonsWrapper {
+			align-items: flex-end;
+			width: 65%;
+		}
+		&__sortToggle {
+			font-size: 11px;
+			padding-left: 5px;
+			&::after {
+				right: 6px;
+			}
+			&--open {
+				font-size: 11px;
+				padding-left: 5px;
+				&::after {
+					right: 6px;
+				}
+			}
+		}
+	}
+}
+
+@include media(">=phone", "<=tablet") {
+	.upcoming {
+		&__topContent {
+			h1 {
+				font-size: 16px;
+			}
+		}
+		&__buttonsWrapper {
+			align-items: flex-end;
+			width: 65%;
+		}
+	}
+}
