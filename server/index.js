@@ -40,5 +40,5 @@ app.use((err, req, res, next) => {
 
 app.listen(4000, () => {
 	connect();
-	console.log("backend server run xddxdxd");
+	console.log("backend server run");
 });
