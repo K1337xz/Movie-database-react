@@ -1,5 +1,5 @@
 import Nav from "./components/Navbar/Nav";
-import MainPage from "./pages/mainpage/Mainpage";
+import Mainpage from "./pages/mainpage/Mainpage";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
@@ -8,7 +8,7 @@ function App() {
 		<>
 			<Nav />
 			<main className="container">
-				<MainPage />
+				<Mainpage />
 			</main>
 			<Footer />
 		</>
