@@ -4,7 +4,7 @@ import axios from "axios";
 import Imageslider from "../../components/ImageSlider";
 import RightMovieInfo from "../../components/RightMovieInfo";
 import MovieCard from "../../components/Moviecard/MoviesCard";
-import CardWrapper from "../../components/CardWrapper/CardWrapper";
+import Cardwrapper from "../../components/CardWrapper/Cardwrapper";
 import SubNav from "../../components/Slidersubnav/SubNav";
 import { Link } from "react-router-dom";
 import SceletonCard from "../../components/SceletonLoading/Sceleton_card/SceletonCard";
@@ -169,23 +169,23 @@ export default function Mainpage() {
 				</div>
 			</div>
 
-			<CardWrapper
+			<Cardwrapper
 				header={"UPCOMING MOVIES"}
 				card={upcomingCard}
 				link="/m/upcoming"
 			/>
 
-			<CardWrapper
+			<Cardwrapper
 				header="NOW PLAYING"
 				card={nowPlayingCard}
 				link="/m/now_playing"
 			/>
-			<CardWrapper
+			<Cardwrapper
 				header="POPULAR MOVIES"
 				card={popularCard}
 				link="/m/popular"
 			/>
-			<CardWrapper
+			<Cardwrapper
 				header="TOP RATED MOVIES"
 				card={topRatedCard}
 				link="/m/top_rated"
