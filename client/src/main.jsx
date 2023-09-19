@@ -6,7 +6,7 @@ import ErrorPage from "./pages/errorpage/errorpage.jsx";
 import ClickedMovie from "./pages/clickedMoviepage/ClickedMovie.jsx";
 import ClickedSeries from "./pages/clickedSeries/ClickedSeries.jsx";
 import NowPlaying from "./pages/nowPlaying/NowPlaying.jsx";
-import Upcomingpage from "./pages/upcomingPage/Upcomingpage.jsx";
+import Upcomingpage from "./pages/upcomingpage/Upcomingpage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
