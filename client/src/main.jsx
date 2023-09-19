@@ -11,8 +11,8 @@ import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
 import { AuthContextProvider } from "./context/authContext";
-import "./index.scss";
 import SignupPage from "./pages/signupPage/SignupPage.jsx";
+import "./index.scss";
 const router = createBrowserRouter([
 	{
 		path: "/",

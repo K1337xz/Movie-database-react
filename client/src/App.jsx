@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Nav from "./components/Navbar/Nav";
-import Mainpage from "./pages/mainpage/Mainpage";
+import Mainpage from "./pages/mainpage/MainPage";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
