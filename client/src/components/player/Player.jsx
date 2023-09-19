@@ -5,7 +5,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./player.scss";
 
-//https://api.themoviedb.org/3/movie/{props.movieID}/videos
 export default function Player(props) {
 	return (
 		<div className="trailerSection__player">

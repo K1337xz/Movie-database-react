@@ -14,7 +14,7 @@ export default function RightMovieInfo(props) {
 			setIsLoading(true);
 			try {
 				const genreData = await axios.get(
-					`http://api.themoviedb.org/3/genre/movie/list?api_key=${
+					`https://api.themoviedb.org/3/genre/movie/list?api_key=${
 						import.meta.env.VITE_API_KEY
 					}`
 				);
