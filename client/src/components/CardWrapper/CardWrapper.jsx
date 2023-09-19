@@ -1,7 +1,7 @@
 import "./cardwrapper.scss";
 import { Link } from "react-router-dom";
 
-export default function CardWrapper(props) {
+export default function Cardwrapper(props) {
 	return (
 		<div className="cardsMain">
 			<div className="cardsMain__topContent">

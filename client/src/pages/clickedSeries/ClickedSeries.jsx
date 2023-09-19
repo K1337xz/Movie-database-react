@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, createRef } from "react";
-import Castslider from "../../components/castSlider/CastSlider";
+import Castslider from "../../components/castSlider/Castslider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
 import Nav from "../../components/Navbar/Nav";
