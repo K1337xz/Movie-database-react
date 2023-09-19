@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/errorpage/errorpage.jsx";
 import ClickedMovie from "./pages/clickedMoviepage/ClickedMovie.jsx";
 import ClickedSeries from "./pages/clickedSeries/ClickedSeries.jsx";
-/* import NowPlaying from "./pages/nowPlaying/nowPlaying.jsx"; */
+import NowPlaying from "./pages/nowPlaying/nowPlaying.jsx";
 import UpcomingPage from "./pages/upcomingPage/UpcomingPage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
