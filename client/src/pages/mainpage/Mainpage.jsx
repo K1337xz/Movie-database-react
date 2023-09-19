@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
-import Imageslider from "../../components/Imageslidermovies";
+import Imageslider from "../../components/ImageSlider";
 import RightMovieInfo from "../../components/RightMovieInfo";
 import MovieCard from "../../components/Moviecard/MoviesCard";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
