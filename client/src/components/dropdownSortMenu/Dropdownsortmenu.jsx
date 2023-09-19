@@ -1,6 +1,6 @@
 import "./dropdownsortmenu.scss";
 
-export default function DropdownSortMenu(props) {
+export default function Dropdownsortmenu(props) {
 	return (
 		<form className={props.classDrop} onChange={props.onChange}>
 			<input

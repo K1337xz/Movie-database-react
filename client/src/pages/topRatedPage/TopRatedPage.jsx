@@ -5,9 +5,9 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./topratedpage.scss";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
-import CardWrapper from "../../components/CardWrapper/CardWrapper";
+import CardWrapper from "../../components/CardWrapper/Cardwrapper";
 import MoviesCard from "../../components/Moviecard/MoviesCard";
-import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
+import Dropdownsortmenu from "../../components/dropdownSortMenu/Dropdownsortmenu";
 import SceletonCards from "../../components/SceletonLoading/Sceleton_cards/SceletonCards";
 
 export default function TopRatedPage() {
@@ -131,12 +131,12 @@ export default function TopRatedPage() {
 									{sortType.length > 0 ? sortType : "Sort By"}
 								</span>
 								{toggleDropDown ? (
-									<DropdownSortMenu
+									<Dropdownsortmenu
 										classDrop={"dropDownSort--open"}
 										onChange={toggleChange}
 									/>
 								) : (
-									<DropdownSortMenu
+									<Dropdownsortmenu
 										classDrop={"dropDownSort"}
 										onChange={toggleChange}
 									/>
