@@ -61,6 +61,6 @@ export const topRated = async () => {
 };
 
 export const myApi = axios.create({
-	baseURL: "https://localhost:4000/api/v1",
+	baseURL: "https://api-uzo7.onrender.com/api/v1",
 	withCredentials: true,
 });
