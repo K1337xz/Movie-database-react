@@ -6,10 +6,14 @@ export const createReview = async (req, res, next) => {
 	const user = await User.findById(req.userId);
 	const newReview = new Review({
 		userId: req.userId,
+		username: req.body.username,
+		img: req.body.img,
 		postId: req.body.postId,
 		desc: req.body.desc,
 		stars: req.body.stars,
 	});
+
+	console.log(req);
 	try {
 		const review = await Review.findOne({
 			postId: req.body.postId,

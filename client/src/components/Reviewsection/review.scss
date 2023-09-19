@@ -2,14 +2,17 @@
 .review {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-direction: column;
 	width: 95%;
-	min-height: 30vh;
+	min-height: 50vh;
 	height: auto;
 	gap: 2rem;
 	border-radius: 15px;
 	background-color: #041016a1;
+	&.active {
+		justify-content: center;
+	}
 	&__card {
 		width: 85%;
 		height: 50%;
@@ -48,6 +51,7 @@
 	&__reviewcontent {
 		width: 100%;
 		color: $color50;
+		padding: 1rem 0 0 4rem;
 	}
 	&__addReview {
 		width: 85%;
@@ -85,7 +89,7 @@
 	&__loginToAdd {
 		display: flex;
 		justify-content: center;
-		align-items: flex-end;
+		align-items: center;
 		width: 100%;
 		height: 10vh;
 		margin-bottom: -5rem;

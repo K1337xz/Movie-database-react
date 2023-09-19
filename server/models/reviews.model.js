@@ -11,6 +11,13 @@ const reviewSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		username: {
+			type: String,
+			required: true,
+		},
+		img: {
+			type: String,
+		},
 		stars: {
 			type: Number,
 			required: false,

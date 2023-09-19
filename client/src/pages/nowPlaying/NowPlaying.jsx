@@ -93,7 +93,6 @@ export default function NowPlaying() {
 				console.log(error);
 			}
 		};
-		console.log("i fire once");
 		fetchData();
 	}, [page]);
 
