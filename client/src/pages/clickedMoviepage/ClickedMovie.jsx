@@ -60,29 +60,32 @@ export default function ClickedMovie() {
 		const fetchMovie = async () => {
 			setLoading(true);
 			try {
-				const data = await axios.get(`${api_url}/movie/${movieId}`, {
-					params: { api_key: import.meta.env.VITE_API_KEY },
-				});
+				const data = await axios.get(
+					`https://api.themoviedb.org/3/movie/${movieId}`,
+					{
+						params: { api_key: import.meta.env.VITE_API_KEY },
+					}
+				);
 				const creditsData = await axios.get(
-					`${api_url}/movie/${movieId}/credits`,
+					`https://api.themoviedb.org/3/movie/${movieId}/credits`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataVideos = await axios.get(
-					`${api_url}/movie/${movieId}/videos`,
+					`https://api.themoviedb.org/3/movie/${movieId}/videos`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataImages = await axios.get(
-					`${api_url}/movie/${movieId}/images`,
+					`https://api.themoviedb.org/3/movie/${movieId}/images`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
 				const dataSmilarMovies = await axios.get(
-					`${api_url}/movie/${movieId}/similar`,
+					`https://api.themoviedb.org/3/movie/${movieId}/similar`,
 					{
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}

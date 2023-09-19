@@ -16,7 +16,6 @@ export default function Upcomingpage() {
 	const [page, setPage] = useState(1);
 	const [upcomingMovies, setUpcomingMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const api_url = "https://api.themoviedb.org/3/";
 	let date = new Date().toISOString().split("T")[0];
 
 	const toggleChange = (e) => {
@@ -76,7 +75,7 @@ export default function Upcomingpage() {
 			let newPage = [];
 			try {
 				const nowPlayingData = await axios.get(
-					`${api_url}/movie/upcoming/`,
+					`https://api.themoviedb.org/3/movie/upcoming/`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,

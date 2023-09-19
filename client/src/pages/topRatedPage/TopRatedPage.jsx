@@ -16,7 +16,7 @@ export default function TopRatedPage() {
 	const [page, setPage] = useState(1);
 	const [topRatedMovies, setTopRatedMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const api_url = "https://api.themoviedb.org/3/";
+	const api_url = "";
 
 	const toggleChange = (e) => {
 		let sortValue = e.target.value;
@@ -73,7 +73,7 @@ export default function TopRatedPage() {
 			let newPage = [];
 			try {
 				const topRatedData = await axios.get(
-					`${api_url}/movie/top_rated/`,
+					`https://api.themoviedb.org/3/movie/top_rated/`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,
