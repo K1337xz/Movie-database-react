@@ -7,7 +7,7 @@ import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import CardWrapper from "../../components/CardWrapper/CardWrapper";
 import MoviesCard from "../../components/Moviecard/MoviesCard";
-import DropdownSortMenu from "../../components/dropdownSortMenu/dropdownSortMenu";
+import DropdownSortMenu from "../../components/dropdownSortMenu/DropdownSortMenu";
 import SceletonCards from "../../components/SceletonLoading/Sceleton_cards/SceletonCards";
 
 export default function TopRatedPage() {
