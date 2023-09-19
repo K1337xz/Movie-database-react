@@ -1,7 +1,7 @@
 import "./castslider.scss";
 import user from "../../assets/pngwing.com.png";
 
-export default function CastSlider(props) {
+export default function Castslider(props) {
 	const api_image = `https://image.tmdb.org/t/p/w500`;
 	return (
 		<li className="castSlider__card">
