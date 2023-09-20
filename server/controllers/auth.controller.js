@@ -43,6 +43,8 @@ export const login = async (req, res, next) => {
 		const { password, ...info } = user._doc;
 		res.cookie("accesToken", token, {
 			httpOnly: true,
+			sameSite: "None",
+			domain: "https://movie-database-react-five.vercel.app/",
 		})
 			.status(200)
 			.send(info);
