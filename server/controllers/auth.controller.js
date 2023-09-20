@@ -50,6 +50,8 @@ export const login = async (req, res, next) => {
 		})
 			.status(200)
 			.send(info);
+
+		console.log("WITAM SERVEWR");
 	} catch (error) {
 		next(error);
 	}
