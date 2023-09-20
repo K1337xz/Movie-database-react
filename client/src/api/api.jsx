@@ -62,5 +62,6 @@ export const topRated = async () => {
 
 export const myApi = axios.create({
 	baseURL: "https://moviedb-api-gi64.onrender.com/api/v1",
+
 	withCredentials: true,
 });
