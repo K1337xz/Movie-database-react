@@ -12,7 +12,6 @@ dotenv.config();
 const connect = async () => {
 	try {
 		await mongoose.connect(process.env.DB);
-		console.log("Connected to mongoDB!");
 	} catch (error) {
 		console.log(error);
 	}
@@ -25,12 +24,7 @@ app.use((req, res, next) => {
 });
 app.use(
 	cors({
-		origin: [
-			/* add here your localhost! */
-			"https://movie-database-react-five.vercel.app",
-			"https://moviedb-q5pg.onrender.com/",
-		],
-		credentials: true,
+		origin: "http://localhost:3000",
 	})
 );
 
