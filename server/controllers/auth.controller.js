@@ -41,10 +41,12 @@ export const login = async (req, res, next) => {
 			process.env.JWT_KEY
 		);
 		const { password, ...info } = user._doc;
+
 		res.cookie("accesToken", token, {
-			httpOnly: true,
+			secure: true,
+			httpOnly: false,
 			sameSite: "None",
-			domain: "https://movie-database-react-five.vercel.app/",
+			domain: "https://movie-database-react-five.vercel.app",
 		})
 			.status(200)
 			.send(info);
