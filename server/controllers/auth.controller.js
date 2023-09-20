@@ -46,6 +46,7 @@ export const login = async (req, res, next) => {
 			secure: true,
 			httpOnly: true,
 			sameSite: "none",
+			domain: "https://movie-database-react-five.vercel.app/",
 		})
 			.status(200)
 			.send(info);

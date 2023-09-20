@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 app.use(
 	cors({
 		origin: [
+			/* add here your localhost! */
 			"https://movie-database-react-five.vercel.app",
 			"https://moviedb-q5pg.onrender.com/",
 		],
