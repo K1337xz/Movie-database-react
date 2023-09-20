@@ -45,8 +45,8 @@ export const login = async (req, res, next) => {
 		res.cookie("accesToken", token, {
 			secure: true,
 			httpOnly: false,
-			sameSite: "None",
-			domain: "https://movie-database-react-five.vercel.app",
+			sameSite: "none",
+			domain: "https://moviedb-q5pg.onrender.com/",
 		})
 			.status(200)
 			.send(info);
