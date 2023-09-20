@@ -44,14 +44,11 @@ export const login = async (req, res, next) => {
 
 		res.cookie("accesToken", token, {
 			secure: true,
-			httpOnly: false,
+			httpOnly: true,
 			sameSite: "none",
-			domain: "https://moviedb-q5pg.onrender.com/",
 		})
 			.status(200)
 			.send(info);
-
-		console.log("WITAM SERVEWR");
 	} catch (error) {
 		next(error);
 	}

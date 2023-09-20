@@ -27,7 +27,7 @@ app.use(
 	cors({
 		origin: [
 			"https://movie-database-react-five.vercel.app",
-			"https://moviedb-q5pg.onrender.com",
+			"https://moviedb-q5pg.onrender.com/",
 		],
 		credentials: true,
 	})
