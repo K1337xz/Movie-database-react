@@ -23,9 +23,13 @@ app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Credentials", true);
 	next();
 });
+app.set("trust proxy", 1);
 app.use(
 	cors({
-		origin: "https://movie-database-react-gamma.vercel.app",
+		origin: [
+			"https://movie-database-react-gamma.vercel.app",
+			"http://localhost:3000",
+		],
 		credentials: true,
 	})
 );

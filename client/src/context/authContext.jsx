@@ -10,7 +10,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const login = async (inputs) => {
 		const res = await axios.post(
-			"https://moviedb-api-gi64.onrender.com/api/v1/auth/login",
+			"http://localhost:4000/api/v1/auth/login",
 			inputs,
 			{
 				withCredentials: true,
