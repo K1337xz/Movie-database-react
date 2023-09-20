@@ -25,6 +25,7 @@ app.use((req, res, next) => {
 app.use(
 	cors({
 		origin: "https://movie-database-react-five.vercel.app/",
+		credential: true,
 	})
 );
 
