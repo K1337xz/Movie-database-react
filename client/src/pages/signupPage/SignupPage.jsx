@@ -30,10 +30,13 @@ export default function SignupPage() {
 		setFormErrors(signupValidation(formValues));
 		const { username, password } = formValues;
 		try {
-			await axios.post("http://localhost:4000/api/v1/auth/signup", {
-				username,
-				password,
-			});
+			await axios.post(
+				"https://api-uzo7.onrender.com/api/v1/auth/signup",
+				{
+					username,
+					password,
+				}
+			);
 			navigate("/login");
 		} catch (error) {
 			console.log(error.response.data);

@@ -10,7 +10,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const login = async (inputs) => {
 		const res = await axios.post(
-			"https://localhost:4000/api/v1/auth/login",
+			"https://api-uzo7.onrender.com/api/v1/auth/login",
 			inputs,
 			{
 				withCredentials: true,
