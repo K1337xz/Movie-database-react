@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 app.use(
 	cors({
-		origin: "https://movie-database-react-rho.vercel.app",
+		origin: "https://movie-database-react-gamma.vercel.app/",
 		credentials: true,
 	})
 );
