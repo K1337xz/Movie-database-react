@@ -4,6 +4,7 @@ Page not finished!
 
 # Todo
 
+-   [ ] Fix sending cookies from api
 -   [x] Movie page
 -   [ ] User profile page
 -   [x] Connect MovieDatabaseAPI
