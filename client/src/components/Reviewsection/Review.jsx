@@ -8,7 +8,7 @@ import "./review.scss";
 export default function Review() {
 	const { currentUser } = useContext(AuthContext);
 	const [reviewsData, setReviewsData] = useState([]);
-	const [update, setUpdate] = useState();
+	const [update, setUpdate] = useState(false);
 	const postId = useParams();
 	const sendReview = async (e) => {
 		e.preventDefault();
@@ -20,7 +20,7 @@ export default function Review() {
 				desc: e.target[0].value,
 			});
 			e.target[0].value = "";
-			setUpdate((prev = prev++));
+			setUpdate(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -31,6 +31,7 @@ export default function Review() {
 			try {
 				const data = await myApi.get(`reviews/${postId.id}`);
 				setReviewsData(data.data);
+				setUpdate(false);
 			} catch (error) {
 				console.log(error);
 			}
