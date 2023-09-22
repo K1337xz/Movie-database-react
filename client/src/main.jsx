@@ -11,6 +11,7 @@ import Upcomingpage from "./pages/upcomingpage/Upcomingpage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
+import Userpage from "./pages/userpage/Userpage.jsx";
 import { AuthContextProvider, AuthContext } from "./context/authContext";
 import SignupPage from "./pages/signupPage/SignupPage.jsx";
 import "./index.scss";
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/u/:id",
-		element: <div>HELLO</div>,
+		element: <Userpage />,
 	},
 ]);
 
