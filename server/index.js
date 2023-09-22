@@ -26,7 +26,10 @@ app.use((req, res, next) => {
 app.set("trust proxy", 1);
 app.use(
 	cors({
-		origin: ["https://movie-database-react-gamma.vercel.app"],
+		origin: [
+			"https://movie-database-react-gamma.vercel.app",
+			"https://movie-db-gvo1.onrender.com",
+		],
 		credentials: true,
 	})
 );
