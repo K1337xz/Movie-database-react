@@ -43,10 +43,11 @@ export const login = async (req, res, next) => {
 		const { password, ...info } = user._doc;
 
 		res.cookie("accesToken", token, {
-			sameSite: "None",
 			httpOnly: false,
 			path: "/",
+			maxAge: 60 * 60 * 3 * 100000,
 			secure: true,
+			sameSite: "none",
 		})
 			.status(200)
 			.send(info);
