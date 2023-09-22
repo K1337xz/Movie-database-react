@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import user from "../../assets/pngwing.com.png";
 import { myApi } from "../../api/api";
 import Reviews from "../Reviews/Reviews";
+
 import "./review.scss";
 export default function Review() {
 	const { currentUser } = useContext(AuthContext);
@@ -39,6 +40,7 @@ export default function Review() {
 		fetchReviews();
 	}, [update]);
 
+	console.log(reviewsData);
 	const reviewsCards = reviewsData.map((data) => {
 		return <Reviews key={data._id} data={data} />;
 	});
@@ -49,12 +51,14 @@ export default function Review() {
 			{currentUser ? (
 				<div className="review__addReview">
 					<div className="review__top">
-						<a href="#" className="review__top--avatar">
-							<img src={currentUser.img || user} />
-						</a>
-						<a href="#" className="review__top--username">
-							{currentUser.username}
-						</a>
+						<div className="review__leftSide">
+							<a href="#" className="review__top--avatar">
+								<img src={currentUser.img || user} />
+							</a>
+							<a href="#" className="review__top--username">
+								{currentUser.username}
+							</a>
+						</div>
 					</div>
 					<form className="review__form" onSubmit={sendReview}>
 						<label htmlFor="review__inp">

@@ -13,16 +13,45 @@
 	&.active {
 		justify-content: center;
 	}
+	&__leftSide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+	&__rightSide {
+		display: none;
+	}
 	&__card {
+		position: relative;
 		width: 85%;
 		height: 50%;
 		padding: 2rem 2rem;
 		border: 1px solid rgba(81, 179, 255, 0.1);
 		margin-top: 2rem;
+		&--active {
+			position: relative;
+			width: 85%;
+			height: 50%;
+			padding: 2rem 2rem;
+			border: 1px solid rgba(81, 179, 255, 0.1);
+			margin-top: 2rem;
+			.review__edit {
+				display: flex;
+			}
+		}
+		&:hover {
+			.review__rightSide {
+				display: block;
+				cursor: pointer;
+				color: $color50;
+			}
+		}
 	}
 	&__top {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 1em;
 		&--avatar {
 			display: flex;
@@ -56,6 +85,19 @@
 	&__addReview {
 		width: 85%;
 		height: 50%;
+	}
+	&__edit {
+		position: absolute;
+		top: 25%;
+		right: 0;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 1rem;
+		width: 8%;
+		height: 15vh;
+		background-color: $color50;
 	}
 	&__form {
 		textarea {
