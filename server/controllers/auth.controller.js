@@ -44,7 +44,7 @@ export const login = async (req, res, next) => {
 
 		res.cookie("accesToken", token, {
 			sameSite: "None",
-			httpOnly: true,
+			httpOnly: false,
 			path: "/",
 			secure: true,
 		})
