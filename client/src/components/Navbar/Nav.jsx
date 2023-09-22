@@ -157,7 +157,7 @@ export default function Nav() {
 					</li>
 					{currentUser ? (
 						<li className="nav__item--user">
-							<Link>
+							<Link to={`/u/${currentUser.username}`}>
 								<img
 									src={currentUser.img || noavatar}
 									className="nav__profileImage"
@@ -192,7 +192,7 @@ export default function Nav() {
 					}
 				>
 					<div className="navMobile__top">
-						<Link to={currentUser.username}>
+						<Link to="/">
 							<img src={logo} alt="logo image" />
 						</Link>
 						<FontAwesomeIcon

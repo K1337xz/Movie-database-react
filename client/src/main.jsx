@@ -1,4 +1,5 @@
 import React from "react";
+import { useContext } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -13,7 +14,7 @@ import LoginPage from "./pages/loginPage/LoginPage.jsx";
 import { AuthContextProvider, AuthContext } from "./context/authContext";
 import SignupPage from "./pages/signupPage/SignupPage.jsx";
 import "./index.scss";
-const { currentUser } = useContext(AuthContext);
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -53,8 +54,8 @@ const router = createBrowserRouter([
 		element: <LoginPage />,
 	},
 	{
-		path: "/:username",
-		element: <div>HELLO {currentUser.username}</div>,
+		path: "/u/:id",
+		element: <div>HELLO</div>,
 	},
 ]);
 
