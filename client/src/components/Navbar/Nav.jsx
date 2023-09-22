@@ -192,7 +192,7 @@ export default function Nav() {
 					}
 				>
 					<div className="navMobile__top">
-						<Link to="/">
+						<Link to={currentUser.username}>
 							<img src={logo} alt="logo image" />
 						</Link>
 						<FontAwesomeIcon

@@ -10,9 +10,10 @@ import Upcomingpage from "./pages/upcomingpage/Upcomingpage.jsx";
 import TopRatedPage from "./pages/topRatedPage/TopRatedPage.jsx";
 import PopularPage from "./pages/popularPage/PopularPage.jsx";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
-import { AuthContextProvider } from "./context/authContext";
+import { AuthContextProvider, AuthContext } from "./context/authContext";
 import SignupPage from "./pages/signupPage/SignupPage.jsx";
 import "./index.scss";
+const { currentUser } = useContext(AuthContext);
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 	{
 		path: "/login",
 		element: <LoginPage />,
+	},
+	{
+		path: "/:username",
+		element: <div>HELLO {currentUser.username}</div>,
 	},
 ]);
 
