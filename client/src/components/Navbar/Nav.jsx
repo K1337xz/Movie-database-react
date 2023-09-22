@@ -157,7 +157,7 @@ export default function Nav() {
 					</li>
 					{currentUser ? (
 						<li className="nav__item--user">
-							<Link to={`/u/${currentUser.username}`}>
+							<Link to={`/u/edit/${currentUser.username}`}>
 								<img
 									src={currentUser.img || noavatar}
 									className="nav__profileImage"
