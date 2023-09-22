@@ -34,7 +34,7 @@ export default function Review() {
 			}
 		};
 		fetchReviews();
-	}, [reviewsData]);
+	}, []);
 
 	const reviewsCards = reviewsData.map((data) => {
 		return <Reviews key={data._id} data={data} />;
