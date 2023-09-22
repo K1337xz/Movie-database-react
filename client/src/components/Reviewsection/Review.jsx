@@ -8,6 +8,7 @@ import "./review.scss";
 export default function Review() {
 	const { currentUser } = useContext(AuthContext);
 	const [reviewsData, setReviewsData] = useState([]);
+	const [update, setUpdate] = useState();
 	const postId = useParams();
 	const sendReview = async (e) => {
 		e.preventDefault();
@@ -19,6 +20,7 @@ export default function Review() {
 				desc: e.target[0].value,
 			});
 			e.target[0].value = "";
+			setUpdate((prev = prev++));
 		} catch (error) {
 			console.log(error);
 		}
@@ -34,8 +36,7 @@ export default function Review() {
 			}
 		};
 		fetchReviews();
-		console.log("xd");
-	}, [reviewsData]);
+	}, [update]);
 
 	const reviewsCards = reviewsData.map((data) => {
 		return <Reviews key={data._id} data={data} />;
