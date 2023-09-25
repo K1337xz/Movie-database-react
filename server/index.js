@@ -33,6 +33,7 @@ app.use(
 		origin: [
 			"https://movie-database-react-gamma.vercel.app",
 			"https://movie-db-gvo1.onrender.com",
+			"http://localhost:3000",
 		],
 		credentials: true,
 	})

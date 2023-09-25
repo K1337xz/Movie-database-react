@@ -66,9 +66,22 @@ export default function Nav() {
 			setShowSearch(false);
 		}
 	}, [searchValue]);
+
 	const logState = (e) => {
 		setSearchValue(e.target.value);
 	};
+
+	const handleLogout = async () => {
+		try {
+			await axios.post(
+				"https://moviedb-api-gi64.onrender.com/api/v1/auth/logout"
+			);
+			localStorage.setItem("user", null);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const searchCard = searchData.map((data) => {
 		return <SearchItems key={data.id} data={data} />;
 	});
@@ -190,7 +203,7 @@ export default function Nav() {
 										: "nav__item-dropdown--close"
 								}
 							>
-								<span>Logout</span>
+								<span onClick={handleLogout}>Logout</span>
 							</div>
 						</li>
 					) : (
