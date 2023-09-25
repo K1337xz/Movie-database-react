@@ -8,7 +8,7 @@ import {
 	faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/authContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/coolmovielogo.svg";
 import scrollNav from "../../hooks/scrollNav/scrollNav";
 import SearchItems from "../searchItems/SearchItems";
@@ -28,6 +28,8 @@ export default function Nav() {
 	const [searchData, setSearchData] = useState([]);
 	const api_url = "https://api.themoviedb.org/3/";
 	const { currentUser } = useContext(AuthContext);
+	const { logout } = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (scroll.y > 0 && scroll.y - scroll.lastY > 0) {
@@ -73,12 +75,9 @@ export default function Nav() {
 
 	const handleLogout = async () => {
 		try {
-			await axios.post(
-				"https://moviedb-api-gi64.onrender.com/api/v1/auth/logout"
-			);
-			localStorage.setItem("user", null);
+			await logout();
 		} catch (error) {
-			console.log(error);
+			console.log(error.response);
 		}
 	};
 
@@ -208,7 +207,7 @@ export default function Nav() {
 						</li>
 					) : (
 						<li className="nav__item">
-							<Link to="/signup">Sign Up</Link>
+							<Link to="/login">Sign In</Link>
 						</li>
 					)}
 				</ul>
