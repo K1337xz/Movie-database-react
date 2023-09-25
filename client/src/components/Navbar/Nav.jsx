@@ -5,6 +5,7 @@ import {
 	faBars,
 	faXmark,
 	faMagnifyingGlass,
+	faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
@@ -20,6 +21,7 @@ export default function Nav() {
 	const [showSearchMobile, setShowSearchMobile] = useState(false);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const [toggleDropDown, setToggleDropDown] = useState(false);
+	const [toggleDropLogout, setToggleDropLogout] = useState(false);
 	const scroll = scrollNav();
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [searchValue, setSearchValue] = useState("");
@@ -156,13 +158,40 @@ export default function Nav() {
 						</ul>
 					</li>
 					{currentUser ? (
-						<li className="nav__item--user">
-							<Link to={`/u/edit/${currentUser.username}`}>
-								<img
-									src={currentUser.img || noavatar}
-									className="nav__profileImage"
+						<li className="nav__item-user">
+							<div className="nav__item-userImage">
+								<Link to={`/u/edit/${currentUser.username}`}>
+									<img
+										src={currentUser.img || noavatar}
+										className="nav__profileImage"
+									/>
+								</Link>
+							</div>
+							<div className="nav__item-userUsername">
+								<Link to={`/u/edit/${currentUser.username}`}>
+									{currentUser.username}
+								</Link>
+								<FontAwesomeIcon
+									icon={faChevronDown}
+									className={
+										toggleDropLogout
+											? "nav__itemBtn--open"
+											: "nav__itemBtn--close"
+									}
+									onClick={() => {
+										setToggleDropLogout((prev) => !prev);
+									}}
 								/>
-							</Link>
+							</div>
+							<div
+								className={
+									toggleDropLogout
+										? "nav__item-dropdown"
+										: "nav__item-dropdown--close"
+								}
+							>
+								<span>Logout</span>
+							</div>
 						</li>
 					) : (
 						<li className="nav__item">
