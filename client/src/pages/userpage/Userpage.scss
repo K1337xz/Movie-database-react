@@ -3,11 +3,61 @@
 
 .profile {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	width: 100%;
 	height: 52vh;
 	h1 {
 		color: $color50;
+	}
+	&__topContent {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 60%;
+		height: 40vh;
+		padding: 2rem;
+		background-color: hsla(200, 69%, 5%, 0.9);
+	}
+	&__avatarSection {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		gap: 1rem;
+		color: $color50;
+		img {
+			clip-path: circle(50%);
+			width: 150px;
+			height: 150px;
+		}
+	}
+	&__navWrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5rem;
+		width: 100%;
+	}
+	&__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+		gap: 1rem;
+		list-style: none;
+	}
+	&__navItem {
+		color: $color50;
+		font-weight: 400;
+		padding: 1rem 1rem;
+		cursor: pointer;
+		&.active {
+			color: $color500;
+			border-bottom: 1px solid $color500;
+		}
 	}
 }

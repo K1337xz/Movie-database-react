@@ -7,6 +7,18 @@ import noavatar from "../../assets/pngwing.com.png";
 import "./Userpage.scss";
 
 export default function Userpage() {
+	const navigateItems = [
+		{
+			name: "About Me",
+		},
+		{
+			name: "Reviews",
+		},
+		{
+			name: "Settings",
+		},
+	];
+	const [active, setActive] = useState(null);
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 
@@ -17,8 +29,32 @@ export default function Userpage() {
 				<div className="profile">
 					<div className="profile__topContent">
 						<div className="profile__avatarSection">
-							<img src={currentUser.img || noavatar} />
+							<img
+								src={currentUser.img || noavatar}
+								alt="User avatar"
+							/>
 							<p>{currentUser.username}</p>
+						</div>
+						<div className="profile__navWrapper">
+							<ul className="profile__nav">
+								{navigateItems.map((item) => {
+									return (
+										<li
+											key={item.name}
+											onClick={() => {
+												setActive(item.name);
+											}}
+											className={
+												active === item.name
+													? "profile__navItem active"
+													: "profile__navItem"
+											}
+										>
+											{item.name}
+										</li>
+									);
+								})}
+							</ul>
 						</div>
 					</div>
 				</div>

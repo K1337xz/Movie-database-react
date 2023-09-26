@@ -59,7 +59,8 @@
 		}
 	}
 	&__profileImage {
-		width: 30px;
+		clip-path: circle(50%);
+		width: 40px;
 	}
 	&__searchResults {
 		display: block;
@@ -168,7 +169,6 @@
 		&-userImage {
 			width: 40px;
 			height: 40px;
-			background-color: $color50;
 			border-radius: 50%;
 			margin-right: 1rem;
 		}
