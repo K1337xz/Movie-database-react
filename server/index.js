@@ -17,6 +17,8 @@ const connect = async () => {
 		console.log(error);
 	}
 };
+const port = process.env.PORT || 3000;
+
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
@@ -49,7 +51,7 @@ app.use((err, req, res, next) => {
 	return res.status(errorStatus).send(errorMessage);
 });
 
-app.listen(80, "0.0.0.0", () => {
+app.listen(port, "0.0.0.0", () => {
 	connect();
 	console.log("backend server runxD");
 });
