@@ -53,5 +53,5 @@ app.use((err, req, res, next) => {
 
 app.listen(port, () => {
 	connect();
-	console.log("backend server runxD");
+	console.log("backend server run on");
 });

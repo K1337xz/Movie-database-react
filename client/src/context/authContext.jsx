@@ -10,7 +10,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const login = async (inputs) => {
 		const res = await axios.post(
-			"https://moviedb-api-gi64.onrender.com/api/v1/auth/login",
+			"https://moviedb-api.up.railway.app/api/v1/auth/login",
 			inputs,
 			{
 				withCredentials: true,
@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
 	const logout = async () => {
 		try {
 			const res = await axios.post(
-				"https://moviedb-api-gi64.onrender.com/api/v1/auth/logout"
+				"https://moviedb-api.up.railway.app/api/v1/auth/logout"
 			);
 			setCurrentUser(null);
 			console.log(res);
