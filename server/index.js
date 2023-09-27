@@ -39,7 +39,7 @@ app.use(
 	})
 );
 
-app.use("/api/v1/auth", authRoute);
+/* app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/reviews", reviewRoute);
 app.use((err, req, res, next) => {
@@ -48,7 +48,8 @@ app.use((err, req, res, next) => {
 
 	return res.status(errorStatus).send(errorMessage);
 });
-
+ */
+app.send("jol");
 app.listen(4000, () => {
 	connect();
 	console.log("backend server run");
