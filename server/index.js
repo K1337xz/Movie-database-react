@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 	return res.status(errorStatus).send(errorMessage);
 });
 
-app.listen(4000, () => {
+app.listen(4000, "0.0.0.0", () => {
 	connect();
 	console.log("backend server run");
 });
