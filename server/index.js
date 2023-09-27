@@ -34,7 +34,7 @@ app.use(
 	cors({
 		origin: [
 			"http://localhost:3000",
-			"https://movie-database-react-gamma.vercel.app",
+			"https://movie-database-react-beta.vercel.app",
 			"https://movie-db-gvo1.onrender.com",
 		],
 		credentials: true,
