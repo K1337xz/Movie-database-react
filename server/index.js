@@ -51,7 +51,7 @@ app.use((err, req, res, next) => {
 	return res.status(errorStatus).send(errorMessage);
 });
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
 	connect();
 	console.log("backend server runxD");
 });
