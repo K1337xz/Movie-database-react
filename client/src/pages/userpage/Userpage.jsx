@@ -18,7 +18,7 @@ export default function Userpage() {
 			name: "Settings",
 		},
 	];
-	const [active, setActive] = useState(null);
+	const [active, setActive] = useState("About Me");
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 
@@ -57,6 +57,7 @@ export default function Userpage() {
 							</ul>
 						</div>
 					</div>
+					<div className="profile__content"></div>
 				</div>
 			</main>
 			<Footer />

@@ -3,10 +3,11 @@
 
 .profile {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	width: 100%;
-	height: 52vh;
+	height: 100%;
 	h1 {
 		color: $color50;
 	}
@@ -59,5 +60,10 @@
 			color: $color500;
 			border-bottom: 1px solid $color500;
 		}
+	}
+	&__content {
+		width: 60%;
+		height: 40vh;
+		background-color: hsla(202, 58%, 86%, 0.664);
 	}
 }
