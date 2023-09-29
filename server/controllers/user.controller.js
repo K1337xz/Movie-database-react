@@ -15,7 +15,7 @@ export const getUser = async (req, res, next) => {
 	if (!user) {
 		next(error(403, `No acc with id ${req.params.id}`));
 	}
-	res.status(200).send(`Here we go`);
+	res.status(200).send(user);
 };
 
 export const getUserByNickname = async (req, res, next) => {
@@ -23,7 +23,7 @@ export const getUserByNickname = async (req, res, next) => {
 		"-password"
 	);
 	if (!user) {
-		next(error(403, `No acc with username  ${req.params.username}`));
+		next(error(403, `No acc with username ${req.params.id}`));
 	}
 	res.status(200).send(user);
 };

@@ -9,6 +9,6 @@ import { verifyToken } from "../middleware/jwt.js";
 const router = express.Router();
 router.delete("/:id", verifyToken, deleteUser);
 router.get("/:id", getUser);
-router.get("/:username", getUserByNickname);
+router.get("/u/:username", getUserByNickname);
 
 export default router;
