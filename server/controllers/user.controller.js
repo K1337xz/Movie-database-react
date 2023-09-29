@@ -23,7 +23,7 @@ export const getUserByNickname = async (req, res, next) => {
 		"-password"
 	);
 	if (!user) {
-		next(error(403, `No acc with username ${req.params.id}`));
+		next(error(403, `No acc with username ${req.username.id}`));
 	}
 	res.status(200).send(user);
 };
