@@ -12,7 +12,9 @@ export const deleteUser = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
 	const user = await User.findById(req.params.id).select("-password");
-
+	if (!user) {
+		next(error(403, `No acc with id ${req.params.id}`));
+	}
 	res.status(200).send(user);
 };
 
@@ -20,5 +22,8 @@ export const getUserByNickname = async (req, res, next) => {
 	const user = await User.findOne({ username: req.params.username }).select(
 		"-password"
 	);
+	if (!user) {
+		next(error(403, `No acc with username  ${req.params.username}`));
+	}
 	res.status(200).send(user);
 };
