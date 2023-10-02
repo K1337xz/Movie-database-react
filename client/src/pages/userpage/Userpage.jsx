@@ -2,12 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { myApi } from "../../api/api";
 import { AuthContext } from "../../context/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import noavatar from "../../assets/pngwing.com.png";
 import "./Userpage.scss";
 
 export default function Userpage() {
+	const { currentUser } = useContext(AuthContext);
+	const { logout } = useContext(AuthContext);
 	const navigateItems = [
 		{
 			name: "About Me",
@@ -19,14 +23,14 @@ export default function Userpage() {
 	const [active, setActive] = useState("About Me");
 	const [descriptionInputValue, setDescriptionInputValue] = useState({});
 	const [description, setDescription] = useState(false);
-	const [userValues, setUserValues] = useState({});
-	const [, setUpdateProfile] = useState({
+	const [userValues, setUserValues] = useState({
+		username: currentUser.username,
+	});
+	const [updateProfile, setUpdateProfile] = useState({
 		username: false,
 		password: false,
 	});
 	const navigate = useNavigate();
-	const { currentUser } = useContext(AuthContext);
-	const { logout } = useContext(AuthContext);
 
 	const toggleAddDescription = () => {
 		setDescription(true);
@@ -37,6 +41,12 @@ export default function Userpage() {
 		});
 	};
 
+	const handleChangeUsername = (e) => {
+		setUserValues({
+			username: e.target.value,
+		});
+		console.log(userValues);
+	};
 	const handleLogout = async () => {
 		try {
 			await logout();
@@ -46,7 +56,14 @@ export default function Userpage() {
 		}
 	};
 
-	const toggleUpdateUser = () => {};
+	const toggleEditUsername = () => {
+		setUpdateProfile((prev) => {
+			return {
+				...prev,
+				username: true,
+			};
+		});
+	};
 
 	return (
 		<>
@@ -124,13 +141,40 @@ export default function Userpage() {
 						{active === "Settings" && (
 							<div className="profile__settings">
 								<div className="profile__values">
-									<div className="profile__values--username">
-										<p className="">
-											<span>Username</span>
-											<br />
-											{currentUser.username}
-										</p>
-									</div>
+									{updateProfile.username ? (
+										<form className="profile__valuesForm">
+											<label htmlFor="editUsername">
+												Username
+												<input
+													type="text"
+													value={userValues.username}
+													onChange={
+														handleChangeUsername
+													}
+												/>
+											</label>
+											<div className="profile__valuesForm-buttons">
+												<button className="profile__valuesForm--cancelBtn">
+													cancel
+												</button>
+												<button>Update </button>
+											</div>
+										</form>
+									) : (
+										<div className="profile__values--username">
+											<p className="">
+												<span>Username</span>
+												<br />
+												{currentUser.username}
+											</p>
+											<FontAwesomeIcon
+												icon={faPenToSquare}
+												className="profile__values--edit"
+												onClick={toggleEditUsername}
+											/>
+										</div>
+									)}
+
 									<div className="profile__lowerValues">
 										<span className="profile__lowerValues--deleteUser">
 											DELETE ACCOUNT
