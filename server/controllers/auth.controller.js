@@ -44,8 +44,8 @@ export const login = async (req, res, next) => {
 
 		res.cookie("accesToken", token, {
 			httpOnly: false,
+			sameSite: "None",
 			path: "/",
-			sameSite: "Lax",
 		})
 			.status(200)
 			.send(info);
