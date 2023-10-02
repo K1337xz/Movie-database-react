@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { myApi } from "../../api/api";
 import { AuthContext } from "../../context/authContext";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
@@ -21,6 +22,7 @@ export default function Userpage() {
 	const [active, setActive] = useState("About Me");
 	const [descriptionInputValue, setDescriptionInputValue] = useState({});
 	const [description, setDescription] = useState(false);
+	const [userValues, setUserValues] = useState({});
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 
@@ -32,6 +34,9 @@ export default function Userpage() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	const toggleUpdateUser = () => {};
+
 	return (
 		<>
 			<Nav />
@@ -87,7 +92,10 @@ export default function Userpage() {
 											<button className="profile__form--cancelBtn">
 												Cancel
 											</button>
-											<button className="profile__form--submitBtn">
+											<button
+												className="profile__form--submitBtn"
+												onClick={toggleUpdateUser}
+											>
 												Add Description
 											</button>
 										</div>
