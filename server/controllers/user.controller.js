@@ -27,3 +27,14 @@ export const getUserByNickname = async (req, res, next) => {
 	}
 	res.status(200).send(user);
 };
+
+export const updateUser = async (req, res, next) => {
+	const user = await User.findOne({ username: req.params.username }).select(
+		"-password"
+	);
+	if (!user) {
+		next(error(403, `Not found user with ${req.params.username} username`));
+	}
+	await user.updateOne({ $set: req.body });
+	res.status(200).send(user);
+};
