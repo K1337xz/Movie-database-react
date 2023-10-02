@@ -46,7 +46,7 @@ export const login = async (req, res, next) => {
 			httpOnly: false,
 			path: "/",
 			maxAge: 60 * 60 * 3 * 100000,
-			sameSite: "strict",
+			sameSite: "None",
 		})
 			.status(200)
 			.send(info);
