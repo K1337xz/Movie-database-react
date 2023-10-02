@@ -66,6 +66,7 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
+				console.log(data);
 				const creditsData = await axios.get(
 					`https://api.themoviedb.org/3/movie/${movieId}/credits`,
 					{

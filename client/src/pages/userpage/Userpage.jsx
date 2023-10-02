@@ -13,9 +13,6 @@ export default function Userpage() {
 			name: "About Me",
 		},
 		{
-			name: "Reviews",
-		},
-		{
 			name: "Settings",
 		},
 	];
@@ -23,8 +20,13 @@ export default function Userpage() {
 	const [descriptionInputValue, setDescriptionInputValue] = useState({});
 	const [description, setDescription] = useState(false);
 	const [userValues, setUserValues] = useState({});
+	const [, setUpdateProfile] = useState({
+		username: false,
+		password: false,
+	});
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
+	const { logout } = useContext(AuthContext);
 
 	const toggleAddDescription = () => {
 		setDescription(true);
@@ -33,6 +35,15 @@ export default function Userpage() {
 		setDescriptionInputValue({
 			[e.target.name]: e.target.value,
 		});
+	};
+
+	const handleLogout = async () => {
+		try {
+			await logout();
+			navigate("/");
+		} catch (error) {
+			console.log(error.response);
+		}
 	};
 
 	const toggleUpdateUser = () => {};
@@ -110,14 +121,28 @@ export default function Userpage() {
 								)}
 							</div>
 						)}
-						{active === "Reviews" && (
-							<div>
-								<h2>Reviews</h2>
-							</div>
-						)}
 						{active === "Settings" && (
-							<div>
-								<h2>Settings</h2>
+							<div className="profile__settings">
+								<div className="profile__values">
+									<div className="profile__values--username">
+										<p className="">
+											<span>Username</span>
+											<br />
+											{currentUser.username}
+										</p>
+									</div>
+									<div className="profile__lowerValues">
+										<span className="profile__lowerValues--deleteUser">
+											DELETE ACCOUNT
+										</span>
+										<span
+											className="profile__settings--logut"
+											onClick={handleLogout}
+										>
+											Logout
+										</span>
+									</div>
+								</div>
 							</div>
 						)}
 					</div>

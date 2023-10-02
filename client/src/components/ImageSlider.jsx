@@ -20,7 +20,6 @@ export default function ImageSlider(props) {
 						"primary_release_date.gte": date,
 					},
 				});
-				console.log(dataM);
 				const dataS = await axios.get(`${api_url}/tv/top_rated`, {
 					params: { api_key: import.meta.env.VITE_API_KEY },
 				});
