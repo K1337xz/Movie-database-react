@@ -26,7 +26,6 @@ export const AuthContextProvider = ({ children }) => {
 				"https://moviedb-api.up.railway.app/api/v1/auth/logout"
 			);
 			setCurrentUser(null);
-			console.log(res);
 			console.log("pozdrawiam wszystkich!");
 		} catch (error) {
 			console.log(error);

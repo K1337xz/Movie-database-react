@@ -76,6 +76,7 @@ export default function Nav() {
 	const handleLogout = async () => {
 		try {
 			await logout();
+			navigate("/");
 		} catch (error) {
 			console.log(error.response);
 		}
