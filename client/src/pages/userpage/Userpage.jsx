@@ -11,6 +11,7 @@ import ModalAddImage from "../../components/modalAddImage/ModalAddImage";
 import "./Userpage.scss";
 
 export default function Userpage() {
+	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 	const { logout } = useContext(AuthContext);
 	const navigateItems = [
@@ -24,6 +25,7 @@ export default function Userpage() {
 	const [active, setActive] = useState("About Me");
 	const [descriptionInputValue, setDescriptionInputValue] = useState({});
 	const [description, setDescription] = useState(false);
+	const [modalAddImg, setModalAddImg] = useState(false);
 	const [userValues, setUserValues] = useState({
 		username: currentUser.username,
 	});
@@ -31,7 +33,6 @@ export default function Userpage() {
 		username: false,
 		password: false,
 	});
-	const navigate = useNavigate();
 
 	const toggleAddDescription = () => {
 		setDescription(true);
@@ -46,7 +47,6 @@ export default function Userpage() {
 		setUserValues({
 			username: e.target.value,
 		});
-		console.log(userValues);
 	};
 	const handleLogout = async () => {
 		try {
@@ -67,7 +67,8 @@ export default function Userpage() {
 	};
 
 	const addAvatar = () => {
-		console.log("cick");
+		console.log("xd");
+		setModalAddImg(true);
 	};
 
 	return (
@@ -81,10 +82,12 @@ export default function Userpage() {
 								<img
 									src={currentUser.img || noavatar}
 									alt="User avatar"
-									onClick={addAvatar}
 									className="profile__avatarSection"
 								/>
-								<div className="profile__avatarSection-image--hover">
+								<div
+									className="profile__avatarSection-image--hover"
+									onClick={addAvatar}
+								>
 									<p>Add Image!</p>
 								</div>
 							</div>
@@ -205,7 +208,7 @@ export default function Userpage() {
 				</div>
 			</main>
 			<Footer />
-			<ModalAddImage />
+			{modalAddImg && <ModalAddImage />}
 		</>
 	);
 }
