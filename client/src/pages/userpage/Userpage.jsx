@@ -7,6 +7,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import noavatar from "../../assets/pngwing.com.png";
+import ModalAddImage from "../../components/modalAddImage/ModalAddImage";
 import "./Userpage.scss";
 
 export default function Userpage() {
@@ -76,11 +77,17 @@ export default function Userpage() {
 				<div className="profile">
 					<div className="profile__topContent">
 						<div className="profile__avatarSection">
-							<img
-								src={currentUser.img || noavatar}
-								alt="User avatar"
-								onClick={addAvatar}
-							/>
+							<div className="profile__avatarSection-image">
+								<img
+									src={currentUser.img || noavatar}
+									alt="User avatar"
+									onClick={addAvatar}
+									className="profile__avatarSection"
+								/>
+								<div className="profile__avatarSection-image--hover">
+									<p>Add Image!</p>
+								</div>
+							</div>
 							<p>{currentUser.username}</p>
 						</div>
 						<div className="profile__navWrapper">
@@ -198,6 +205,7 @@ export default function Userpage() {
 				</div>
 			</main>
 			<Footer />
+			<ModalAddImage />
 		</>
 	);
 }

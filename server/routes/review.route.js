@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.post("/", createReview);
+router.post("/", verifyToken, createReview);
 router.get("/:id", getReview);
 router.delete("/:id", deleteReview);
 

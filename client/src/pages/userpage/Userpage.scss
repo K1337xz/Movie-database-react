@@ -30,12 +30,32 @@
 		height: 100%;
 		gap: 1rem;
 		color: $color50;
-		img {
-			clip-path: circle(50%);
-			width: 150px;
-			height: 150px;
-			cursor: pointer;
-			z-index: 1;
+		&-image {
+			position: relative;
+			&:hover {
+				.profile__avatarSection-image--hover {
+					display: flex;
+				}
+			}
+			img {
+				clip-path: circle(50%);
+				width: 150px;
+				height: 150px;
+				cursor: pointer;
+			}
+			&--hover {
+				display: none;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				width: 180px;
+				height: 155px;
+				top: 0;
+				left: -17px;
+				background-color: hsla(200, 69%, 5%, 0.9);
+				clip-path: circle(50%);
+				cursor: pointer;
+			}
 		}
 	}
 	&__navWrapper {
