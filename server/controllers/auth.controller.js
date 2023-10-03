@@ -43,8 +43,8 @@ export const login = async (req, res, next) => {
 		const { password, ...info } = user._doc;
 
 		res.cookie("accesToken", token, {
-			httpOnly: false,
-			sameSite: "Strict",
+			httpOnly: true,
+			sameSite: "None",
 			secure: true,
 			path: "/",
 		})

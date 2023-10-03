@@ -65,6 +65,10 @@ export default function Userpage() {
 		});
 	};
 
+	const addAvatar = () => {
+		console.log("cick");
+	};
+
 	return (
 		<>
 			<Nav />
@@ -75,6 +79,7 @@ export default function Userpage() {
 							<img
 								src={currentUser.img || noavatar}
 								alt="User avatar"
+								onClick={addAvatar}
 							/>
 							<p>{currentUser.username}</p>
 						</div>
