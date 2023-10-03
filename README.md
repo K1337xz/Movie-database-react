@@ -5,10 +5,10 @@ Page not finished!
 # Todo
 
 -   [x] Movie page
--   [ ] User profile page
+-   [x] User profile page
 -   [x] Connect MovieDatabaseAPI
 -   [x] User Login/signup
--   [ ] Add/edit review
+-   [x] Add review
 -   [ ] Upload user avatar
 -   [x] Show on main page top rated tvseries / upcoming movies
 -   [x] Fix nav
