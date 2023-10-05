@@ -45,8 +45,11 @@ export const getReview = async (req, res, next) => {
 
 export const updateImage = async (req, res, next) => {
 	try {
-		const reviews = await Review.find({ username: req.params.username });
-		await reviews.updateMany({ $set: req.body });
+		await Review.updateMany(
+			{ username: req.params.username },
+			{ $set: req.body }
+		);
+
 		res.status(200).send("Reviews Update!!@@!@!");
 	} catch (error) {
 		next(error);
