@@ -1,14 +1,20 @@
-import { useState } from "react";
-import "./modaladdimage.scss";
+import { useEffect, useState, useContext } from "react";
 import getCroppedImg from "./cropImage";
 import Cropper from "react-easy-crop";
+import { myApi } from "../../api/api";
+import { AuthContext } from "../../context/authContext";
+import uploadFile from "../../firebase/uploadAvatar";
 
+import "./modaladdimage.scss";
 export default function ModalAddImage() {
+	const { currentUser } = useContext(AuthContext);
 	const [crop, setCrop] = useState({ x: 0, y: 0 });
 	const [zoom, setZoom] = useState(1);
 	const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 	const [image, setImage] = useState(null);
+	const [sendImage, setSendImage] = useState([]);
 	const [cropImg, setCropImg] = useState([]);
+	const [imageUrl, setImageUrl] = useState(null);
 
 	const cropComplete = (croppedArea, croppedAreaPixels) => {
 		setCroppedAreaPixels(croppedAreaPixels);
@@ -16,6 +22,7 @@ export default function ModalAddImage() {
 	const onImageChange = (e) => {
 		if (e.target.files && e.target.files[0]) {
 			setImage(URL.createObjectURL(e.target.files[0]));
+			setSendImage(e.target.files[0]);
 		}
 	};
 
@@ -26,10 +33,28 @@ export default function ModalAddImage() {
 		setZoom(zoom);
 	};
 
-	const onCrop = async () => {
-		const croppedImageUrl = await getCroppedImg(image, croppedAreaPixels);
-		setCropImg(croppedImageUrl.url);
+	const cancelCrop = () => {
+		setImage(null);
 	};
+	const onCrop = async () => {
+		const { file } = await getCroppedImg(image, croppedAreaPixels);
+		setCropImg(file);
+		const url = await uploadFile(
+			file,
+			`profile/${currentUser.username}/avatar	}`
+		);
+		if (url) {
+			setImageUrl(url);
+		}
+		try {
+			await myApi.put(`/users/e/${currentUser.username}`, {
+				img: url,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<div className="addImage">
@@ -48,7 +73,10 @@ export default function ModalAddImage() {
 								/>
 							</div>
 							<div className="addImage__cropperContent-buttons">
-								<button className="addImage__cropperContent--cancel">
+								<button
+									className="addImage__cropperContent--cancel"
+									onClick={cancelCrop}
+								>
 									Cancel
 								</button>
 								<button

@@ -12,8 +12,6 @@ export const createReview = async (req, res, next) => {
 		desc: req.body.desc,
 		stars: req.body.stars,
 	});
-
-	console.log(req);
 	try {
 		const review = await Review.findOne({
 			postId: req.body.postId,
@@ -39,6 +37,15 @@ export const createReview = async (req, res, next) => {
 export const getReview = async (req, res, next) => {
 	try {
 		const reviews = await Review.find({ postId: req.params.id });
+		res.status(200).send(reviews);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const updateImage = async (req, res, next) => {
+	try {
+		const reviews = await Review.find({ username: req.body.username });
 		res.status(200).send(reviews);
 	} catch (error) {
 		next(error);
