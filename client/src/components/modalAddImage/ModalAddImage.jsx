@@ -15,6 +15,7 @@ export default function ModalAddImage() {
 	const [sendImage, setSendImage] = useState([]);
 	const [cropImg, setCropImg] = useState([]);
 	const [imageUrl, setImageUrl] = useState(null);
+	const [succes, setSucces] = useState(false);
 
 	const cropComplete = (croppedArea, croppedAreaPixels) => {
 		setCroppedAreaPixels(croppedAreaPixels);
@@ -50,11 +51,22 @@ export default function ModalAddImage() {
 			await myApi.put(`/users/e/${currentUser.username}`, {
 				img: url,
 			});
+			await myApi.put(`/reviews/e/${currentUser.username}`, {
+				img: url,
+			});
 		} catch (error) {
 			console.log(error);
 		}
+		setSucces(true);
 	};
-
+	useEffect(() => {
+		if (succes) {
+			const timer = setTimeout(() => {
+				window.location.reload();
+			}, 2000);
+			return () => clearTimeout(timer);
+		}
+	}, [succes]);
 	return (
 		<>
 			<div className="addImage">
@@ -86,6 +98,13 @@ export default function ModalAddImage() {
 									Add image
 								</button>
 							</div>
+							{succes && (
+								<div className="addImage__succes">
+									<div className="addImage__succes-content">
+										<p>Avatar updated! 📷 </p>
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 				) : (

@@ -59,10 +59,11 @@
 			justify-content: center;
 			width: 49px;
 			height: 49px;
-			background-color: $color50;
 			border-radius: 50%;
 			img {
-				width: 2.5em;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
 			}
 		}
 		&--username {

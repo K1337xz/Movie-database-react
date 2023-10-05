@@ -27,6 +27,7 @@
 		height: 100%;
 	}
 	&__cropperContent {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
@@ -71,5 +72,16 @@
 			border: none;
 			cursor: pointer;
 		}
+	}
+	&__succes {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #202225;
+		color: $color50;
 	}
 }

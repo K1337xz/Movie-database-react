@@ -67,7 +67,6 @@ export default function Userpage() {
 	};
 
 	const addAvatar = () => {
-		console.log("xd");
 		setModalAddImg(true);
 	};
 

@@ -12,7 +12,7 @@ Page not finished!
 -   [x] Upload user avatar
 -   [x] Show on main page top rated tvseries / upcoming movies
 -   [x] Fix nav
--   [ ] Update all reviews with new avatar img
+-   [x] Update all reviews with new avatar img
 
 ## Tech Stack
 
