@@ -9,9 +9,10 @@ Page not finished!
 -   [x] Connect MovieDatabaseAPI
 -   [x] User Login/signup
 -   [x] Add review
--   [ ] Upload user avatar
+-   [x] Upload user avatar
 -   [x] Show on main page top rated tvseries / upcoming movies
 -   [x] Fix nav
+-   [ ] Update all reviews with new avatar img
 
 ## Tech Stack
 
