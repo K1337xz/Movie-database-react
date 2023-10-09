@@ -65,9 +65,35 @@ export default function Userpage() {
 			};
 		});
 	};
+	const toggleEditDescription = () => {
+		setDescription(true);
+	};
+
+	const updateUsername = async () => {
+		try {
+			await myApi.put(`/users/e/${currentUser.username}`, {
+				username: userValues.username,
+			});
+			await myApi.put(`/reviews/e/${currentUser.username}`, {
+				username: userValues.username,
+			});
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
 
 	const addAvatar = () => {
 		setModalAddImg(true);
+	};
+
+	const changeDescription = async () => {
+		try {
+			await myApi.put(`/users/e/${currentUser.username}`, {
+				desc: descriptionInputValue,
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -117,8 +143,38 @@ export default function Userpage() {
 					<div className="profile__content">
 						{active === "About Me" && (
 							<div className="profile__aboutMe">
-								{currentUser.desc ? (
-									currentUser.desc
+								{currentUser.desc && !description ? (
+									<div className="profile__aboutMe-content">
+										{currentUser.desc}
+										<FontAwesomeIcon
+											icon={faPenToSquare}
+											className="profile__aboutMe--edit"
+											onClick={toggleEditDescription}
+										/>
+									</div>
+								) : currentUser.desc && description ? (
+									<form className="profile__form">
+										<label htmlFor="description">
+											<input
+												id="description"
+												name="description"
+												type="text"
+												className="profile__form--input"
+												onChange={handleChange}
+											/>
+										</label>
+										<div className="profile__form-buttons">
+											<button className="profile__form--cancelBtn">
+												Cancel
+											</button>
+											<button
+												className="profile__form--submitBtn"
+												onClick={changeDescription}
+											>
+												Add Description
+											</button>
+										</div>
+									</form>
 								) : description ? (
 									<form className="profile__form">
 										<label htmlFor="description">
@@ -136,7 +192,7 @@ export default function Userpage() {
 											</button>
 											<button
 												className="profile__form--submitBtn"
-												onClick={toggleUpdateUser}
+												onClick={changeDescription}
 											>
 												Add Description
 											</button>
@@ -162,13 +218,17 @@ export default function Userpage() {
 												<input
 													type="text"
 													value={userValues.username}
+													autoFocus
 													onChange={
 														handleChangeUsername
 													}
 												/>
 											</label>
 											<div className="profile__valuesForm-buttons">
-												<button className="profile__valuesForm--cancelBtn">
+												<button
+													className="profile__valuesForm--cancelBtn"
+													onClick={updateUsername}
+												>
 													cancel
 												</button>
 												<button>Update </button>
