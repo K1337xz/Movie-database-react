@@ -33,6 +33,7 @@ export default function Userpage() {
 		username: false,
 		password: false,
 	});
+	const [profile, setProfile] = useState([]);
 
 	const toggleAddDescription = () => {
 		setDescription(true);
@@ -57,7 +58,7 @@ export default function Userpage() {
 		}
 	};
 
-	const toggleEditUsername = () => {
+	const toggleEditUsername = (e) => {
 		setUpdateProfile((prev) => {
 			return {
 				...prev,
@@ -69,7 +70,8 @@ export default function Userpage() {
 		setDescription(true);
 	};
 
-	const updateUsername = async () => {
+	const updateUsername = async (e) => {
+		e.preventDefault();
 		try {
 			await myApi.put(`/users/e/${currentUser.username}`, {
 				username: userValues.username,
@@ -77,6 +79,13 @@ export default function Userpage() {
 			await myApi.put(`/reviews/e/${currentUser.username}`, {
 				username: userValues.username,
 			});
+			setProfile((prev) => {
+				return {
+					...prev,
+					username: userValues.username,
+				};
+			});
+			window.location.reload();
 		} catch (error) {
 			console.log(error.response);
 		}
@@ -86,15 +95,28 @@ export default function Userpage() {
 		setModalAddImg(true);
 	};
 
-	const changeDescription = async () => {
+	const changeDescription = async (e) => {
+		e.preventDefault();
 		try {
 			await myApi.put(`/users/e/${currentUser.username}`, {
-				desc: descriptionInputValue,
+				desc: descriptionInputValue.description,
 			});
+			setProfile((prev) => {
+				return {
+					...prev,
+					desc: descriptionInputValue.description,
+				};
+			});
+			window.location.reload();
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		const profile = JSON.parse(localStorage.getItem("user"));
+		setProfile(profile);
+	}, []);
 
 	return (
 		<>
@@ -225,13 +247,14 @@ export default function Userpage() {
 												/>
 											</label>
 											<div className="profile__valuesForm-buttons">
-												<button
-													className="profile__valuesForm--cancelBtn"
-													onClick={updateUsername}
-												>
+												<button className="profile__valuesForm--cancelBtn">
 													cancel
 												</button>
-												<button>Update </button>
+												<button
+													onClick={updateUsername}
+												>
+													Update{" "}
+												</button>
 											</div>
 										</form>
 									) : (
