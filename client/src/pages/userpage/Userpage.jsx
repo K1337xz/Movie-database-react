@@ -26,6 +26,7 @@ export default function Userpage() {
 	const [descriptionInputValue, setDescriptionInputValue] = useState({});
 	const [description, setDescription] = useState(false);
 	const [modalAddImg, setModalAddImg] = useState(false);
+	const [one, setOne] = useState();
 	const [userValues, setUserValues] = useState({
 		username: currentUser.username,
 	});
@@ -33,8 +34,8 @@ export default function Userpage() {
 		username: false,
 		password: false,
 	});
-	const [profile, setProfile] = useState([]);
-
+	const [loading, setLoading] = useState(false);
+	const [profile, setProfile] = useState({});
 	const toggleAddDescription = () => {
 		setDescription(true);
 	};
@@ -72,6 +73,7 @@ export default function Userpage() {
 
 	const updateUsername = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		try {
 			await myApi.put(`/users/e/${currentUser.username}`, {
 				username: userValues.username,
@@ -79,15 +81,13 @@ export default function Userpage() {
 			await myApi.put(`/reviews/e/${currentUser.username}`, {
 				username: userValues.username,
 			});
-			setProfile((prev) => {
-				return {
-					...prev,
-					username: userValues.username,
-				};
-			});
-			window.location.reload();
+			profile.username = userValues.username;
 		} catch (error) {
 			console.log(error.response);
+		} finally {
+			localStorage.setItem("user", JSON.stringify(profile));
+			setDescription(false);
+			window.location.reload();
 		}
 	};
 
@@ -97,26 +97,25 @@ export default function Userpage() {
 
 	const changeDescription = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		try {
 			await myApi.put(`/users/e/${currentUser.username}`, {
 				desc: descriptionInputValue.description,
 			});
-			setProfile((prev) => {
-				return {
-					...prev,
-					desc: descriptionInputValue.description,
-				};
-			});
-			window.location.reload();
+			profile.desc = descriptionInputValue.description;
 		} catch (error) {
 			console.log(error);
+		} finally {
+			localStorage.setItem("user", JSON.stringify(profile));
+			setDescription(false);
+			window.location.reload();
 		}
 	};
 
 	useEffect(() => {
 		const profile = JSON.parse(localStorage.getItem("user"));
 		setProfile(profile);
-	}, []);
+	}, [loading]);
 
 	return (
 		<>
