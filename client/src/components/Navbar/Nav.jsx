@@ -264,9 +264,53 @@ export default function Nav() {
 								</li>
 							</ul>
 						</li>
-						<li className="navMobile__itemSign">
-							<Link to="/signup">Sign Up</Link>
-						</li>
+						{currentUser ? (
+							<li className="nav__item-user">
+								<div className="nav__item-userImage">
+									<Link
+										to={`/u/edit/${currentUser.username}`}
+									>
+										<img
+											src={currentUser.img || noavatar}
+											className="nav__profileImage"
+										/>
+									</Link>
+								</div>
+								<div className="nav__item-userUsername">
+									<Link
+										to={`/u/edit/${currentUser.username}`}
+									>
+										{currentUser.username}
+									</Link>
+									<FontAwesomeIcon
+										icon={faChevronDown}
+										className={
+											toggleDropLogout
+												? "nav__itemBtn--open"
+												: "nav__itemBtn--close"
+										}
+										onClick={() => {
+											setToggleDropLogout(
+												(prev) => !prev
+											);
+										}}
+									/>
+								</div>
+								<div
+									className={
+										toggleDropLogout
+											? "nav__item-dropdown"
+											: "nav__item-dropdown--close"
+									}
+								>
+									<span onClick={handleLogout}>Logout</span>
+								</div>
+							</li>
+						) : (
+							<li className="nav__item">
+								<Link to="/login">Sign In</Link>
+							</li>
+						)}
 					</ul>
 				</div>
 			</nav>

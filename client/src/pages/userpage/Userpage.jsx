@@ -67,6 +67,17 @@ export default function Userpage() {
 			};
 		});
 	};
+
+	const cancelEditUsername = (e) => {
+		e.preventDefault();
+		setUpdateProfile((prev) => {
+			return {
+				...prev,
+				username: false,
+			};
+		});
+	};
+
 	const toggleEditDescription = () => {
 		setDescription(true);
 	};
@@ -246,13 +257,17 @@ export default function Userpage() {
 												/>
 											</label>
 											<div className="profile__valuesForm-buttons">
-												<button className="profile__valuesForm--cancelBtn">
+												<button
+													className="profile__valuesForm--cancelBtn"
+													onClick={cancelEditUsername}
+												>
 													cancel
 												</button>
 												<button
+													className="profile__valuesForm--updateBtn"
 													onClick={updateUsername}
 												>
-													Update{" "}
+													Update
 												</button>
 											</div>
 										</form>
@@ -272,9 +287,6 @@ export default function Userpage() {
 									)}
 
 									<div className="profile__lowerValues">
-										<span className="profile__lowerValues--deleteUser">
-											DELETE ACCOUNT
-										</span>
 										<span
 											className="profile__settings--logut"
 											onClick={handleLogout}

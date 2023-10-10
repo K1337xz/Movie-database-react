@@ -33,7 +33,7 @@
 .nav {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	background-color: $color800;
 	width: 100%;
 	height: 100%;
@@ -59,8 +59,9 @@
 		}
 	}
 	&__profileImage {
-		clip-path: circle(50%);
+		height: 40px;
 		width: 40px;
+		border-radius: 50%;
 	}
 	&__searchResults {
 		display: block;
@@ -108,8 +109,9 @@
 	&__menu {
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 		gap: 4rem;
-		width: 25%;
+		width: 40%;
 		&-dropdownMovie {
 			display: none;
 			z-index: 2;
@@ -304,7 +306,7 @@
 }
 @include media("<=phone") {
 	.nav {
-		justify-content: space-around;
+		justify-content: space-evenly;
 		padding: 1rem;
 		&__searchBar {
 			position: relative;
@@ -329,6 +331,15 @@
 			margin-left: 0;
 			img {
 				width: 100%;
+			}
+		}
+		&__item {
+			&-dropdown {
+				top: 65%;
+				right: 26%;
+				background-color: hsl(197, 69%, 95%);
+				padding: 2rem;
+				width: 40%;
 			}
 		}
 	}
@@ -429,6 +440,149 @@
 	}
 }
 @include media(">=phone", "<=tablet") {
+	.nav {
+		justify-content: space-around;
+		padding: 1rem;
+		&__searchResults {
+			width: 80%;
+			left: 17%;
+			top: 6vh;
+		}
+		&__searchBar {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
+		&__menu {
+			display: none;
+		}
+		&__logo {
+			margin-left: 0;
+			img {
+				width: 100%;
+			}
+		}
+		&__searchWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			width: 90%;
+			&.hiddenInp {
+				input {
+					width: 0%;
+					opacity: 0%;
+					transition: all 0.2s ease-in;
+				}
+			}
+			&.activeInp {
+				input {
+					width: 85%;
+					opacity: 1;
+					transition: all 0.2s ease-in;
+				}
+			}
+			input {
+				width: 85%;
+				height: 4vh;
+				background-color: $color800;
+				border: 1px solid $color500;
+				border-radius: 20px;
+				outline: none;
+				color: $color50;
+				padding-left: 2rem;
+				&::placeholder {
+					color: $color50;
+				}
+			}
+		}
+	}
+	.navMobile {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		background-color: rgb(4 25 36 / 94%);
+		width: 100%;
+		height: 100vh;
+		z-index: 9999;
+		&__top {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			background-color: rgb(4 25 36 / 100%);
+			width: 100%;
+			height: 15%;
+		}
+		&__menu {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-direction: column;
+			gap: 2rem;
+			width: 100%;
+			height: 55%;
+			margin-top: 5rem;
+			list-style: none;
+			&-dropdownSeries {
+				list-style: none;
+			}
+			&-dropdownMovie {
+				list-style: none;
+			}
+		}
+		&__item {
+			&-dropdownMovie {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				gap: 1rem;
+				width: 50%;
+			}
+			&-dropdownSeries {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				width: 50%;
+			}
+			&-dropDownFirst {
+				color: red !important;
+				font-size: 20px;
+			}
+		}
+		&__dropdownItem {
+			font-size: 14px;
+			font-weight: 300;
+			margin-left: 0.3rem;
+		}
+		&__itemSign {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 50%;
+			height: 5vh;
+			background-color: $color500;
+			border-radius: 20px;
+		}
+	}
+	.openMenuMobile {
+		display: block;
+		cursor: pointer;
+		margin-left: 1rem;
+	}
+	.showInput {
+		display: block;
+		cursor: pointer;
+	}
+}
+@include media(">=tablet", "<=1023px") {
 	.nav {
 		justify-content: space-around;
 		padding: 1rem;

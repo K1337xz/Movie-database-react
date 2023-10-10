@@ -85,3 +85,13 @@
 		color: $color50;
 	}
 }
+@include media("<=phone") {
+	.addImage {
+		&__content {
+			width: 90%;
+		}
+		&__cropperContent {
+			width: 100%;
+		}
+	}
+}

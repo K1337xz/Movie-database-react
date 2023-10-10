@@ -1,3 +1,9 @@
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Nav from "../../components/Navbar/Nav";
 import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,8 +12,6 @@ import { Link, useNavigate } from "react-router-dom";
 import signupValidation from "../../hooks/scrollNav/signupValidation";
 import { AuthContext } from "../../context/authContext";
 import "./loginPage.scss";
-import { useContext, useState } from "react";
-import axios from "axios";
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -18,6 +22,17 @@ export default function LoginPage() {
 	const [formErrors, setFormErrors] = useState({});
 	const [err, setErr] = useState();
 	const { login } = useContext(AuthContext);
+	const [succesLogin, setSuccesLogin] = useState(false);
+	const notifySucces = () => {
+		toast.success("Success! You are now logged in", {
+			position: "top-center",
+			autoClose: 1000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			theme: "dark",
+		});
+	};
 
 	const handleChange = (e) => {
 		setFormValues({
@@ -31,12 +46,31 @@ export default function LoginPage() {
 		setFormErrors(signupValidation(formValues));
 		try {
 			await login(formValues);
-			navigate("/");
+			notifySucces();
+			setSuccesLogin(true);
 		} catch (error) {
+			toast.error(error.response.data, {
+				position: "top-center",
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				theme: "dark",
+			});
+
 			console.log(error.response);
 			setErr(error.response);
 		}
 	};
+
+	useEffect(() => {
+		if (succesLogin) {
+			const timer = setTimeout(() => {
+				navigate("/");
+			}, 1500);
+			return () => clearTimeout(timer);
+		}
+	}, [succesLogin]);
 	return (
 		<>
 			<Nav />
@@ -88,6 +122,7 @@ export default function LoginPage() {
 					</div>
 				</div>
 			</main>
+			<ToastContainer />
 			<Footer />
 		</>
 	);

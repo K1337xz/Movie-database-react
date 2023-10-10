@@ -123,7 +123,7 @@
 	}
 }
 @include media("<=phone") {
-	.signUp {
+	.login {
 		&__form {
 			height: 42vh;
 		}
@@ -137,7 +137,7 @@
 	}
 }
 @include media(">=phone", "<=tablet") {
-	.signUp {
+	.login {
 		&__form {
 			height: 42vh;
 		}
