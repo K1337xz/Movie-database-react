@@ -14,6 +14,7 @@ import LoginPage from "./pages/loginPage/LoginPage.jsx";
 import Userpage from "./pages/userpage/Userpage.jsx";
 import { AuthContextProvider, AuthContext } from "./context/authContext";
 import SignupPage from "./pages/signupPage/SignupPage.jsx";
+import ClickedUser from "./pages/clickedUser/ClickedUser.jsx";
 import "./index.scss";
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
 	{
 		path: "/u/edit/:id",
 		element: <Userpage />,
+	},
+	{
+		path: "/u/:id",
+		element: <ClickedUser />,
 	},
 ]);
 

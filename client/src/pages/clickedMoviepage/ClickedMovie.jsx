@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, createRef } from "react";
+import { myApi } from "../../api/api";
 import Castslider from "../../components/castSlider/Castslider";
 import Player from "../../components/player/Player";
 import { Toggle } from "../../components/Toggle/Togglebtn";
@@ -66,7 +67,6 @@ export default function ClickedMovie() {
 						params: { api_key: import.meta.env.VITE_API_KEY },
 					}
 				);
-				console.log(data);
 				const creditsData = await axios.get(
 					`https://api.themoviedb.org/3/movie/${movieId}/credits`,
 					{

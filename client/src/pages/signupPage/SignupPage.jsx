@@ -3,6 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { myApi } from "../../api/api";
 import signupValidation from "../../hooks/scrollNav/signupValidation";
 import "./signuppage.scss";
 import { useState } from "react";
