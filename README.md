@@ -1,6 +1,5 @@
 # CoolMovieDB
 
-Page not finished!
 
 # Todo
 
