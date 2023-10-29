@@ -73,7 +73,7 @@ export default function TopRatedPage() {
 			let newPage = [];
 			try {
 				const topRatedData = await axios.get(
-					`https://api.themoviedb.org/3/movie/top_rated/`,
+					`https://api.themoviedb.org/3/movie/top_rated`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,

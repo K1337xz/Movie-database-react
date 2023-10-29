@@ -73,7 +73,7 @@ export default function PopularPage() {
 			let newPage = [];
 			try {
 				const popularData = await axios.get(
-					`https://api.themoviedb.org/3/movie/popular/`,
+					`https://api.themoviedb.org/3/movie/popular`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,

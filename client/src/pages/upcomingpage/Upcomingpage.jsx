@@ -75,7 +75,7 @@ export default function Upcomingpage() {
 			let newPage = [];
 			try {
 				const nowPlayingData = await axios.get(
-					`https://api.themoviedb.org/3/movie/upcoming/`,
+					`https://api.themoviedb.org/3/movie/upcoming`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,

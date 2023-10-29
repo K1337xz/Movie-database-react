@@ -75,7 +75,7 @@ export default function NowPlaying() {
 			let newPage = [];
 			try {
 				const nowPlayingData = await axios.get(
-					`https://api.themoviedb.org/3/movie/now_playing/`,
+					`https://api.themoviedb.org/3/movie/now_playing`,
 					{
 						params: {
 							api_key: import.meta.env.VITE_API_KEY,
