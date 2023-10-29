@@ -10,7 +10,7 @@ export default function Reviews(props) {
 	return (
 		<div className="review__card">
 			<div className="review__top">
-				{currentUser.username === props.data.username ? (
+				{currentUser && currentUser.username === props.data.username ? (
 					<div className="review__leftSide">
 						<Link
 							to={`/u/edit/${props.data.username}`}
