@@ -18,7 +18,7 @@ export default function RightMovieInfo(props) {
 						import.meta.env.VITE_API_KEY
 					}`
 				);
-				const dataM = await axios.get(`${api_url}/movie/upcoming/`, {
+				const dataM = await axios.get(`${api_url}/movie/upcoming`, {
 					params: {
 						api_key: import.meta.env.VITE_API_KEY,
 						"primary_release_date.gte": date,
